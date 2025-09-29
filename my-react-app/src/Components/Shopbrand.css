@@ -1,0 +1,69 @@
+/* container */
+.brand-slider {
+    margin-top: 20px;
+}
+
+/* arrows + dots wrapper */
+.brand-slider .dots-with-arrows {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.brand-slider .slick-dots {
+    display: flex;
+    justify-content: center;
+    bottom: -45px;
+}
+
+/* arrows */
+.brand-slider .custom-arrow {
+    background: transparent;
+    border: none;
+    color: #2c2484;
+    font-size: 22px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.brand-slider .custom-arrow:hover {
+    color: #ffb400;
+}
+
+/* dots list */
+.brand-slider .custom-slick-dots {
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.brand-slider .custom-slick-dots li {
+    margin: 0 6px;
+}
+
+/* inactive dot */
+.brand-slider .custom-slick-dots li button {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #ccc !important;
+    border: none;
+    padding: 0;
+}
+
+.brand-slider .custom-slick-dots li button:before {
+    display: none;
+}
+
+/* active pill */
+.brand-slider .custom-slick-dots li.slick-active button {
+    width: 25px;
+    height: 10px;
+    background: #2c2484 !important;
+    border-radius: 50px;
+}

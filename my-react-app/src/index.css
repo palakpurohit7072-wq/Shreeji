@@ -1,0 +1,49 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.bluetext{   /* custom  bootstrap classes */
+color: #2c2484;
+}
+.blueborder{
+ border-width: 1px #2c2484;
+}
+.bg-blue{
+background-color: #2c2484;
+}
+.sansfamily{
+ font-family: 'sans-serif';
+  }    
+  .yellow_background{
+background-color: #fff350
+}
+.yellowborder{
+  border: 1px solid #fff350;
+
+}
+
+.navbar-nav .dropdown:hover .dropdown-menu {  /* dropdownmenu css */
+  display: block;
+  margin-top: 0; 
+}
+.navbar-nav .dropdown-menu {
+  transition: all 0.3s ease;
+}
+.img_dropdownone{
+    width:200px;
+    height:200px;
+}
+
+.navbar-nav .dropdown:hover .dropdown-menu {
+  display: block;
+  margin-top: 0;
+}
+
+.navbar-nav .dropdown-menu {
+  transition: all 0.3s ease;
+}
+
+
+
+

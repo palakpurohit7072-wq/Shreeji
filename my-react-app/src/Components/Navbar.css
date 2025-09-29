@@ -1,0 +1,46 @@
+.right_part .btns {
+  width: 134px;
+  height: 50px !important;
+  font-size: 15px;
+  border-radius: 10px;
+}
+
+/* ✅ Tablet screens (max-width: 991px) */
+@media (max-width: 991px) {
+  .right_part {
+    flex-wrap: wrap;
+    justify-content: center !important;
+    gap: 10px !important;
+    width: 100%;
+  }
+
+  .right_part form {
+    order: 3; /* Search neeche chala jaye */
+    width: 100% !important;
+  }
+
+  .right_part .btns {
+    width: auto;
+    min-width: 120px;
+    height: 45px !important;
+    font-size: 14px;
+  }
+}
+
+/* ✅ Mobile screens (max-width: 576px) */
+@media (max-width: 576px) {
+  .right_part {
+    flex-direction: column;
+    align-items: stretch !important;
+  }
+
+  .right_part .btns {
+    width: 100% !important;
+    height: 45px !important;
+    font-size: 14px;
+  }
+
+  .right_part form {
+    width: 100% !important;
+  }
+}
