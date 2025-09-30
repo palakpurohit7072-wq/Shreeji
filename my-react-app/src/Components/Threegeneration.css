@@ -1,0 +1,79 @@
+/* Container size fix */
+.threegeneration .threegeneration_container {
+  max-width: 1040px;   /* jitna chhota karna hai utna */
+  margin: 0 auto;   
+}
+
+/* Card styling */
+.threegeneration .threegeneration .review-card {
+  width: 319px;
+  height: 184px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+/* Stars spacing */
+.threegeneration .stars i {
+  margin-right: 2px;
+  font-size: 1rem;
+}
+
+/* Heading font size */
+.generation_heading {
+  font-size: 25px;
+  font-weight: 700;
+}
+
+/* Each slick slide wrapper */
+.threegeneration .slide-item {
+  padding: 0 10px; /* 🔹 cards ke beech ka gap */
+}
+
+/* Slick slide alignment */
+.threegeneration .slick-slide > div {
+  display: flex;
+  justify-content: center;
+}
+
+/* Arrows wrapper */
+.threegeneration .arrows-wrapper {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+
+/* Custom arrow */
+.threegeneration .custom-arrow {
+  font-size: 28px;
+  color: #666;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .threegeneration .review-card {
+    width: 280px;
+    height: 184px;
+  }
+}
+
+@media (max-width: 576px) {
+  .threegeneration .threegeneration .review-card {
+    width: 90%;
+    height: 184px;
+  }
+
+  .threegeneration .slide-item {
+    padding: 0 5px; /* chhote screens par thoda gap kam */
+  }
+
+  .threegeneration .arrows-wrapper {
+    gap: 20px;
+  }
+}

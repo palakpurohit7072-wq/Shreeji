@@ -8,11 +8,16 @@ import Signature from './Components/Signature';
 import Newarrival from './Components/Newarrival';
 import Cycleinhance from './Components/Cycleinhance';
 import Homeessentials from './Components/Homeessentials';
+import Faq from './Components/Faq';
+import Threegeneration from './Components/Threegeneration';
+import Trendingproducts from './Components/Trendingproducts';
 import Footer from './Components/Footer';
+import Shopbrand from './Components/Shopbrand';
+
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import Shopbrand from './Components/Shopbrand';
+
 const App = () => {
   return (
     <div>
@@ -25,6 +30,9 @@ const App = () => {
       <Newarrival />
       <Cycleinhance />
       <Homeessentials />
+      <Trendingproducts />
+      <Threegeneration />
+      <Faq />
       <Shopbrand />
       <Footer />
     </div>

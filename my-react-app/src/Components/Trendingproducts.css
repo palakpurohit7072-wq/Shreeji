@@ -1,0 +1,19 @@
+.trendcontainer .trending-card {
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+}
+
+.trendcontainer .card-video {
+  width: 100%;
+  height: 220px;   /* fixed height for all videos */
+  object-fit: cover; /* maintain uniform look */
+  border-bottom: 1px solid #eee;
+}
+
+.trendcontainer .card-title {
+  font-size: 18px!important;
+  margin-top: 10px;
+}
+

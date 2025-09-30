@@ -24,6 +24,14 @@ background-color: #fff350
 .font_size{
   font-size: 15px;
 }
+.font_weight_semi{
+  font-weight: 600;
+}
+.font_weight{
+  font-weight: 500;
+}
+
+
 .navbar-nav .dropdown:hover .dropdown-menu {  /* dropdownmenu css */
   display: block;
   margin-top: 0; 

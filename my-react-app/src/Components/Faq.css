@@ -1,0 +1,93 @@
+/* Remove Bootstrap default arrow */
+.faq_container .accordion-button::after {
+  display: none !important;
+}
+
+/* Icon size */
+.faq_container .faq-icon img {
+  width: 15px!important;
+  height: 15px!important;
+  display: inline-block;
+}
+
+/* Accordion header styling */
+.faq_container .accordion-button {
+  color: #2c2484 !important;   
+  font-weight: 600;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  font-size: 20px;
+  font-family: 'sans-serif';
+      display: flex;
+    gap: 4px;
+
+}
+/* Open accordion styling */
+.faq_container .accordion-button:not(.collapsed) {
+  color: #2c2484 !important;
+  /* background-color: #fff; */
+  box-shadow: none;
+  font-size: 20px;
+  font-family: 'sans-serif';
+      display: flex;
+    gap: 4px;
+     background-color: #F7F6FA;
+}
+
+/* Remove default focus/active border */
+.faq_container .accordion-button:focus {
+  box-shadow: none !important;
+  outline: none !important;
+ 
+}
+.faq_container .accordion-item {
+  border-radius: 0 !important;
+}
+/* Question-Answer ke beech border */
+.faq_container .accordion-body {
+  border-top: 1px solid #ccc; 
+  padding-top: 15px;
+  font-size: 15px;
+  font-family: 'sans-serif';
+  color: #2c2484;
+   background-color: #F7F6FA;;
+}
+
+/* Responsive adjustments for tablet/mobile */
+@media (max-width: 768px) {
+  .faq_container .accordion-button {
+    font-size: 18px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+
+  .faq_container .faq-icon img {
+    width: 18px!important;
+    height: 18px!important;
+  }
+
+  .faq_container .accordion-body {
+    font-size: 14px;
+    padding-top: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .faq_container .accordion-button {
+    font-size: 16px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+
+  .faq_container .faq-icon img {
+    width: 10px!important;
+    height: 10px!important;
+  }
+
+  .faq_container .accordion-body {
+    font-size: 13px;
+    padding-top: 8px;
+  }
+}
+
+
