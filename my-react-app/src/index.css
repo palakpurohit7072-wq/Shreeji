@@ -20,9 +20,10 @@ background-color: #fff350
 }
 .yellowborder{
   border: 1px solid #fff350;
-
 }
-
+.font_size{
+  font-size: 15px;
+}
 .navbar-nav .dropdown:hover .dropdown-menu {  /* dropdownmenu css */
   display: block;
   margin-top: 0; 

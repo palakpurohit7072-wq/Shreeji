@@ -53,7 +53,7 @@ function BrandsSlider() {
 
 
   return (
-    <div className="container brand-slider my-5">
+    <div className="container brand-slider">
       <h3 className="text-center mb-4">Shop By Brands</h3>
       <Slider ref={sliderRef} {...settings}>
         {images.map((img, index) => (

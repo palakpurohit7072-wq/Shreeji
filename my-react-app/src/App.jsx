@@ -8,6 +8,7 @@ import Signature from './Components/Signature';
 import Newarrival from './Components/Newarrival';
 import Cycleinhance from './Components/Cycleinhance';
 import Homeessentials from './Components/Homeessentials';
+import Footer from './Components/Footer';
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -15,16 +16,17 @@ import Shopbrand from './Components/Shopbrand';
 const App = () => {
   return (
     <div>
-        <Navbar /> 
-       <Dropdownmenu />
+      <Navbar />
+      <Dropdownmenu />
       <Fragnances />
       <Singleslide />
       <Slider />
       <Signature />
-      <Newarrival /> 
+      <Newarrival />
       <Cycleinhance />
-      <Homeessentials /> 
-       <Shopbrand />
+      <Homeessentials />
+      <Shopbrand />
+      <Footer />
     </div>
   );
 }
