@@ -23,7 +23,7 @@ const Fragrances = () => {
   return (
     <div className="container fragnancepart my-4">
       <h1 className="bluetext mb-4 fragnance_heading fw-semibold sansfamily">
-        Fragrances For Divine Experiences
+      Gaumay sugandhit cone Dhoop
       </h1>
 
    

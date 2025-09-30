@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../assets/logo.png";
+import shreejilogo from "../assets/shreejilogo.png";
 import { Form, FormControl } from "react-bootstrap";
 import "./Navbar.css";
 
@@ -8,7 +8,7 @@ function Navbar() {
     <div className="container d-flex justify-content-between align-items-center py-3 flex-wrap">
       {/* Left Part */}
       <div className="left_part mb-2 mb-md-0">
-        <img src={logo} alt="Logo" height="40" />
+        <img src={shreejilogo} alt="Logo" height="80"  width="100"/>
       </div>
 
       {/* Right Part */}
@@ -44,3 +44,4 @@ function Navbar() {
 }
 
 export default Navbar;
+
