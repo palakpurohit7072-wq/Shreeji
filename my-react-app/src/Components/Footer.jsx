@@ -115,15 +115,15 @@ const Footer = () => {
                         <div className="col-md-3 mb-4">
                             <h6 className="sansfamily fw-medium middlefooter_heading font_size">BUSINESS INFORMATION</h6>
                             <div className="d-flex align-items-center mb-1">
-                                <img src={icon} alt="Location" width="20" className="me-2"/>
+                                <img src={icon} alt="Location" width="20" className="me-2" />
                                 <p className="middle_col_text font_size sansfamily mb-0">Vanivilasa Road, Mysuru, Karnataka - 570004</p>
                             </div>
                             <div className="d-flex align-items-center mb-1">
-                                <img src={tel} alt="Phone" width="20" className="me-2"/>
+                                <img src={tel} alt="Phone" width="20" className="me-2" />
                                 <p className="middle_col_text font_size sansfamily mb-0">1800-425-7729</p>
                             </div>
                             <div className="d-flex align-items-center mb-0">
-                                <img src={mail} alt="Email" width="20" className="me-2"/>
+                                <img src={mail} alt="Email" width="20" className="me-2" />
                                 <p className="middle_col_text font_size sansfamily mb-0">@shreejigavya.in</p>
                             </div>
                         </div>

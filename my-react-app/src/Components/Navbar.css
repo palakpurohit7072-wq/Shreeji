@@ -1,55 +1,96 @@
-.right_part .btns {
+/* Common Buttons */
+.btns {
   width: 134px;
   height: 50px !important;
   font-size: 15px;
   border-radius: 10px;
-  transition: all 0.3s ease; /* smooth hover */
+}
+/* Cross Icon inside dropdown */
+.close-icon {
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-left: 10px;
 }
 
-/* Account Button Hover */
+/* Mobile dropdown menu override */
+.dropdown-menu.show {
+  display: block !important;
+  position: relative !important;
+  border: none;
+  box-shadow: none;
+}
+
+/* Keep desktop same */
+
+/* Desktop/Right Part Buttons */
 .right_part .btns.bluetext:hover {
   background-color: #E4040D !important;
   border-color: #E4040D !important;
-  color: #fff !important; /* text white */
+  color: #fff !important;
 }
-
-/* SVG icon white */
 .right_part .btns.bluetext:hover svg path {
   stroke: #fff !important;
 }
 
-/* Cart Button Hover (text-light + bg-blue) */
 .right_part .btns.bg-blue:hover {
   background-color: #E4040D !important;
   border-color: #E4040D !important;
   color: #fff !important;
 }
-
-/* Cart icon white on hover */
 .right_part .btns.bg-blue:hover svg path {
   stroke: #fff !important;
 }
 
+/* Heart Icon */
+.heart-icon,
+.wlh-svg-Icon {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  fill: #2c2484;
+}
+
+/* Buttons wrapper */
+.buttons-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+}
+
+/* Bootstrap Toggler Icon visible */
+.navbar-toggler {
+  border: none !important;
+}
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%280,0,0,0.7%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
 
 /* ✅ Tablet screens (max-width: 991px) */
 @media (max-width: 991px) {
   .right_part {
     flex-wrap: wrap;
-    justify-content: center !important;
-    gap: 10px !important;
     width: 100%;
+    position: relative;
   }
 
   .right_part form {
-    order: 3; /* Search neeche chala jaye */
+    order: 2; /* search bar neeche chala jaaye */
     width: 100% !important;
+    margin-top: 10px;
   }
 
   .right_part .btns {
-    width: auto;
-    min-width: 120px;
-    height: 45px !important;
-    font-size: 14px;
+    display: none !important; /* buttons hide */
+  }
+
+  /* Heart icon aligned with logo */
+  .wlh-svg-Icon {
+    position: absolute;
+    top: 50%;
+    left: 100px; /* logo width ke approx */
+    transform: translateY(-50%);
   }
 }
 
@@ -60,13 +101,13 @@
     align-items: stretch !important;
   }
 
-  .right_part .btns {
-    width: 100% !important;
-    height: 45px !important;
-    font-size: 14px;
-  }
-
   .right_part form {
     width: 100% !important;
+    margin-top: 10px;
+  }
+
+  .wlh-svg-Icon {
+    left: 100px; /* adjust if needed based on logo width */
   }
 }
+

@@ -13,6 +13,8 @@ import Threegeneration from './Components/Threegeneration';
 import Trendingproducts from './Components/Trendingproducts';
 import Footer from './Components/Footer';
 import Shopbrand from './Components/Shopbrand';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js'; // includes dropdown, collapse
 
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "slick-carousel/slick/slick.css";

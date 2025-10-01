@@ -1,0 +1,31 @@
+/* Hover dropdown open */
+.main-navbar .navbar-nav .dropdown:hover .dropdown-menu {
+  display: block;
+  margin-top: 0; /* remove bootstrap gap */
+}
+
+/* Mega Dropdown Full Width */
+.main-navbar .mega-dropdown .dropdown-menu {
+  width: 100%;
+  left: 0;
+  right: 0;
+  border-top: 2px solid #ddd;
+  transition: all 0.3s ease;
+  background: #fff;
+}
+
+/* Image size inside dropdown */
+.main-navbar .img-fluid {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Normal dropdown (if needed small menus) */
+.main-navbar .navbar-nav .dropdown-menu {
+  min-width: 200px;
+  transition: all 0.3s ease;
+}
+
+
+
+
