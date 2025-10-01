@@ -6,15 +6,27 @@
   transition: all 0.3s ease; /* smooth hover */
 }
 
-/* Hover state - dono button ke liye */
-.right_part .btns:hover {
-  background-color: #E4040D !important; /* 
+/* Account Button Hover */
+.right_part .btns.bluetext:hover {
+  background-color: #E4040D !important;
   border-color: #E4040D !important;
   color: #fff !important; /* text white */
 }
 
-/* Hover pe Account button ka icon bhi white ho jaye */
-.right_part .btns:hover svg path {
+/* SVG icon white */
+.right_part .btns.bluetext:hover svg path {
+  stroke: #fff !important;
+}
+
+/* Cart Button Hover (text-light + bg-blue) */
+.right_part .btns.bg-blue:hover {
+  background-color: #E4040D !important;
+  border-color: #E4040D !important;
+  color: #fff !important;
+}
+
+/* Cart icon white on hover */
+.right_part .btns.bg-blue:hover svg path {
   stroke: #fff !important;
 }
 
