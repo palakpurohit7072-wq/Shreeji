@@ -3,7 +3,21 @@
   height: 50px !important;
   font-size: 15px;
   border-radius: 10px;
+  transition: all 0.3s ease; /* smooth hover */
 }
+
+/* Hover state - dono button ke liye */
+.right_part .btns:hover {
+  background-color: #E4040D !important; /* 
+  border-color: #E4040D !important;
+  color: #fff !important; /* text white */
+}
+
+/* Hover pe Account button ka icon bhi white ho jaye */
+.right_part .btns:hover svg path {
+  stroke: #fff !important;
+}
+
 
 /* ✅ Tablet screens (max-width: 991px) */
 @media (max-width: 991px) {
