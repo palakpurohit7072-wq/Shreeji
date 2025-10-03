@@ -2,7 +2,7 @@ import React from "react";
 import dropdown1 from "../assets/dropdown1.png"; 
 import "./Dropdown.css";
 
-const DropdownMenu = () => {
+const Dropdownmenu = () => {
   // Reusable Mega Dropdown with dynamic content
   const megaDropdown = (title, content, image) => (
     <li className="nav-item dropdown position-static mega-dropdown">
@@ -164,4 +164,4 @@ const DropdownMenu = () => {
   );
 };
 
-export default DropdownMenu;
+export default Dropdownmenu;
