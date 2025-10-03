@@ -4,8 +4,8 @@ import HomePage from "./Components/HomePage";
 import AccountPage from "./Components/AccountPage";
 import ProductList from "./Pages/ProductList";
 import CartFullPage from "./Components/CartFullPage";       // new
- import CheckoutPage from "./Components/CheckoutPage";       
-// import Shopnow from "./Components/Shopnow.jsx";
+ import CheckoutPage from "./Components/CheckoutPage";      
+
 
 const App = () => {
   return (
@@ -16,7 +16,7 @@ const App = () => {
         <Route path="products" element={<ProductList />} />
         <Route path="cart" element={<CartFullPage />} />       {/* new */}
         <Route path="checkout" element={<CheckoutPage />} />  
-          {/* <Route path="shopnow" element={<Shopnow />} />   */}
+      
       </Route>
     </Routes>
   );
