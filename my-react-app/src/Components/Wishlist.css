@@ -1,0 +1,80 @@
+/* Background overlay */
+.wishlist-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(33, 33, 33, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1050;
+}
+
+/* White popup box (wider + shorter) */
+.wishlist-box {
+  background: #fff;
+  border-radius: 8px;
+  width: 900px;        /* 🔥 width badhaya */
+  max-width: 95%;
+  padding: 25px 30px;  /* 🔥 padding kam kiya (height reduce) */
+  position: relative;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+/* Close button (top-right) */
+.wishlist-close {
+  position: absolute;
+  top: 12px;
+  right: 18px;
+  border: none;
+  background: transparent;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+/* Header with heart + text */
+.wishlist-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.wishlist-heart {
+  font-size: 24px;
+}
+
+.wishlist-title {
+  font-size: 22px;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+}
+
+/* Message */
+.wishlist-text {
+  font-size: 15px;
+  color: #6c757d;
+  margin: 15px 0 20px;
+}
+
+/* Yellow Login Button */
+.wishlist-login-btn {
+  background: #ffe033;
+  border: none;
+  padding: 8px 28px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #333;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.wishlist-login-btn:hover {
+  background: #ffdb1a;
+}

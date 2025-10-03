@@ -60,7 +60,7 @@ const Footer = () => {
                             <p className="small footer_col_text sansfamily font_size text-light">
                                 Discover handcrafted luxury incense, pure puja essentials, premium gifting
                                 range, and curated spiritual products loved in 75 countries. Rooted in
-                                tradition, innovation, and eco-consciousness, Cycle.in brings the essence
+                                tradition, innovation, and eco-consciousness, Shreejeegavya.in brings the essence
                                 of Indian spirituality to the world, uplifting and connecting you to the
                                 divine.
                             </p>
@@ -80,8 +80,7 @@ const Footer = () => {
                         {/* Brands */}
                         <div className="col-md-2 mb-4">
                             <h6 className="sansfamily fw-medium footer_title font_size">BRANDS</h6>
-                            <ul className="list-unstyled font_size  footer_col_text sansfamily ">
-                                <li><a href="#" className="text-light text-decoration-none ">Cycle</a></li>
+                            <ul className="list-unstyled font_size  footer_col_text sansfamily ">                              
                                 <li><a href="#" className="text-light text-decoration-none ">Amogha</a></li>
                                 <li><a href="#" className="text-light text-decoration-none ">Gavi</a></li>
                                 <li><a href="#" className="text-light text-decoration-none ">Karpure</a></li>
@@ -124,7 +123,7 @@ const Footer = () => {
                             </div>
                             <div className="d-flex align-items-center mb-0">
                                 <img src={mail} alt="Email" width="20" className="me-2" />
-                                <p className="middle_col_text font_size sansfamily mb-0">@shreejigavya.in</p>
+                                <p className="middle_col_text font_size sansfamily mb-0">@shreejeegavya.in</p>
                             </div>
                         </div>
 
@@ -168,7 +167,7 @@ const Footer = () => {
                     {/* Bottom Footer */}
                     <div className="row mt-4 border-top pt-3">
                         <div className="col-md-6">
-                            <p className="mb-0 sansfamily font_size text-light">Copyright © 2025 Shree Ji Gavya.in</p>
+                            <p className="mb-0 sansfamily font_size text-light">Copyright © 2025 Shree Jee Gavya.in</p>
                         </div>
                         <div className="col-md-6 text-md-end">
                             <p className="mb-0 sansfamily font_size text-light">Developed By BOOST STAR Experts</p>

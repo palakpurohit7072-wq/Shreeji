@@ -1,17 +1,41 @@
- .fragnancepart .fragnance_heading{   /* css for Fragnances.jsx */
-    font-size: 24px;   
+.fragnancepart .fragnance_heading {
+  font-size: 24px;
 }
- .fragnancepart .round_fragnance_img {
-  width: 147px; 
-  height: 147px;
+
+.fragnancepart .fragrance-row {
+  display: flex;
+  flex-wrap: nowrap;         /* desktop pe wrap NA ho */
+  justify-content: space-between; /* equal space maintain */
+  align-items: center;
+  gap: 10px;                 /* kam gap */
+  overflow-x: hidden;        /* koi horizontal scroll nahi */
+}
+
+.fragnancepart .round_fragnance_img {
+  width: 148px;
+  height: 148px;
+  border-radius: 50%;
   overflow: hidden;
+  flex-shrink: 0;
 }
- .fragnancepart .round_fragnance_img img {
+
+.fragnancepart .round_fragnance_img img {
   width: 100%;
   height: 100%;
-  object-fit: cover; 
+  object-fit: cover;
   transition: transform 0.3s ease;
 }
- .fragnancepart .round_fragnance_img:hover img {
-  transform: scale(1.2);
+
+.fragnancepart .round_fragnance_img:hover img {
+  transform: scale(1.15);
 }
+
+/* ✅ Tablet aur mobile ke liye wrap allow karo */
+@media (max-width: 1200px) {
+  .fragnancepart .fragrance-row {
+    flex-wrap: wrap;         
+    justify-content: center; /* center align jab wrap ho */
+    gap: 15px;
+  }
+}
+

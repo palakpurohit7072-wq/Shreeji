@@ -1,0 +1,86 @@
+.shopnow-container {
+  padding: 20px;
+  font-family: 'Arial', sans-serif;
+}
+
+/* Filters Row on top */
+.filters-row {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.filters-row h4 {
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.filter-options label {
+  display: block;
+  margin-bottom: 5px;
+  cursor: pointer;
+}
+
+/* Product Grid */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+/* Product Card */
+.product-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  text-align: center;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  background-color: #fff;
+}
+
+.product-card:hover {
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  transform: translateY(-3px);
+}
+
+.product-card img {
+  width: 100%;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.product-card h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.product-card p {
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.product-card button {
+  padding: 8px 12px;
+  background: #ff9800;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+.product-card button:hover {
+  background: #e68a00;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .filters-row {
+    flex-direction: column;
+    gap: 15px;
+  }
+}
+

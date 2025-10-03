@@ -1,34 +1,22 @@
-/* Common Buttons */
+/* ---------------------- Buttons ---------------------- */
 .btns {
   width: 134px;
   height: 50px !important;
   font-size: 15px;
   border-radius: 10px;
-}
-/* Cross Icon inside dropdown */
-.close-icon {
-  font-size: 20px;
-  font-weight: bold;
-  cursor: pointer;
-  margin-left: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center text & icon */
+  gap: 5px;
 }
 
-/* Mobile dropdown menu override */
-.dropdown-menu.show {
-  display: block !important;
-  position: relative !important;
-  border: none;
-  box-shadow: none;
-}
-
-/* Keep desktop same */
-
-/* Desktop/Right Part Buttons */
+/* Buttons hover effect */
 .right_part .btns.bluetext:hover {
   background-color: #E4040D !important;
   border-color: #E4040D !important;
   color: #fff !important;
 }
+
 .right_part .btns.bluetext:hover svg path {
   stroke: #fff !important;
 }
@@ -38,20 +26,29 @@
   border-color: #E4040D !important;
   color: #fff !important;
 }
+
 .right_part .btns.bg-blue:hover svg path {
   stroke: #fff !important;
 }
 
-/* Heart Icon */
-.heart-icon,
-.wlh-svg-Icon {
+/* ---------------------- Standalone Heart Icon ---------------------- */
+.heart-icon {
   width: 24px;
   height: 24px;
   cursor: pointer;
   fill: #2c2484;
 }
 
-/* Buttons wrapper */
+/* ---------------------- Hamburger ---------------------- */
+.navbar-toggler {
+  border: none !important;
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='black' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+/* ---------------------- Buttons Wrapper ---------------------- */
 .buttons-wrapper {
   display: flex;
   align-items: center;
@@ -59,15 +56,21 @@
   position: relative;
 }
 
-/* Bootstrap Toggler Icon visible */
-.navbar-toggler {
-  border: none !important;
-}
-.navbar-toggler-icon {
-  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%280,0,0,0.7%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+/* ---------------------- Dropdown Mega Menu ---------------------- */
+.nav-item.dropdown .dropdown-menu {
+  border-radius: 10px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+  animation: fadeIn 0.3s ease-in-out;
 }
 
-/* ✅ Tablet screens (max-width: 991px) */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------------------- Responsive ---------------------- */
+
+/* Tablet screens */
 @media (max-width: 991px) {
   .right_part {
     flex-wrap: wrap;
@@ -76,25 +79,25 @@
   }
 
   .right_part form {
-    order: 2; /* search bar neeche chala jaaye */
+    order: 2; /* search bar neeche */
     width: 100% !important;
     margin-top: 10px;
   }
 
   .right_part .btns {
-    display: none !important; /* buttons hide */
+    display: none !important; /* hide desktop buttons */
   }
 
   /* Heart icon aligned with logo */
-  .wlh-svg-Icon {
+  .heart-icon {
     position: absolute;
     top: 50%;
-    left: 100px; /* logo width ke approx */
+    right: 10px;
     transform: translateY(-50%);
   }
 }
 
-/* ✅ Mobile screens (max-width: 576px) */
+/* Mobile screens */
 @media (max-width: 576px) {
   .right_part {
     flex-direction: column;
@@ -105,9 +108,4 @@
     width: 100% !important;
     margin-top: 10px;
   }
-
-  .wlh-svg-Icon {
-    left: 100px; /* adjust if needed based on logo width */
-  }
 }
-

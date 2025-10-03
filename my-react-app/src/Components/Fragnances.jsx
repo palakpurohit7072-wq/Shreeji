@@ -23,11 +23,10 @@ const Fragrances = () => {
   return (
     <div className="container fragnancepart my-4">
       <h1 className="bluetext mb-4 fragnance_heading fw-semibold sansfamily">
-      Gaumay sugandhit cone Dhoop
+        Gaumay sugandhit cone Dhoop
       </h1>
 
-   
-      <div className="d-flex justify-content-center gap-4 flex-wrap flex-lg-nowrap">
+      <div className="fragrance-row">
         {items.map((item, index) => (
           <div key={index} className="text-center bluetext">
             <div className="round_fragnance_img rounded-circle d-inline-block mb-2">
@@ -42,4 +41,3 @@ const Fragrances = () => {
 };
 
 export default Fragrances;
-
