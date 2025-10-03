@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
-import DropdownMenu from "./DropdownMenu";
+import Dropdownmenu from "./Dropdownmenu";
 import HomePage from "./HomePage";
 import CartPage from "./CartPage";
 import { Outlet, useLocation } from "react-router-dom";
@@ -24,7 +24,7 @@ const Layout = () => {
         totalItems={totalItems}
         totalPrice={totalPrice}
       />
-      <DropdownMenu />
+      <Dropdownmenu />
       <main>
         {/* Agar user home page par hai aur showCart true hai */}
         {location.pathname === "/" && showCart ? (
