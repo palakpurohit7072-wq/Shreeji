@@ -2,11 +2,11 @@
  import "./ShopNow.css";
 import { useCart } from "../Context/CartContext";
 import { useNavigate } from "react-router-dom";
-import product1 from "../assets/slider1.jpeg";
-import product2 from "../assets/slider2.jpeg";
-import product3 from "../assets/slider3.jpeg";
-import product4 from "../assets/slide.jpg";
-
+import slider1 from "../assets/slider1.jpeg";
+import slider2 from "../assets/slider2.jpeg";
+import slider3 from "../assets/slider3.jpeg";
+import slide from "../assets/slide.jpg";
+ import download from "../assets/download.png"; // ✅ import your custom arrow image
 
 const Shopnow = () => {
   const { addToCart } = useCart();
@@ -21,21 +21,21 @@ const Shopnow = () => {
   };
 
   const products = [
-    { id: 1, title: "Stop-O Power Bag - Lavender Camphor", price: 62, oldPrice: 65, discount: "-5%", rating: 4, reviews: 2, img: product1, hoverImg: product2 },
-    { id: 2, title: "Stop-O Power Bag - Amber Rose Air Freshener", price: 65, oldPrice: null, discount: "", rating: 5, reviews: 45, img: product2, hoverImg: product3 },
-    { id: 3, title: "Stop-O 4 in 1 Scented Bricks Pack", price: 172, oldPrice: 240, discount: "", rating: 4, reviews: 22, img: product3, hoverImg: product4 },
-    { id: 4, title: "Stop-O Power Bag - Tangerine Air Freshener", price: 65, oldPrice: null, discount: "", rating: 4, reviews: 1, img: product4, hoverImg: product1 },
-    { id: 5, title: "Stop-O Power Bag - Musk Bliss", price: 70, oldPrice: 75, discount: "-6%", rating: 5, reviews: 8, img: product1, hoverImg: product2 },
-    { id: 6, title: "Stop-O Power Bag - Sandalwood Fresh", price: 68, oldPrice: null, discount: "", rating: 4, reviews: 12, img: product2, hoverImg: product3 },
-    { id: 7, title: "Stop-O Power Bag - Aqua Wave", price: 72, oldPrice: 80, discount: "-10%", rating: 5, reviews: 10, img: product3, hoverImg: product4 },
-    { id: 8, title: "Stop-O Power Bag - Citrus Zest", price: 66, oldPrice: null, discount: "", rating: 4, reviews: 5, img: product4, hoverImg: product1 },
-    { id: 9, title: "Stop-O 2 in 1 Combo Pack", price: 120, oldPrice: 140, discount: "-14%", rating: 5, reviews: 7, img: product1, hoverImg: product2 },
-    { id: 10, title: "Stop-O Room Freshener - Floral Delight", price: 99, oldPrice: null, discount: "", rating: 4, reviews: 11, img: product2, hoverImg: product3 },
-    { id: 11, title: "Stop-O Power Bag - Jasmine Mist", price: 75, oldPrice: 85, discount: "-12%", rating: 5, reviews: 6, img: product3, hoverImg: product4 },
-    { id: 12, title: "Stop-O Power Bag - Ocean Breeze", price: 90, oldPrice: null, discount: "", rating: 4, reviews: 9, img: product4, hoverImg: product1 },
-    { id: 13, title: "Stop-O Room Freshener - Vanilla Bliss", price: 110, oldPrice: 130, discount: "-15%", rating: 5, reviews: 4, img: product1, hoverImg: product2 },
-    { id: 14, title: "Stop-O Combo Pack - Lavender & Rose", price: 180, oldPrice: 210, discount: "-14%", rating: 4, reviews: 15, img: product2, hoverImg: product3 },
-    { id: 15, title: "Stop-O Power Bag - Green Apple Fresh", price: 78, oldPrice: 90, discount: "-13%", rating: 5, reviews: 13, img: product3, hoverImg: product4 },
+    { id: 1, title: "Stop-O Power Bag - Lavender Camphor", price: 62, oldPrice: 65, discount: "-5%", rating: 4, reviews: 2, img: slider1, hoverImg: slider2 },
+    { id: 2, title: "Stop-O Power Bag - Amber Rose Air Freshener", price: 65, oldPrice: null, discount: "", rating: 5, reviews: 45, img: slider2, hoverImg: slider3 },
+    { id: 3, title: "Stop-O 4 in 1 Scented Bricks Pack", price: 172, oldPrice: 240, discount: "", rating: 4, reviews: 22, img: slider3, hoverImg: slide },
+    { id: 4, title: "Stop-O Power Bag - Tangerine Air Freshener", price: 65, oldPrice: null, discount: "", rating: 4, reviews: 1, img: slide, hoverImg: slider1 },
+    { id: 5, title: "Stop-O Power Bag - Musk Bliss", price: 70, oldPrice: 75, discount: "-6%", rating: 5, reviews: 8, img: slider1, hoverImg: slider2 },
+    { id: 6, title: "Stop-O Power Bag - Sandalwood Fresh", price: 68, oldPrice: null, discount: "", rating: 4, reviews: 12, img: slider2, hoverImg: slider3 },
+    { id: 7, title: "Stop-O Power Bag - Aqua Wave", price: 72, oldPrice: 80, discount: "-10%", rating: 5, reviews: 10, img: slider3, hoverImg: slide },
+    { id: 8, title: "Stop-O Power Bag - Citrus Zest", price: 66, oldPrice: null, discount: "", rating: 4, reviews: 5, img: slide, hoverImg: slider1 },
+    { id: 9, title: "Stop-O 2 in 1 Combo Pack", price: 120, oldPrice: 140, discount: "-14%", rating: 5, reviews: 7, img: slider1, hoverImg: slider2 },
+    { id: 10, title: "Stop-O Room Freshener - Floral Delight", price: 99, oldPrice: null, discount: "", rating: 4, reviews: 11, img: slider2, hoverImg: slider3 },
+    { id: 11, title: "Stop-O Power Bag - Jasmine Mist", price: 75, oldPrice: 85, discount: "-12%", rating: 5, reviews: 6, img: slider3, hoverImg: slide },
+    { id: 12, title: "Stop-O Power Bag - Ocean Breeze", price: 90, oldPrice: null, discount: "", rating: 4, reviews: 9, img: slide, hoverImg: slider1 },
+    { id: 13, title: "Stop-O Room Freshener - Vanilla Bliss", price: 110, oldPrice: 130, discount: "-15%", rating: 5, reviews: 4, img: slider1, hoverImg: slider2 },
+    { id: 14, title: "Stop-O Combo Pack - Lavender & Rose", price: 180, oldPrice: 210, discount: "-14%", rating: 4, reviews: 15, img: slider2, hoverImg: slider3 },
+    { id: 15, title: "Stop-O Power Bag - Green Apple Fresh", price: 78, oldPrice: 90, discount: "-13%", rating: 5, reviews: 13, img: slider3, hoverImg: slide },
   ];
 
   const filteredProducts = products.filter(
