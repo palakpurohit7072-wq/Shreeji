@@ -1,5 +1,5 @@
  import React, { useState } from "react";
- import "./Shopnow.css";
+ import "./ShopNow.css";
 import { useCart } from "../Context/CartContext";
 import { useNavigate } from "react-router-dom";
 import product1 from "../assets/slider1.jpeg";
