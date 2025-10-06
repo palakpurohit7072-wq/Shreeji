@@ -6,7 +6,7 @@ import slider1 from "../assets/slider1.jpeg";
 import slider2 from "../assets/slider2.jpeg";
 import slider3 from "../assets/slider3.jpeg";
 import slide from "../assets/slide.jpg";
- import download from "../assets/download.png"; // ✅ import your custom arrow image
+
 
 const Shopnow = () => {
   const { addToCart } = useCart();
