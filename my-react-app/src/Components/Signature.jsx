@@ -5,17 +5,21 @@ import slider1 from "../assets/slider1.jpeg";
 import slider2 from "../assets/slider2.jpeg";
 import slider3 from "../assets/slider3.jpeg";
 import slide from "../assets/slide.jpg";
-
+import { useCart } from "../Context/CartContext"; // ✅ CartContext import
+import { useNavigate } from "react-router-dom";
 const Signature = () => {
   const sliderRef = useRef(null); // 🔹 ref create
-
-  const products = [
-    { id: 1, title: "Camphor Vaporizer (Premium) with Bhimseni Camphor Tablets 100 gm", price: "Rs. 691.00", oldPrice: "Rs. 769.00", discount: "-10%", rating: 3, reviews: 33, img: slide, hoverImg: slider1 },
-    { id: 2, title: "Naivedya Cup Sambrani Combo Pack of 3", price: "Rs. 253.00", oldPrice: "Rs. 270.00", discount: "-6%", rating: 4, reviews: 36, img: slider1, hoverImg: slider2 },
-    { id: 3, title: "Camphor Mosquito Repellent Refill – Pack of 3", price: "Rs. 375.00", oldPrice: "", discount: "", rating: 4, reviews: 30, img: slider2, hoverImg: slider3 },
-    { id: 4, title: "Woods Agarbatti Combo – Pack of 2", price: "Rs. 396.00", oldPrice: "Rs. 440.00", discount: "-10%", rating: 5, reviews: 55, img: slider3, hoverImg: slide },
-    { id: 5, title: "Eco-Friendly Havan Cups – 12 pcs", price: "Rs. 199.00", oldPrice: "Rs. 220.00", discount: "-9%", rating: 4, reviews: 18, img: slide, hoverImg: slider1 },
-  ];
+  // ✅ yahi line missing thi
+  const { addToCart } = useCart();
+  const navigate = useNavigate();
+  // ✅ price numbers me honi chahiye (string me nahi)
+   const products = [
+     { id: 11, title: "1Camphor Vaporizer (Premium) with Bhimseni Camphor Tablets 100 gm", price: 691, oldPrice: 769, discount: "-10%", rating: 3, reviews: 33, img: slide, hoverImg: slider1 },
+     { id: 12, title: "1Naivedya Cup Sambrani Combo Pack of 3", price: 253, oldPrice: 270, discount: "-6%", rating: 4, reviews: 36, img: slider1, hoverImg: slider2 },
+     { id: 13, title: "1Camphor Mosquito Repellent Refill – Pack of 3", price: 375, oldPrice: null, discount: "", rating: 4, reviews: 30, img: slider2, hoverImg: slider3 },
+     { id: 14, title: "1Woods Agarbatti Combo – Pack of 2", price: 396, oldPrice: 440, discount: "-10%", rating: 5, reviews: 55, img: slider3, hoverImg: slide },
+     { id: 15, title: "1Eco-Friendly Havan Cups – 12 pcs", price: 199, oldPrice: 220, discount: "-9%", rating: 4, reviews: 18, img: slide, hoverImg: slider1 },
+   ];
 
   const settings = {
     dots: true,
@@ -25,11 +29,17 @@ const Signature = () => {
     slidesToScroll: 1,
     appendDots: (dots) => (
       <div className="dots-with-arrows">
-        <button className="custom-arrow" onClick={() => sliderRef.current.slickPrev()}>
+        <button
+          className="custom-arrow"
+          onClick={() => sliderRef.current.slickPrev()}
+        >
           <i className="bi bi-chevron-left"></i>
         </button>
         <ul className="custom-slick-dots">{dots.slice(0, 3)}</ul>
-        <button className="custom-arrow" onClick={() => sliderRef.current.slickNext()}>
+        <button
+          className="custom-arrow"
+          onClick={() => sliderRef.current.slickNext()}
+        >
           <i className="bi bi-chevron-right"></i>
         </button>
       </div>
@@ -42,19 +52,16 @@ const Signature = () => {
   };
 
   return (
-    <div className="container product-sliders my-5">
+    <div className="container product-slider my-5">
       <div className="row mb-4">
         <div className="col-6">
-          <h3 className="sansfamily bluetext fw-semibold best_seller_text">
-            Signature Specialities
-          </h3>
+          <h3 className="sansfamily bluetext fw-semibold best_seller_text">Signature Specialities</h3>
         </div>
         <div className="col-6 text-end">
           <h3 className="sansfamily bluetext fs-6">View all products</h3>
         </div>
       </div>
 
-      {/* 🔹 Attach ref here */}
       <Slider ref={sliderRef} {...settings}>
         {products.map((product) => (
           <div key={product.id} className="px-2 h-100">
@@ -76,30 +83,36 @@ const Signature = () => {
               </div>
 
               <div className="card-body d-flex flex-column flex-grow-1">
-                <h6 className="product-title fw-semibold bluetext sansfamily fs-6">
-                  {product.title}
-                </h6>
-
+                <h6 className="product-title fw-semibold bluetext sansfamily fs-6">{product.title}</h6>
                 <div className="d-flex align-items-center mb-2 gap-2">
-                  <p className="mb-0 fw-bold bluetext fs-6">{product.price}</p>
-                  {product.oldPrice && (
-                    <p className="mb-0 text-muted text-decoration-line-through small sansfamily">
-                      {product.oldPrice}
-                    </p>
-                  )}
+                  <p className="mb-0 fw-bold bluetext fs-6">Rs {product.price}</p>
+                  {product.oldPrice && <p className="mb-0 text-muted text-decoration-line-through small sansfamily">Rs {product.oldPrice}</p>}
                 </div>
-
                 <div className="mb-2">
                   {"⭐".repeat(product.rating)}
                   {"☆".repeat(5 - product.rating)}
                   <small> ({product.reviews})</small>
                 </div>
-
                 <div className="d-flex gap-2 mt-auto">
-                  <button className="btn btn-warning flex-grow-1 text-danger fw-semibold">
+                  <button
+                    className="btn btn-warning flex-grow-1 text-danger fw-semibold"
+                    onClick={() =>
+                      addToCart({
+                        id: product.id,
+                        name: product.title,
+                        desc: product.title,
+                        price: product.price,
+                        img: product.img,
+                      })
+                    }
+                  >
                     ADD
                   </button>
-                  <button className="btn border border-warning rounded-2 bg-transparent d-flex align-items-center justify-content-center yellowicon">
+
+                  <button
+                    className="btn border border-warning rounded-2 bg-transparent d-flex align-items-center justify-content-center yellowicon"
+                    onClick={() => navigate("/wishlist")}
+                  >
                     <i className="bi bi-heart text-danger fs-5"></i>
                   </button>
                 </div>

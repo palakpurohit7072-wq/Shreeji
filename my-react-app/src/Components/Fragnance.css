@@ -2,6 +2,7 @@
   font-size: 24px;
 }
 
+/* Container for all items */
 .fragnancepart .fragrance-row {
   display: flex;
   flex-wrap: nowrap;         /* desktop pe wrap NA ho */
@@ -9,6 +10,13 @@
   align-items: center;
   gap: 10px;                 /* kam gap */
   overflow-x: hidden;        /* koi horizontal scroll nahi */
+}
+
+/* Each item fixed width */
+.fragnancepart .fragrance-item {
+  width: 148px;           /* same width for all items */
+  text-align: center;     
+  flex-shrink: 0;          /* prevent shrinking */
 }
 
 .fragnancepart .round_fragnance_img {
@@ -30,6 +38,14 @@
   transform: scale(1.15);
 }
 
+/* Title styling and wrap for long text */
+.fragnancepart .fragrance-item p {
+  font-size: 14px;         /* adjust as needed */
+  white-space: normal;     /* allow wrap */
+  word-break: break-word;
+  margin: 0;
+}
+
 /* ✅ Tablet aur mobile ke liye wrap allow karo */
 @media (max-width: 1200px) {
   .fragnancepart .fragrance-row {
@@ -38,4 +54,5 @@
     gap: 15px;
   }
 }
+
 

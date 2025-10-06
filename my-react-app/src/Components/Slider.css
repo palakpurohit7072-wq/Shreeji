@@ -111,3 +111,11 @@
   border-color: #2c2484;
 }
 
+.product-slider .product-title:hover {
+  text-decoration: underline;
+  cursor: pointer;
+  color:#2c2484;
+}
+.product-slider .product-title a{
+    color:#2c2484!important;
+}

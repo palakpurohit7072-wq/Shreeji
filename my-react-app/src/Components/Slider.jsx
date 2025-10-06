@@ -1,15 +1,17 @@
 import React, { useRef } from "react";
 import Slider from "react-slick";
+import { useCart } from "../Context/CartContext"; 
+import { useNavigate, Link } from "react-router-dom";
 import "./Slider.css";
 import slider1 from "../assets/slider1.jpeg";
 import slider2 from "../assets/slider2.jpeg";
 import slider3 from "../assets/slider3.jpeg";
 import slide from "../assets/slide.jpg";
-import { useCart } from "../Context/CartContext"; // ✅ CartContext import
 
 function ProductSlider() {
   const sliderRef = useRef(null);
-  const { addToCart } = useCart(); // ✅ addToCart function
+  const { addToCart } = useCart(); 
+  const navigate = useNavigate();
 
   const products = [
     { id: 1, title: "Camphor Vaporizer (Premium) with Bhimseni Camphor Tablets 100 gm", price: 691, oldPrice: 769, discount: "-10%", rating: 3, reviews: 33, img: slide, hoverImg: slider1 },
@@ -50,7 +52,13 @@ function ProductSlider() {
           <h3 className="sansfamily bluetext fw-semibold best_seller_text">Best Sellers</h3>
         </div>
         <div className="col-6 text-end">
-          <h3 className="sansfamily bluetext fs-6">View all products</h3>
+          <h3
+            className="sansfamily bluetext fs-6"
+            style={{ cursor: "pointer" }}
+            onClick={() => navigate("/products")}
+          >
+            View all products
+          </h3>
         </div>
       </div>
 
@@ -75,10 +83,23 @@ function ProductSlider() {
               </div>
 
               <div className="card-body d-flex flex-column flex-grow-1">
-                <h6 className="product-title fw-semibold bluetext sansfamily fs-6">{product.title}</h6>
+                {/* Clickable Product Title */}
+                <h6 className="product-title fw-semibold bluetext sansfamily fs-6">
+                  <Link
+                    to={`/product/${product.id}`}
+                    className="text-decoration-none text-dark"
+                  >
+                    {product.title}
+                  </Link>
+                </h6>
+
                 <div className="d-flex align-items-center mb-2 gap-2">
                   <p className="mb-0 fw-bold bluetext fs-6">Rs {product.price}</p>
-                  {product.oldPrice && <p className="mb-0 text-muted text-decoration-line-through small sansfamily">Rs {product.oldPrice}</p>}
+                  {product.oldPrice && (
+                    <p className="mb-0 text-muted text-decoration-line-through small sansfamily">
+                      Rs {product.oldPrice}
+                    </p>
+                  )}
                 </div>
                 <div className="mb-2">
                   {"⭐".repeat(product.rating)}
@@ -86,14 +107,25 @@ function ProductSlider() {
                   <small> ({product.reviews})</small>
                 </div>
                 <div className="d-flex gap-2 mt-auto">
-                  {/* ✅ ADD button now adds to cart */}
                   <button
                     className="btn btn-warning flex-grow-1 text-danger fw-semibold"
-                    onClick={() => addToCart(product)}
+                    onClick={() =>
+                      addToCart({
+                        id: product.id,
+                        name: product.title,
+                        desc: product.title,
+                        price: product.price,
+                        img: product.img,
+                      })
+                    }
                   >
                     ADD
                   </button>
-                  <button className="btn border border-warning rounded-2 bg-transparent d-flex align-items-center justify-content-center yellowicon">
+
+                  <button
+                    className="btn border border-warning rounded-2 bg-transparent d-flex align-items-center justify-content-center yellowicon"
+                    onClick={() => navigate("/wishlist")}
+                  >
                     <i className="bi bi-heart text-danger fs-5"></i>
                   </button>
                 </div>
@@ -107,5 +139,3 @@ function ProductSlider() {
 }
 
 export default ProductSlider;
-
-

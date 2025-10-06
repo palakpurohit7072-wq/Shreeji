@@ -28,7 +28,7 @@ const Fragrances = () => {
 
       <div className="fragrance-row">
         {items.map((item, index) => (
-          <div key={index} className="text-center bluetext">
+          <div key={index} className="text-center bluetext fragrance-item">
             <div className="round_fragnance_img rounded-circle d-inline-block mb-2">
               <img src={item.img} alt={item.title} className="img-fluid" />
             </div>

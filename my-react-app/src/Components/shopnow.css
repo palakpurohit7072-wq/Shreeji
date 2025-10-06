@@ -1,86 +1,89 @@
-.shopnow-container {
-  padding: 20px;
-  font-family: 'Arial', sans-serif;
+.shopnow-container .heading_shop_page {
+  font-size: 25px;
 }
 
-/* Filters Row on top */
-.filters-row {
-  display: flex;
-  gap: 40px;
-  flex-wrap: wrap;
-  margin-bottom: 20px;
+.backbtn {
+  width: 134px;
+  height: 50px !important;
+  border-radius: 10px;
 }
 
-.filters-row h4 {
-  margin-bottom: 8px;
-  font-weight: 600;
-}
-
-.filter-options label {
-  display: block;
-  margin-bottom: 5px;
-  cursor: pointer;
-}
-
-/* Product Grid */
-.product-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 20px;
-}
-
-/* Product Card */
-.product-card {
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 10px;
-  text-align: center;
-  transition: box-shadow 0.3s ease, transform 0.3s ease;
+/* Dropdown buttons and select box */
+.shopnow-container .dropdown-toggle,
+.shopnow-container .form-select {
+  min-width: 150px;
+  font-size: 14px;
   background-color: #fff;
+  border-color: #ced4da;
+  color: #2b2b2b;
+  font-weight: 500;
+  border-radius: 30px;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
 }
 
-.product-card:hover {
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-  transform: translateY(-3px);
+/* Replace arrow with custom image */
+.shopnow-container .dropdown-toggle.arrow-img::after {
+  content: "";
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background: url('../assets/download.png') no-repeat center center;
+  background-size: contain;
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
-.product-card img {
-  width: 100%;
-  border-radius: 5px;
-  margin-bottom: 10px;
-}
-
-.product-card h4 {
-  font-size: 1rem;
-  font-weight: 600;
-  margin-bottom: 5px;
-}
-
-.product-card p {
-  font-weight: bold;
-  margin-bottom: 10px;
-  color: #333;
-}
-
-.product-card button {
-  padding: 8px 12px;
-  background: #ff9800;
+/* Product card */
+.shopnow-container .product-card {
   border: none;
-  color: #fff;
-  cursor: pointer;
-  border-radius: 4px;
+  transition: transform 0.3s ease;
+}
+.shopnow-container .product-card:hover {
+  transform: translateY(-5px);
+}
+.shopnow-container .discount-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;    /* fixed width */
+  height: 40px;   /* fixed height */
+  font-size: 0.8rem;
+  border-radius: 50%;
   font-weight: 600;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+.shopnow-container  .old_price{
+color:#BCB9D7; 
+
+ }
+.shopnow-container .btn-warning {
+  background-color: #ffed4a !important;
+  border: none;
+  color: #000;
 }
 
-.product-card button:hover {
-  background: #e68a00;
+.shopnow-container .btn-warning:hover {
+  background-color: #ffe100 !important;
+  color: #000;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .filters-row {
-    flex-direction: column;
-    gap: 15px;
-  }
+/* Product image */
+.shopnow-container .product-card img {
+  height: 250px;
+  object-fit: cover;
+  transition: all 0.3s ease;
 }
 
+/* Wishlist button */
+.shopnow-container .btn i.bi-heart:hover {
+  color: red !important;
+}
+.shopnow-container .hearticon{
+padding-top: 10px;
+}

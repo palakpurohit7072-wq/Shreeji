@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"; // ✅ import navigate hook
 import "./Wishlist.css";
 
 const Wishlist = () => {
   const [show, setShow] = useState(true);
+  const navigate = useNavigate(); // ✅ initialize navigate
 
   if (!show) return null;
 
@@ -30,7 +32,12 @@ const Wishlist = () => {
         </p>
 
         {/* Login Button */}
-        <button className="wishlist-login-btn">LOGIN</button>
+        <button
+          className="wishlist-login-btn"
+          onClick={() => navigate("/login")} // ✅ navigate to login page
+        >
+          LOGIN
+        </button>
       </div>
     </div>
   );
