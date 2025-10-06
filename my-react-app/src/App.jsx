@@ -7,7 +7,7 @@ import AccountPage from "./Components/AccountPage";
 import CartFullPage from "./Components/CartFullPage";
 import CheckoutPage from "./Components/CheckoutPage";
 import Wishlist from "./Components/Wishlist";
-import ShopNow from "./Components/ShopNow";
+import Shopnow from "./Components/Shopnow";
 import SingleProduct from "./Components/SingleProduct"; 
 
 const App = () => {
@@ -20,7 +20,7 @@ const App = () => {
         <Route path="cart" element={<CartFullPage />} />
         <Route path="checkout" element={<CheckoutPage />} />
         <Route path="wishlist" element={<Wishlist />} />
-        <Route path="shopnow" element={<ShopNow />} />
+        <Route path="shopnow" element={<Shopnow />} />
 
         {/* 🆕 Single Product Dynamic Route */}
         <Route path="product/:id" element={<SingleProduct />} />
