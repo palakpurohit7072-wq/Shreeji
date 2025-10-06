@@ -6,7 +6,7 @@ import product1 from "../assets/slider1.jpeg";
 import product2 from "../assets/slider2.jpeg";
 import product3 from "../assets/slider3.jpeg";
 import product4 from "../assets/slide.jpg";
- import arrowImg from "../assets/download.png"; // ✅ import your custom arrow image
+ import download from "../assets/download.png"; // ✅ import your custom arrow image
 
 const Shopnow = () => {
   const { addToCart } = useCart();
