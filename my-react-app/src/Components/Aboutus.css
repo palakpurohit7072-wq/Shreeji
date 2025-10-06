@@ -1,0 +1,79 @@
+.aboutus-container {
+  background-color: #f9f9f9;
+  padding: 40px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: "Poppins", sans-serif;
+}
+
+.breadcrumb {
+  width: 85%;
+  font-size: 14px;
+  color: #6c757d;
+  margin-bottom: 20px;
+}
+
+.aboutus-box {
+  background-color: #fff;
+  width: 85%;
+  display: flex;
+  flex-wrap: wrap;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+  overflow: hidden;
+  padding: 40px;
+  gap: 30px;
+}
+
+.aboutus-text {
+  flex: 1 1 50%;
+  text-align: left;
+  color: #212529;
+}
+
+.aboutus-text h2 {
+  font-size: 28px;
+  font-weight: 600;
+  color: #2d2d2d;
+  margin-bottom: 10px;
+}
+
+.aboutus-text .subtitle {
+  font-size: 18px;
+  color: #6c757d;
+  text-transform: lowercase;
+  margin-bottom: 20px;
+}
+
+.aboutus-text p {
+  line-height: 1.8;
+  font-size: 15px;
+  margin-bottom: 15px;
+}
+
+.aboutus-image {
+  flex: 1 1 45%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.aboutus-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  object-fit: cover;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .aboutus-box {
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .aboutus-image {
+    margin-top: 20px;
+  }
+}

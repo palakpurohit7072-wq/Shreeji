@@ -9,7 +9,8 @@ import CheckoutPage from "./Components/CheckoutPage";
 import Wishlist from "./Components/Wishlist";
 import Shopnow from "./Components/Shopnow";
 import SingleProduct from "./Components/SingleProduct"; 
-
+import Aboutus from "./Components/Aboutus"; 
+import Contactus from "./Components/Contactus"; 
 const App = () => {
   return (
     <Routes>
@@ -21,7 +22,8 @@ const App = () => {
         <Route path="checkout" element={<CheckoutPage />} />
         <Route path="wishlist" element={<Wishlist />} />
         <Route path="shopnow" element={<Shopnow />} />
-
+        <Route path="about" element={<Aboutus />} />
+         <Route path="contact" element={<Contactus />} />
         {/* 🆕 Single Product Dynamic Route */}
         <Route path="product/:id" element={<SingleProduct />} />
       </Route>
