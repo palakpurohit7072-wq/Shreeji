@@ -8,7 +8,7 @@ import CartFullPage from "./Components/CartFullPage";
 import CheckoutPage from "./Components/CheckoutPage";
 import Wishlist from "./Components/Wishlist";
 import ShopNow from "./Components/ShopNow";
-import SingleProduct from "./Components/SingleProduct"; // 🆕 Import added
+import SingleProduct from "./Components/SingleProduct"; 
 
 const App = () => {
   return (
