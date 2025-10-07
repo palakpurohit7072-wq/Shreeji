@@ -1,16 +1,18 @@
- import React, { useState } from "react";
- import "./Shopnow.css";
+import React, { useState } from "react";
+import "./Shopnow.css";
 import { useCart } from "../Context/CartContext";
 import { useNavigate } from "react-router-dom";
 import slider1 from "../assets/slider1.jpeg";
 import slider2 from "../assets/slider2.jpeg";
 import slider3 from "../assets/slider3.jpeg";
 import slide from "../assets/slide.jpg";
+import { useOutletContext } from "react-router-dom";
 
 
 const Shopnow = () => {
   const { addToCart } = useCart();
   const navigate = useNavigate();
+  const { setShowCart } = useOutletContext();
 
   const [priceRange, setPriceRange] = useState([0, 400]);
   const [openDropdown, setOpenDropdown] = useState(null);
@@ -186,15 +188,17 @@ const Shopnow = () => {
                 <div className="d-flex gap-2 mt-auto">
                   <button
                     className="btn btn-warning flex-grow-1 fw-semibold text-danger"
-                    onClick={() =>
-                      addToCart({ id: product.id, name: product.title, price: product.price, img: product.img })
-                    }
+                    onClick={() => {
+                      addToCart({ id: product.id, name: product.title, price: product.price, img: product.img });
+                      setShowCart(true); // 👈 Drawer khol do
+                    }}
                   >
                     ADD
                   </button>
+
                   <button
                     className="btn border border-warning bg-transparent d-flex align-items-center justify-content-center hearticon"
-                  
+
                     onClick={() => navigate("/wishlist")}
                   >
                     <i className="bi bi-heart text-danger fs-5"></i>

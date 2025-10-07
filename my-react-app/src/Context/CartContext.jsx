@@ -8,13 +8,20 @@ export const CartProvider = ({ children }) => {
     return saved ? JSON.parse(saved) : [];
   });
 
+  // ✅ Local storage update
   useEffect(() => {
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
   }, [cartItems]);
 
+  // ✅ Add to cart
   const addToCart = (product) => {
     setCartItems((prev) => {
       const exists = prev.find((item) => item.id === product.id);
+      const productWithNumberPrice = {
+        ...product,
+        price: Number(product.price) || 0, // ensure number
+      };
+
       if (exists) {
         return prev.map((item) =>
           item.id === product.id
@@ -22,11 +29,12 @@ export const CartProvider = ({ children }) => {
             : item
         );
       } else {
-        return [...prev, { ...product, quantity: 1 }];
+        return [...prev, { ...productWithNumberPrice, quantity: 1 }];
       }
     });
   };
 
+  // ✅ Decrease quantity
   const decreaseQty = (id) => {
     setCartItems((prev) =>
       prev
@@ -37,13 +45,15 @@ export const CartProvider = ({ children }) => {
     );
   };
 
+  // ✅ Remove item
   const removeFromCart = (id) => {
     setCartItems((prev) => prev.filter((item) => item.id !== id));
   };
 
+  // ✅ Totals
   const totalItems = cartItems.reduce((acc, item) => acc + item.quantity, 0);
   const totalPrice = cartItems.reduce(
-    (acc, item) => acc + parseFloat(item.price) * item.quantity,
+    (acc, item) => acc + (Number(item.price) || 0) * item.quantity,
     0
   );
 
@@ -64,3 +74,4 @@ export const CartProvider = ({ children }) => {
 };
 
 export const useCart = () => useContext(CartContext);
+

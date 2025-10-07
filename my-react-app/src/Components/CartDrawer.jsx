@@ -7,22 +7,20 @@ export default function CartDrawer({ showCart, setShowCart }) {
   const { cartItems, addToCart, decreaseQty, removeFromCart } = useCart();
   const navigate = useNavigate();
 
+  // ✅ Fix NaN issue using Number()
   const totalPrice = cartItems.reduce(
-    (acc, item) => acc + item.price * item.quantity,
+    (acc, item) => acc + (Number(item.price) || 0) * item.quantity,
     0
   );
 
   return (
     <>
-      {/* Overlay */}
       <div
         className={`cart-overlay ${showCart ? "show" : ""}`}
         onClick={() => setShowCart(false)}
       ></div>
 
-      {/* Drawer */}
       <div className={`cart-drawer ${showCart ? "open" : ""}`}>
-        {/* Header */}
         <div className="cart-header">
           <h5 className="mb-0">Shopping Cart ({cartItems.length})</h5>
           <button className="close-btn" onClick={() => setShowCart(false)}>
@@ -30,14 +28,10 @@ export default function CartDrawer({ showCart, setShowCart }) {
           </button>
         </div>
 
-        {/* Banner */}
         {cartItems.length > 0 && (
-          <div className="cart-banner">
-            You are eligible for free shipping!
-          </div>
+          <div className="cart-banner">You are eligible for free shipping!</div>
         )}
 
-        {/* Body */}
         {cartItems.length === 0 ? (
           <p className="empty-cart">🛒 Your cart is empty!</p>
         ) : (
@@ -52,7 +46,7 @@ export default function CartDrawer({ showCart, setShowCart }) {
                 <div className="cart-item-details">
                   <h6>{item.name}</h6>
                   {item.desc && <small>{item.desc}</small>}
-                  <p className="price">Rs {item.price}</p>
+                  <p className="price">Rs {Number(item.price).toFixed(2)}</p>
                   <div className="qty-row">
                     <button onClick={() => decreaseQty(item.id)}>-</button>
                     <span>{item.quantity}</span>
@@ -70,12 +64,11 @@ export default function CartDrawer({ showCart, setShowCart }) {
           </div>
         )}
 
-        {/* Footer */}
         {cartItems.length > 0 && (
           <div className="cart-footer">
             <div className="total-row">
               <span>Subtotal</span>
-              <span>Rs {totalPrice}</span>
+              <span>Rs {totalPrice.toFixed(2)}</span>
             </div>
             <div className="cart-footer-buttons">
               <button
@@ -103,5 +96,3 @@ export default function CartDrawer({ showCart, setShowCart }) {
     </>
   );
 }
-
-

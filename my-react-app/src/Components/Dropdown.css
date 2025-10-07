@@ -1,31 +1,77 @@
 /* Hover dropdown open */
 .main-navbar .navbar-nav .dropdown:hover .dropdown-menu {
   display: block;
-  margin-top: 0; /* remove bootstrap gap */
+  margin-top: 0;
 }
 
-/* Mega Dropdown Full Width */
+/* Mega dropdown full width and clean */
 .main-navbar .mega-dropdown .dropdown-menu {
   width: 100%;
   left: 0;
   right: 0;
-  border-top: 2px solid #ddd;
-  transition: all 0.3s ease;
   background: #fff;
+  border-top: 2px solid #ddd;
+  transition: 0.3s ease;
+  padding: 1.5rem 2rem;
 }
 
-/* Image size inside dropdown */
-.main-navbar .img-fluid {
+/* Headings */
+.dropdown-menu h6 {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 4px;
+}
+
+/* List items clean and readable */
+.dropdown-item {
+  white-space: normal;
+  word-break: break-word;
+  line-height: 1.5;
+  padding: 4px 0;
+  color: #0d2b6b;
+  font-size: 0.95rem;
+}
+
+.dropdown-item:hover {
+  color: #ff7f00;
+  background: transparent;
+}
+
+/* Columns */
+.mega-dropdown .col-md-3 {
+  padding-right: 25px;
+}
+
+/* ✅ Image same size as original */
+.dropdown-img {
   max-width: 100%;
   height: auto;
+  display: block;
+  margin: 0 auto;
+  object-fit: contain;
 }
 
-/* Normal dropdown (if needed small menus) */
-.main-navbar .navbar-nav .dropdown-menu {
-  min-width: 200px;
-  transition: all 0.3s ease;
+/* Responsive design */
+@media (max-width: 991px) {
+  .main-navbar .mega-dropdown .dropdown-menu {
+    position: static;
+    padding: 1rem;
+    border: none;
+  }
+
+  .mega-dropdown .row {
+    flex-direction: column;
+  }
+
+  .mega-dropdown .col-md-3 {
+    width: 100%;
+    padding-right: 0;
+    margin-bottom: 1rem;
+  }
+
+  .dropdown-img {
+    max-height: 160px;
+  }
 }
-
-
-
 

@@ -25,20 +25,6 @@
   position: relative;
 }
 
-/* Replace arrow with custom image */
-/* .shopnow-container .dropdown-toggle.arrow-img::after {
-  content: "";
-  display: inline-block;
-  width: 16px;
-  height: 16px;
-  background: url('../assets/download.png') no-repeat center center;
-  background-size: contain;
-  position: absolute;
-  right: 15px;
-  top: 50%;
-  transform: translateY(-50%);
-} */
-
 /* Product card */
 .shopnow-container .product-card {
   border: none;

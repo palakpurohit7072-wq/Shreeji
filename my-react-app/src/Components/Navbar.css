@@ -10,24 +10,28 @@
   gap: 5px;
 }
 
+/* Default colors */
+.right_part .btns.bluetext {
+  color: white; /* default text + SVG color */
+  background-color: #fff;
+  border: 1px solid #2c2484;
+}
+
+.right_part .btns.bg-blue {
+  color: white; /* default text + SVG color */
+  background-color: #2c2484;
+  border: 1px solid #2c2484;
+}
+
 /* Buttons hover effect */
-.right_part .btns.bluetext:hover {
-  background-color: #E4040D !important;
-  border-color: #E4040D !important;
-  color: #fff !important;
-}
-
-.right_part .btns.bluetext:hover svg path {
-  stroke: #fff !important;
-}
-
+.right_part .btns.bluetext:hover,
 .right_part .btns.bg-blue:hover {
   background-color: #E4040D !important;
   border-color: #E4040D !important;
   color: #fff !important;
 }
 
-.right_part .btns.bg-blue:hover svg path {
+.right_part .btns:hover svg path {
   stroke: #fff !important;
 }
 
@@ -88,7 +92,6 @@
     display: none !important; /* hide desktop buttons */
   }
 
-  /* Heart icon aligned with logo */
   .heart-icon {
     position: absolute;
     top: 50%;

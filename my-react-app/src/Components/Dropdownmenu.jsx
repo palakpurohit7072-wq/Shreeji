@@ -1,10 +1,10 @@
 import React from "react";
-import dropdown1 from "../assets/dropdown1.png"; 
+import dropdown1 from "../assets/dropdown1.png";
 import "./Dropdown.css";
 
 const Dropdownmenu = () => {
-  // Reusable Mega Dropdown with dynamic content
-  const megaDropdown = (title, content, image) => (
+  // 🔹 Reusable Mega Dropdown Function
+  const MegaDropdown = ({ title, content, image }) => (
     <li className="nav-item dropdown position-static mega-dropdown">
       <a
         className="nav-link fw-semibold bluetext"
@@ -13,54 +13,29 @@ const Dropdownmenu = () => {
       >
         {title} <i className="bi bi-chevron-down ms-1"></i>
       </a>
-      <div className="dropdown-menu mt-0 p-4 w-100 border-top">
+
+      <div className="dropdown-menu mt-0 p-4 w-100">
         <div className="container-fluid">
           <div className="row">
-            {/* Column 1 */}
-            <div className="col-md-3">
-              <h6 className="fw-bold bluetext">{content.col1.title}</h6>
-              <ul className="list-unstyled">
-                {content.col1.items.map((item, idx) => (
-                  <li key={idx}>
-                    <a className="dropdown-item bluetext" href="#">
-                      {item}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            {/* 3 Columns of text */}
+            {["col1", "col2", "col3"].map((key, i) => (
+              <div key={i} className="col-md-3">
+                <h6 className="fw-bold bluetext">{content[key].title}</h6>
+                <ul className="list-unstyled">
+                  {content[key].items.map((item, idx) => (
+                    <li key={idx}>
+                      <a className="dropdown-item bluetext" href="#">
+                        {item}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
 
-            {/* Column 2 */}
-            <div className="col-md-3">
-              <h6 className="fw-bold">{content.col2.title}</h6>
-              <ul className="list-unstyled">
-                {content.col2.items.map((item, idx) => (
-                  <li key={idx}>
-                    <a className="dropdown-item" href="#">
-                      {item}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Column 3 */}
-            <div className="col-md-3">
-              <h6 className="fw-bold">{content.col3.title}</h6>
-              <ul className="list-unstyled">
-                {content.col3.items.map((item, idx) => (
-                  <li key={idx}>
-                    <a className="dropdown-item" href="#">
-                      {item}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Column 4 (Image) */}
-            <div className="col-md-3">
-              <img src={image} alt="dropdownimg" className="img-fluid" />
+            {/* 4th Column: Image */}
+            <div className="col-md-3 text-center">
+              <img src={image} alt="Dropdown" className="dropdown-img" />
             </div>
           </div>
         </div>
@@ -68,17 +43,56 @@ const Dropdownmenu = () => {
     </li>
   );
 
-  // =========================
-  // Different Dropdown Content
-  // =========================
+  // 🔹 Dropdown Content Data
+  const panchgavyaContent = {
+    col1: {
+      title: "Product Type",
+      items: [
+        "Panchgavya Neem, Aloe Vera, Tulsi Soap",
+        "Panchgavya Ubtan Soap",
+        "Panchgavya Milk Soap",
+        "Panchgavya Aloe Vera Soap",
+        "Panchgavya Amla Reetha & Shikakai Shampoo Regular",
+        "Panchgavya Advance Hair Oil",
+        "Face Pack",
+        "Face Cream",
+      ],
+    },
+    col2: {
+      title: "Price",
+      items: [
+        "50 Rs",
+        "50 Rs",
+        "50 Rs",
+        "50 Rs",
+        "200 Rs",
+        "160 Rs",
+        "70 Rs",
+        "100 Rs",
+      ],
+    },
+    col3: {
+      title: "Quantity",
+      items: [
+        "100 gm",
+        "100 gm",
+        "100 gm",
+        "100 gm",
+        "250 ml",
+        "100 ml",
+        "100 gm",
+        "100 gm",
+      ],
+    },
+  };
 
-  const poojaPathContent = {
+  const poojaContent = {
     col1: {
       title: "Product Type",
       items: [
         "Dhoop Cone in 6 fragrances",
         "Stick Dhoop in 6 fragrances",
-        "Sambrani Cups in Guggal & Loban",
+        "Sambrani Cups (Guggal & Loban)",
         "Navgrah Shanti Stick Dhoop",
         "Sambrani Cups (21 ingredients)",
         "Havan Tikki",
@@ -89,74 +103,95 @@ const Dropdownmenu = () => {
       ],
     },
     col2: {
-      title: "By Type",
-      items: ["Scented Bathi", "Masala Bathi"],
-    },
-    col3: {
-      title: "By Fragrance",
-      items: ["Fruity", "Woody", "Floral", "Herbal"],
-    },
-  };
-
-  const panchgavyaContent = {
-    col1: {
-      title: "Skin Care",
+      title: "Price",
       items: [
-        "Aloe Vera Gel",
-        "Neem Soap",
-        "Turmeric Face Wash",
-        "Herbal Face Pack",
-        "Moisturizing Cream",
-      ],
-    },
-    col2: {
-      title: "Hair Care",
-      items: [
-        "Amla Hair Oil",
-        "Herbal Shampoo",
-        "Conditioner",
-        "Anti-Dandruff Hair Oil",
+        "70/150 Rs",
+        "80 Rs",
+        "70 Rs",
+        "90 Rs",
+        "90 Rs",
+        "35 Rs",
+        "100 Rs",
+        "50 Rs",
+        "2 Rs",
+        "3 Rs",
       ],
     },
     col3: {
-      title: "Wellness",
+      title: "Quantity",
       items: [
-        "Body Lotion",
-        "Lip Balm",
-        "Hand & Foot Cream",
-        "Herbal Scrub",
+        "100 gm / 200 gm",
+        "100 gm",
+        "1 Box (12 pcs)",
+        "100 gm",
+        "1 Box (12 pcs)",
+        "12 pcs",
+        "250 gm",
+        "1 pcs",
+        "1 pcs",
+        "1 pcs",
       ],
     },
   };
 
   const sanitaryContent = {
     col1: {
-      title: "Sanitary Pads",
+      title: "Product Type",
       items: [
-        "Herbal Pads Regular",
-        "Herbal Pads XL",
-        "Overnight Pads",
-        "Ultra Thin Pads",
+        "Herbal Neem-Tulsi Hand Wash",
+        "Herbal Sandal Wood Hand Wash",
+        "Herbal Lavender Hand Wash",
+        "Herbal Rakh & Neem Dishwash Gel",
+        "Herbal Lemon Dishwash Gel",
+        "Gaunile Floor Cleaner",
+        "Herbal Toilet Cleaner",
+        "Glass Cleaner",
+        "Bathroom Cleaner",
       ],
     },
     col2: {
-      title: "Menstrual Cups",
-      items: ["Small Size Cup", "Medium Size Cup", "Large Size Cup"],
+      title: "Price",
+      items: [
+        "80/150 Rs",
+        "80/150 Rs",
+        "80/150 Rs",
+        "80/150 Rs",
+        "80/150 Rs",
+        "60/260 Rs",
+      ],
     },
     col3: {
-      title: "Other Products",
-      items: ["Panty Liners", "Disposal Bags", "Intimate Wash"],
+      title: "Quantity",
+      items: [
+        "250 ml / 500 ml",
+        "250 ml / 500 ml",
+        "250 ml / 500 ml",
+        "250 ml / 500 ml",
+        "250 ml / 500 ml",
+        "1 Ltr / 5 Ltr",
+        "250 ml / 500 ml",
+        "500 ml",
+        "500 ml",
+      ],
     },
   };
 
   return (
     <nav className="navbar navbar-expand-lg border-top border-bottom main-navbar d-none d-lg-block">
-      <div className="container Dropdowncontainer">
-        <div className="collapse navbar-collapse show" id="mainNavbar">
+      <div className="container">
+        <div className="collapse navbar-collapse show">
           <ul className="navbar-nav gap-3">
-            {megaDropdown("Pooja Path", poojaPathContent, dropdown1)}
-            {megaDropdown("Panchgavya Cosmetic Products", panchgavyaContent, dropdown1)}
-            {megaDropdown("Herbal Sanitary Products", sanitaryContent, dropdown1)}
+            <MegaDropdown title="Pooja Path" content={poojaContent} image={dropdown1} />
+            <MegaDropdown
+              title="Panchgavya Cosmetic Products"
+              content={panchgavyaContent}
+              image={dropdown1}
+            />
+            <MegaDropdown
+              title="Herbal Sanitary Products"
+              content={sanitaryContent}
+              image={dropdown1}
+            />
           </ul>
         </div>
       </div>

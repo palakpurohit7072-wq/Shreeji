@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import Slider from "react-slick"; 
-// import "slick-carousel/slick/slick.css";
-// import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
 import "./SingleProduct.css";
 
 import slider1 from "../assets/slider1.jpeg";
@@ -105,29 +103,46 @@ function SingleProduct() {
             </div>
 
             {/* Add to cart */}
+
+
             <button
               className="btn btn-warning fw-bold px-4"
               onClick={() => {
                 for (let i = 0; i < quantity; i++) {
-                  addToCart(product);
+                  addToCart({
+                    id: product.id,
+                    name: product.title,
+                    desc: product.desc,
+                    price: product.price,
+                    img: mainImg, // 👈 add main image for CartDrawer
+                  });
                 }
+                setShowCart(true); // 👈 Drawer khulega
               }}
             >
               ADD
             </button>
+
 
             {/* Buy Now */}
             <button
               className="btn btn-outline-dark fw-bold px-4"
               onClick={() => {
                 for (let i = 0; i < quantity; i++) {
-                  addToCart(product);
+                  addToCart({
+                    id: product.id,
+                    name: product.title,
+                    desc: product.desc,
+                    price: product.price,
+                    img: mainImg, // 👈 yahan bhi main image pass karo
+                  });
                 }
-                navigate("/checkout");
+                navigate("/checkout"); // drawer kholne ki need nahi, direct checkout
               }}
             >
               Buy Now
             </button>
+
           </div>
 
           {/* Offers */}
