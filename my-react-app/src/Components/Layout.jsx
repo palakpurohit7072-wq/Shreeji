@@ -24,15 +24,17 @@ const Layout = () => {
         totalPrice={totalPrice}
       />
       <Dropdownmenu />
+
+      {/* ✅ Pass setShowCart to all nested routes (important line) */}
+      <main>
+        <Outlet context={{ setShowCart }} />  {/* 👈 Add this line */}
+      </main>
+
       {/* Global Cart Drawer */}
       <CartDrawer showCart={showCart} setShowCart={setShowCart} />
-      <main>
-        <Outlet />
-      </main>
       <Footer />
     </>
   );
 };
 
 export default Layout;
-

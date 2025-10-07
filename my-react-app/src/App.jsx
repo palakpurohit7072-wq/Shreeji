@@ -11,6 +11,7 @@ import Shopnow from "./Components/Shopnow";
 import SingleProduct from "./Components/SingleProduct"; 
 import Aboutus from "./Components/Aboutus"; 
 import Contactus from "./Components/Contactus"; 
+import Trackorder from "./Components/Trackorder"; 
 const App = () => {
   return (
     <Routes>
@@ -24,6 +25,7 @@ const App = () => {
         <Route path="shopnow" element={<Shopnow />} />
         <Route path="about" element={<Aboutus />} />
          <Route path="contact" element={<Contactus />} />
+            <Route path="Trackorder" element={<Trackorder />} />
         {/* 🆕 Single Product Dynamic Route */}
         <Route path="product/:id" element={<SingleProduct />} />
       </Route>

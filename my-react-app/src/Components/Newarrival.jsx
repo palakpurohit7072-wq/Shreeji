@@ -7,11 +7,12 @@ import slider2 from "../assets/slider2.jpeg";
 import slider3 from "../assets/slider3.jpeg";
 import slide from "../assets/slide.jpg";
 import { useCart } from "../Context/CartContext"; // ✅ Import your custom hook
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link, useOutletContext } from "react-router-dom"; // ✅ added useOutletContext
 const NewArrivalSlider = () => {
   const sliderRef = useRef(null); // 🔹 ref create
   const navigate = useNavigate();
   const { addToCart } = useCart();
+    const { setShowCart } = useOutletContext(); // ✅ get setShowCart from Layout
   const products = [
     { id: 16, title: "Camphor Vaporizer (Premium) with Bhimseni Camphor Tablets 100 gm", price: "Rs. 691.00", oldPrice: "Rs. 769.00", discount: "-10%", rating: 3, reviews: 33, img: slide, hoverImg: slider1 },
     { id: 92, title: "Naivedya Cup Sambrani Combo Pack of 3", price: "Rs. 253.00", oldPrice: "Rs. 270.00", discount: "-6%", rating: 4, reviews: 36, img: slider1, hoverImg: slider2 },
@@ -51,7 +52,12 @@ const NewArrivalSlider = () => {
           <h3 className="sansfamily bluetext fw-semibold best_seller_text">New Arrivals</h3>
         </div>
         <div className="col-6 text-end">
-          <h3 className="sansfamily bluetext fs-6">View all products</h3>
+          <h3
+            className="sansfamily bluetext fs-6"
+            style={{ cursor: "pointer" }}
+            onClick={() => navigate("/products")}
+          >            View all products
+          </h3>
         </div>
       </div>
 
@@ -76,10 +82,19 @@ const NewArrivalSlider = () => {
               </div>
 
               <div className="card-body d-flex flex-column flex-grow-1">
-                <h6 className="product-title fw-semibold bluetext sansfamily fs-6">{product.title}</h6>
+                <h6 className="product-title fw-semibold bluetext sansfamily fs-6">
+                  <Link to={`/product/${product.id}`} className="text-decoration-none text-dark">
+                    {product.title}
+                  </Link>
+                </h6>
+
                 <div className="d-flex align-items-center mb-2 gap-2">
                   <p className="mb-0 fw-bold bluetext fs-6">Rs {product.price}</p>
-                  {product.oldPrice && <p className="mb-0 text-muted text-decoration-line-through small sansfamily">Rs {product.oldPrice}</p>}
+                  {product.oldPrice && (
+                    <p className="mb-0 text-muted text-decoration-line-through small sansfamily">
+                      Rs {product.oldPrice}
+                    </p>
+                  )}
                 </div>
                 <div className="mb-2">
                   {"⭐".repeat(product.rating)}
@@ -89,15 +104,16 @@ const NewArrivalSlider = () => {
                 <div className="d-flex gap-2 mt-auto">
                   <button
                     className="btn btn-warning flex-grow-1 text-danger fw-semibold"
-                    onClick={() =>
+                    onClick={() => {
                       addToCart({
                         id: product.id,
                         name: product.title,
                         desc: product.title,
                         price: product.price,
                         img: product.img,
-                      })
-                    }
+                      });
+                      setShowCart(true); // ✅ Open Drawer when Add clicked
+                    }}
                   >
                     ADD
                   </button>

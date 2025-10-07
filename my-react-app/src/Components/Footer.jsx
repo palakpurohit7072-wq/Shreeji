@@ -100,8 +100,13 @@ const Footer = () => {
             <div className="col-md-2 mb-4">
               <h6 className="sansfamily fw-medium footer_title font_size">QUICK LINKS</h6>
               <ul className="list-unstyled font_size footer_col_text sansfamily">
-                <li><a href="#" className="text-light text-decoration-none">Track Your Order</a></li>
-                
+
+                <li>
+                  <Link to="/Trackorder" className="text-light text-decoration-none">
+                    Track Your Order
+                  </Link>
+                </li>
+
                 {/* 🔹 Internal Links */}
                 <li>
                   <Link to="/about" className="text-light text-decoration-none">About Us</Link>

@@ -1,0 +1,77 @@
+/* 🔹 Page background */
+.trackorder-page {
+  background-color: #fafafa;
+  min-height: 100vh;
+}
+
+/* 🔹 Box styling */
+.trackingorder .track-box {
+  max-width: 600px;
+}
+
+/* 🔹 Slick base fix */
+.trackingorder .slick-slider {
+  position: relative !important;
+  overflow: visible !important;
+}
+
+/* 🔹 Super strong arrow visibility (highest priority) */
+.trackingorder .slick-prev,
+.trackingorder .slick-next {
+  position: absolute !important;
+  z-index: 9999 !important; /* strong layer */
+  width: 50px !important;
+  height: 50px !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  background: rgba(255, 255, 255, 0.9) !important;
+  border-radius: 50% !important;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15) !important;
+  transition: all 0.3s ease !important;
+  cursor: pointer !important;
+}
+
+/* Hover glow */
+.trackingorder .slick-prev:hover,
+.trackingorder .slick-next:hover {
+  background: #ffd966 !important;
+}
+
+/* Left arrow */
+.trackingorder .slick-prev {
+  left: -20px !important;
+}
+
+/* Right arrow */
+.trackingorder .slick-next {
+  right: -20px !important;
+}
+
+/* Arrow icons */
+.trackingorder .slick-prev:before,
+.trackingorder .slick-next:before {
+  color: #000 !important;
+  font-size: 26px !important;
+  opacity: 1 !important;
+  z-index: 10000 !important;
+}
+
+/* ✅ Padding to ensure arrows never clip */
+.slider-container {
+  position: relative !important;
+  padding: 0 70px !important;
+  overflow: visible !important;
+}
+
+/* 🔹 Center slides properly */
+.trackingorder .slick-slide > div {
+  display: flex !important;
+  justify-content: center !important;
+}
+
+/* 🔹 Card hover effect */
+.trackingorder .card:hover {
+  transform: scale(1.05);
+  transition: 0.3s ease;
+}

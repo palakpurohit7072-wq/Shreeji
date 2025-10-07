@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import Slider from "react-slick";
-import { useCart } from "../Context/CartContext"; 
-import { useNavigate, Link } from "react-router-dom";
+import { useCart } from "../Context/CartContext";
+import { useNavigate, Link, useOutletContext } from "react-router-dom"; // ✅ added useOutletContext
 import "./Slider.css";
 import slider1 from "../assets/slider1.jpeg";
 import slider2 from "../assets/slider2.jpeg";
@@ -10,8 +10,9 @@ import slide from "../assets/slide.jpg";
 
 function ProductSlider() {
   const sliderRef = useRef(null);
-  const { addToCart } = useCart(); 
+  const { addToCart } = useCart();
   const navigate = useNavigate();
+  const { setShowCart } = useOutletContext(); // ✅ get setShowCart from Layout
 
   const products = [
     { id: 1, title: "Camphor Vaporizer (Premium) with Bhimseni Camphor Tablets 100 gm", price: 691, oldPrice: 769, discount: "-10%", rating: 3, reviews: 33, img: slide, hoverImg: slider1 },
@@ -83,12 +84,8 @@ function ProductSlider() {
               </div>
 
               <div className="card-body d-flex flex-column flex-grow-1">
-                {/* Clickable Product Title */}
                 <h6 className="product-title fw-semibold bluetext sansfamily fs-6">
-                  <Link
-                    to={`/product/${product.id}`}
-                    className="text-decoration-none text-dark"
-                  >
+                  <Link to={`/product/${product.id}`} className="text-decoration-none text-dark">
                     {product.title}
                   </Link>
                 </h6>
@@ -109,15 +106,16 @@ function ProductSlider() {
                 <div className="d-flex gap-2 mt-auto">
                   <button
                     className="btn btn-warning flex-grow-1 text-danger fw-semibold"
-                    onClick={() =>
+                    onClick={() => {
                       addToCart({
                         id: product.id,
                         name: product.title,
                         desc: product.title,
                         price: product.price,
                         img: product.img,
-                      })
-                    }
+                      });
+                      setShowCart(true); // ✅ Open Drawer when Add clicked
+                    }}
                   >
                     ADD
                   </button>
