@@ -1,12 +1,10 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"; // for back to home
 import "./Trackorder.css";
-
-// 🟢 Import Slick Carousel CSS
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-// 🖼️ Import local images
 import slide from "../assets/slide.jpg";
 import slider from "../assets/slider.png";
 import slider1 from "../assets/slider1.jpeg";
@@ -14,19 +12,63 @@ import slider2 from "../assets/slider2.jpeg";
 import slider3 from "../assets/slider3.jpeg";
 
 const Trackorder = () => {
+  const navigate = useNavigate();
   const [trackType, setTrackType] = useState("order");
   const [inputValue, setInputValue] = useState("");
-  const [trackMessage, setTrackMessage] = useState("");
+  const [orderData, setOrderData] = useState(null);
+  const [errorMsg, setErrorMsg] = useState("");
+
+  // 🔹 Dummy order data
+  const dummyOrders = [
+    {
+      orderId: "101",
+      trackingId: "TRK123",
+      status: "Shipped",
+      expectedDelivery: "2025-10-12",
+      courier: "BlueDart",
+      currentLocation: "Bangalore",
+      lastUpdated: "2025-10-08 10:45 AM",
+    },
+    {
+      orderId: "102",
+      trackingId: "TRK124",
+      status: "Processing",
+      expectedDelivery: "2025-10-14",
+      courier: "Delhivery",
+      currentLocation: "Packaging Center",
+      lastUpdated: "2025-10-08 09:10 AM",
+    },
+    {
+      orderId: "103",
+      trackingId: "TRK125",
+      status: "Delivered",
+      expectedDelivery: "2025-10-06",
+      courier: "Ecom Express",
+      currentLocation: "Delivered to Customer",
+      lastUpdated: "2025-10-06 03:30 PM",
+    },
+  ];
 
   // 🟡 Handle Track Button
   const handleTrack = () => {
-    if (!inputValue.trim()) {
-      setTrackMessage("⚠️ Please enter your ID before tracking.");
+    setOrderData(null);
+    setErrorMsg("");
+
+    const val = inputValue.trim();
+    if (!val) {
+      setErrorMsg("⚠️ Please enter your ID before tracking.");
       return;
     }
-    setTrackMessage(
-      `✅ Tracking ${trackType === "order" ? "Order ID" : "Tracking ID"}: ${inputValue}`
+
+    const foundOrder = dummyOrders.find((o) =>
+      trackType === "order" ? o.orderId === val : o.trackingId === val
     );
+
+    if (foundOrder) {
+      setOrderData(foundOrder);
+    } else {
+      setErrorMsg("⚠️ Order not found. Please check your ID.");
+    }
   };
 
   // 🛍️ Product List
@@ -38,7 +80,6 @@ const Trackorder = () => {
     { id: 5, name: "Vasu Loban Sambrani", price: "₹100", image: slider },
   ];
 
-  // ⚙️ React Slick Settings
   const settings = {
     dots: false,
     infinite: true,
@@ -67,7 +108,6 @@ const Trackorder = () => {
       {/* 🔹 Track Box */}
       <div className="container trackingorder my-4">
         <div className="track-box mx-auto p-4 shadow-sm bg-light rounded-3">
-          {/* Radio Buttons */}
           <div className="d-flex justify-content-center mb-3 gap-4">
             <div>
               <input
@@ -103,31 +143,40 @@ const Trackorder = () => {
           <div className="d-flex justify-content-center align-items-center">
             <input
               type="text"
-              placeholder={`Enter ${
-                trackType === "order" ? "Order ID" : "Tracking ID"
-              }`}
+              placeholder={`Enter ${trackType === "order" ? "Order ID" : "Tracking ID"}`}
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
               className="form-control w-50 me-2"
             />
-            <button
-              className="btn btn-warning fw-bold px-4"
-              onClick={handleTrack}
-            >
+            <button className="btn btn-warning fw-bold px-4" onClick={handleTrack}>
               Track Your Order
             </button>
           </div>
 
-          {/* ✅ Inline Message Below */}
-          {trackMessage && (
-            <p
-              className={`mt-3 text-center fw-semibold ${
-                trackMessage.startsWith("⚠️") ? "text-danger" : "text-success"
-              }`}
-            >
-              {trackMessage}
-            </p>
+          {/* ❌ Error Message */}
+          {errorMsg && <p className="mt-3 text-danger text-center fw-semibold">{errorMsg}</p>}
+
+          {/* ✅ Order Details */}
+          {orderData && (
+            <div className="mt-4 p-3 bg-white rounded shadow-sm text-center">
+              <h5 className="fw-bold text-success mb-3">Order Details</h5>
+              <p><strong>Status:</strong> {orderData.status}</p>
+              <p><strong>Courier:</strong> {orderData.courier}</p>
+              <p><strong>Current Location:</strong> {orderData.currentLocation}</p>
+              <p><strong>Expected Delivery:</strong> {orderData.expectedDelivery}</p>
+              <p className="text-muted"><small>Last Updated: {orderData.lastUpdated}</small></p>
+            </div>
           )}
+
+          {/* 🔹 Back to Home Button */}
+          <div className="text-center mt-5">
+            <button
+              className="btn btn-outline-secondary"
+              onClick={() => navigate("/")}
+            >
+              ← Back to Home
+            </button>
+          </div>
         </div>
       </div>
 
@@ -144,9 +193,7 @@ const Trackorder = () => {
                   style={{ height: "180px", objectFit: "cover" }}
                 />
                 <div className="card-body p-2">
-                  <p className="card-title small fw-semibold mb-1">
-                    {product.name}
-                  </p>
+                  <p className="card-title small fw-semibold mb-1">{product.name}</p>
                   <p className="text-dark fw-bold mb-0">{product.price}</p>
                 </div>
               </div>

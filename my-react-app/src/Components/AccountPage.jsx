@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom"; 
+import { useNavigate } from "react-router-dom";
 import "./AccountPage.css";
 
 const AccountPage = () => {
@@ -57,12 +57,12 @@ const AccountPage = () => {
         </div>
 
         {/* ✅ Back to Home Button */}
-        <div className="d-grid mt-4">
+        <div className="text-center mt-5">
           <button
-            className="btn btn-outline-primary"
-            onClick={() => navigate("/")}
+            className="btn btn-outline-secondary"
+            onClick={() => navigate("/")} // Navigates to home
           >
-            ⬅ Back to Home
+            ← Back to Home
           </button>
         </div>
       </div>

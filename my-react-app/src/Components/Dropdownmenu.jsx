@@ -17,24 +17,36 @@ const Dropdownmenu = () => {
       <div className="dropdown-menu mt-0 p-4 w-100">
         <div className="container-fluid">
           <div className="row">
-            {/* 3 Columns of text */}
-            {["col1", "col2", "col3"].map((key, i) => (
-              <div key={i} className="col-md-3">
-                <h6 className="fw-bold bluetext">{content[key].title}</h6>
-                <ul className="list-unstyled">
-                  {content[key].items.map((item, idx) => (
-                    <li key={idx}>
-                      <a className="dropdown-item bluetext" href="#">
-                        {item}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
+            {/* ✅ Column 1: Product Type */}
+            <div className="col-md-4">
+              <h6 className="fw-bold bluetext">{content.col1.title}</h6>
+              <ul className="list-unstyled">
+                {content.col1.items.map((item, idx) => (
+                  <li key={idx}>
+                    <a className="dropdown-item bluetext" href="#">
+                      {item}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
 
-            {/* 4th Column: Image */}
-            <div className="col-md-3 text-center">
+            {/* ✅ Column 3: Quantity */}
+            <div className="col-md-4">
+              <h6 className="fw-bold bluetext">{content.col3.title}</h6>
+              <ul className="list-unstyled">
+                {content.col3.items.map((item, idx) => (
+                  <li key={idx}>
+                    <a className="dropdown-item bluetext" href="#">
+                      {item}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* ✅ Column 4: Image */}
+            <div className="col-md-4 text-center">
               <img src={image} alt="Dropdown" className="dropdown-img" />
             </div>
           </div>
@@ -56,19 +68,6 @@ const Dropdownmenu = () => {
         "Panchgavya Advance Hair Oil",
         "Face Pack",
         "Face Cream",
-      ],
-    },
-    col2: {
-      title: "Price",
-      items: [
-        "50 Rs",
-        "50 Rs",
-        "50 Rs",
-        "50 Rs",
-        "200 Rs",
-        "160 Rs",
-        "70 Rs",
-        "100 Rs",
       ],
     },
     col3: {
@@ -100,21 +99,6 @@ const Dropdownmenu = () => {
         "Gaukripa Chandan Tikka",
         "Deepak 1.5 inch",
         "Deepak 2.5 inch",
-      ],
-    },
-    col2: {
-      title: "Price",
-      items: [
-        "70/150 Rs",
-        "80 Rs",
-        "70 Rs",
-        "90 Rs",
-        "90 Rs",
-        "35 Rs",
-        "100 Rs",
-        "50 Rs",
-        "2 Rs",
-        "3 Rs",
       ],
     },
     col3: {
@@ -149,17 +133,6 @@ const Dropdownmenu = () => {
         "Bathroom Cleaner",
       ],
     },
-    col2: {
-      title: "Price",
-      items: [
-        "80/150 Rs",
-        "80/150 Rs",
-        "80/150 Rs",
-        "80/150 Rs",
-        "80/150 Rs",
-        "60/260 Rs",
-      ],
-    },
     col3: {
       title: "Quantity",
       items: [
@@ -172,6 +145,54 @@ const Dropdownmenu = () => {
         "250 ml / 500 ml",
         "500 ml",
         "500 ml",
+      ],
+    },
+  };
+
+  const murtiContent = {
+    col1: {
+      title: "Product Type",
+      items: [
+        "Lord Ganesha Murti",
+        "Lord Krishna Murti",
+        "Lord Lakshmee Ganesh Murti"      
+      ],
+    },
+    col3: {
+      title: "Quantity",
+      items: [
+        "6 inch",
+        "8 inch",     
+      ],
+    },
+  };
+
+  // 🔹 New “Others” Dropdown Content
+  const othersContent = {
+    col1: {
+      title: "Product Type",
+      items: [
+        "Cow Dung Cake",
+        "Cow Dung Powder",
+        "Gomay Ash (Cow Dung Bhasma)",
+        "Natural Compost Fertilizer",
+        "Gaukripa Herbal Agarbatti",
+        "Herbal Mosquito Repellent",
+        "Eco-Friendly Dustbin",
+        "Gaushala Gift Hampers",
+      ],
+    },
+    col3: {
+      title: "Quantity / Size",
+      items: [
+        "1 Kg Pack",
+        "500 gm",
+        "250 gm",
+        "5 Kg Bag",
+        "100 gm",
+        "50 ml Spray",
+        "Medium / Large",
+        "Custom Pack",
       ],
     },
   };
@@ -192,6 +213,9 @@ const Dropdownmenu = () => {
               content={sanitaryContent}
               image={dropdown1}
             />
+            <MegaDropdown title="Murti" content={murtiContent} image={dropdown1} />
+            {/* ✅ Newly Added “Others” Column */}
+            <MegaDropdown title="Others" content={othersContent} image={dropdown1} />
           </ul>
         </div>
       </div>

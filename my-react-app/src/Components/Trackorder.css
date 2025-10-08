@@ -15,11 +15,11 @@
   overflow: visible !important;
 }
 
-/* 🔹 Super strong arrow visibility (highest priority) */
+/* 🔹 Super strong arrow visibility */
 .trackingorder .slick-prev,
 .trackingorder .slick-next {
   position: absolute !important;
-  z-index: 9999 !important; /* strong layer */
+  z-index: 9999 !important;
   width: 50px !important;
   height: 50px !important;
   display: flex !important;
@@ -49,12 +49,18 @@
 }
 
 /* Arrow icons */
-.trackingorder .slick-prev:before,
-.trackingorder .slick-next:before {
+.trackingorder .slick-prev:before {
+  content: "←" !important;
   color: #000 !important;
   font-size: 26px !important;
   opacity: 1 !important;
-  z-index: 10000 !important;
+}
+
+.trackingorder .slick-next:before {
+  content: "→" !important;
+  color: #000 !important;
+  font-size: 26px !important;
+  opacity: 1 !important;
 }
 
 /* ✅ Padding to ensure arrows never clip */

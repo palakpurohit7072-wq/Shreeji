@@ -73,10 +73,27 @@ const Footer = () => {
             <div className="col-md-2 mb-4">
               <h6 className="sansfamily fw-medium footer_title font_size">POLICIES</h6>
               <ul className="list-unstyled font_size footer_col_text sansfamily">
-                <li><a href="#" className="text-light text-decoration-none">Privacy Policy</a></li>
-                <li><a href="#" className="text-light text-decoration-none">Shipping & Delivery</a></li>
-                <li><a href="#" className="text-light text-decoration-none">Terms & Conditions</a></li>
-                <li><a href="#" className="text-light text-decoration-none">Returns & Refund</a></li>
+                {/* ✅ Updated to React Router Links */}
+                <li>
+                  <Link to="/privacy" className="text-light text-decoration-none">
+                    Privacy Policy
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/shippingdelivery" className="text-light text-decoration-none">
+                    Shipping & Delivery
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/termsandcondition" className="text-light text-decoration-none">
+                    Terms & Conditions
+                  </Link>
+                </li>
+               <li>
+                  <Link to="/returnandrfund" className="text-light text-decoration-none">
+                   Returns & Refund
+                  </Link>
+                </li>
               </ul>
             </div>
 
@@ -96,25 +113,17 @@ const Footer = () => {
               </ul>
             </div>
 
-            {/* ✅ Quick Links (Updated for Routing) */}
+            {/* Quick Links */}
             <div className="col-md-2 mb-4">
               <h6 className="sansfamily fw-medium footer_title font_size">QUICK LINKS</h6>
               <ul className="list-unstyled font_size footer_col_text sansfamily">
-
                 <li>
-                  <Link to="/Trackorder" className="text-light text-decoration-none">
+                  <Link to="/track" className="text-light text-decoration-none">
                     Track Your Order
                   </Link>
                 </li>
-
-                {/* 🔹 Internal Links */}
-                <li>
-                  <Link to="/about" className="text-light text-decoration-none">About Us</Link>
-                </li>
-                <li>
-                  <Link to="/contact" className="text-light text-decoration-none">Contact Us</Link>
-                </li>
-
+                <li><Link to="/about" className="text-light text-decoration-none">About Us</Link></li>
+                <li><Link to="/contact" className="text-light text-decoration-none">Contact Us</Link></li>
                 <li><a href="#" className="text-light text-decoration-none">Blog Posts</a></li>
                 <li><a href="#" className="text-light text-decoration-none">Vision & Mission</a></li>
                 <li><a href="#" className="text-light text-decoration-none">Enquiry Form</a></li>
@@ -195,6 +204,7 @@ const Footer = () => {
 };
 
 export default Footer;
+
 
 
 

@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { useCart } from "../Context/CartContext";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "./CheckoutPage.css";
 
+import "./CheckoutPage.css";
+import { useNavigate } from "react-router-dom";
 const CheckoutPage = () => {
   const { cartItems, totalPrice, addToCart, decreaseQty, removeFromCart } = useCart();
   const [useDifferentBilling, setUseDifferentBilling] = useState(false);
   const [email, setEmail] = useState("");
   const [shippingMethod, setShippingMethod] = useState("free");
-
+  const navigate = useNavigate();
   const shippingCost = shippingMethod === "free" ? 0 : 50;
   const finalTotal = totalPrice + shippingCost;
 
@@ -172,9 +172,14 @@ const CheckoutPage = () => {
             Pay now ₹{finalTotal.toFixed(2)}
           </button>
 
-          <a href="/" className="back-home-btn btn btn-outline-secondary w-100">
-            ← Back to Home
-          </a>
+          <div className="text-center mt-5">
+            <button
+              className="btn btn-outline-secondary"
+              onClick={() => navigate("/")} // Navigates to home
+            >
+              ← Back to Home
+            </button>
+          </div>
         </div>
 
         {/* RIGHT SECTION */}

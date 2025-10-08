@@ -1,7 +1,10 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"; // ✅ Import useNavigate
 import "./Contactus.css";
 
 const Contactus = () => {
+  const navigate = useNavigate(); // ✅ Initialize navigate
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -65,6 +68,14 @@ const Contactus = () => {
               ></textarea>
               <button type="submit">Submit</button>
             </form>
+
+            {/* 🔹 Back to Home Button */}
+            <button
+              className="btn btn-outline-secondary mt-3"
+              onClick={() => navigate("/")} // Navigates to home
+            >
+              ← Back to Home
+            </button>
           </div>
 
           {/* Right Info Section */}
@@ -91,4 +102,3 @@ const Contactus = () => {
 };
 
 export default Contactus;
-
