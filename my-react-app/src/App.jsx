@@ -16,6 +16,8 @@ import Privacypolicy from "./Components/Privacypolicy";
 import Termsandcondition from "./Components/Termsandcondition";
 import Shippinganddelivery from "./Components/Shippinganddelivery";
 import Returnsandrefund from "./Components/Returnsandrefund";
+import Forgetpassword from "./Components/Forgetpassword";
+import Newuser from "./Components/Newuser";
 Shippinganddelivery
 const App = () => {
   return (
@@ -35,6 +37,8 @@ const App = () => {
         <Route path="termsandcondition" element={<Termsandcondition />} />
         <Route path="shippingdelivery" element={< Shippinganddelivery />} />
         <Route path="returnandrfund" element={< Returnsandrefund />} />
+        <Route path="forgetpassword" element={< Forgetpassword />} />
+         <Route path="newuser" element={< Newuser />} />
         {/* 🆕 Single Product Dynamic Route */}
         <Route path="product/:id" element={<SingleProduct />} />
       </Route>

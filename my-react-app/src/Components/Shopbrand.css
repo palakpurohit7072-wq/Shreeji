@@ -46,6 +46,10 @@
 .brand-slider .custom-slick-dots li {
     margin: 0 6px;
 }
+  .brand-slider .custom-dot  {
+    margin: 4px 4px!important;
+} 
+
 
 /* inactive dot */
 .brand-slider .custom-slick-dots li button {

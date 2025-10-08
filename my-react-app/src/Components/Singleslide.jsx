@@ -24,7 +24,7 @@ const Singleslide = () => {
   };
 
   return (
-    <div className="container-fluid p-0">
+    <div className="container-fluid singleslide-container p-0">
       <Slider {...settings}>
         {slides.map((img, index) => (
           <div key={index}>

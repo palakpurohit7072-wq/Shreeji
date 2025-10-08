@@ -36,7 +36,6 @@ function Navbar({ setShowCart }) {
     setOpenItems((prev) => ({ ...prev, [key]: !prev[key] }));
   };
 
-  // ------------------ Dropdown Data ------------------
   const dropdownData = {
     pooja: {
       title: "Pooja Path",
@@ -61,7 +60,6 @@ function Navbar({ setShowCart }) {
     },
   };
 
-  // ------------------ Render SubDropdown ------------------
   const renderSubDropdown = (menuKey) => {
     const data = dropdownData[menuKey];
     if (!data) return null;
@@ -105,7 +103,6 @@ function Navbar({ setShowCart }) {
     );
   };
 
-  // ------------------ Render Main Dropdown ------------------
   const renderDropdownItem = (key) => {
     const data = dropdownData[key];
     if (!data) return null;
@@ -133,7 +130,6 @@ function Navbar({ setShowCart }) {
     );
   };
 
-  // ------------------ JSX ------------------
   return (
     <div className="container py-3">
       {/* Mobile Header */}
@@ -142,12 +138,11 @@ function Navbar({ setShowCart }) {
           {menuOpen ? "×" : "☰"}
         </button>
         <img src={shreejilogo} alt="Logo" height="60" width="90" />
-        <button
-          onClick={() => setShowCart((prev) => !prev)}
-          className="btns fw-semibold text-light bg-blue d-flex align-items-center gap-1"
-        >
-          Rs {(Number(totalPrice) || 0).toFixed(2)} ({totalItems || 0})
-        </button>
+        <Link to="/wishlist">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" className="mobile-heart">
+            <path d="M29.728 10.656q0-1.472-0.384-2.56t-0.992-1.76-1.472-1.056-1.664-0.576-1.76-0.128-1.984 0.448-1.984 1.152-1.536 1.28-1.088 1.088q-0.32 0.416-0.864 0.416t-0.864-0.416q-0.448-0.48-1.088-1.088t-1.536-1.28-1.984-1.152-1.984-0.448-1.76 0.128-1.664 0.576-1.472 1.056-0.992 1.76-0.384 2.56q0 2.976 3.36 6.336l10.368 9.984 10.368-9.984q3.36-3.36 3.36-6.336zM32 10.656q0 3.936-4.096 8.032l-11.104 10.72q-0.32 0.32-0.8 0.32t-0.8-0.32l-11.136-10.752q-0.16-0.16-0.48-0.48t-0.992-1.184-1.216-1.728-0.96-2.144-0.416-2.464q0-3.936 2.272-6.144t6.272-2.24q1.088 0 2.24 0.384t2.144 1.056 1.728 1.216 1.344 1.216q0.64-0.64 1.344-1.216t1.728-1.216 2.144-1.056 2.24-0.384q4 0 6.272 2.24t2.272 6.144z"></path>
+          </svg>
+        </Link>
       </div>
 
       {/* Mobile Search */}
@@ -162,7 +157,7 @@ function Navbar({ setShowCart }) {
         </Form>
       </div>
 
-      {/* Hamburger Menu */}
+      {/* Mobile Hamburger Menu */}
       {menuOpen && (
         <ul className="list-unstyled p-3 bg-light rounded d-lg-none">
           {Object.keys(dropdownData).map((key) => renderDropdownItem(key))}
@@ -217,6 +212,12 @@ function Navbar({ setShowCart }) {
               </svg>
               Rs {(Number(totalPrice) || 0).toFixed(2)} ({totalItems || 0})
             </button>
+
+            <Link to="/wishlist">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" className="heart-icon d-none d-lg-block">
+                <path d="M29.728 10.656q0-1.472-0.384-2.56t-0.992-1.76-1.472-1.056-1.664-0.576-1.76-0.128-1.984 0.448-1.984 1.152-1.536 1.28-1.088 1.088q-0.32 0.416-0.864 0.416t-0.864-0.416q-0.448-0.48-1.088-1.088t-1.536-1.28-1.984-1.152-1.984-0.448-1.76 0.128-1.664 0.576-1.472 1.056-0.992 1.76-0.384 2.56q0 2.976 3.36 6.336l10.368 9.984 10.368-9.984q3.36-3.36 3.36-6.336zM32 10.656q0 3.936-4.096 8.032l-11.104 10.72q-0.32 0.32-0.8 0.32t-0.8-0.32l-11.136-10.752q-0.16-0.16-0.48-0.48t-0.992-1.184-1.216-1.728-0.96-2.144-0.416-2.464q0-3.936 2.272-6.144t6.272-2.24q1.088 0 2.24 0.384t2.144 1.056 1.728 1.216 1.344 1.216q0.64-0.64 1.344-1.216t1.728-1.216 2.144-1.056 2.24-0.384q4 0 6.272 2.24t2.272 6.144z"></path>
+              </svg>
+            </Link>
           </div>
         </div>
       </div>

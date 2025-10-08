@@ -3,6 +3,14 @@
   display: block;
   margin-top: 0;
 }
+/* ✅ Make Navbar Sticky (same as Cycle.in style) */
+.main-navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1050; /* ensures it stays above other content */
+  background: #fff; /* white background like cycle.in */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); /* subtle bottom shadow */
+}
 
 /* Mega dropdown full width and clean */
 .main-navbar .mega-dropdown .dropdown-menu {
@@ -51,6 +59,32 @@
   margin: 0 auto;
   object-fit: contain;
 }
+/* Sub-dropdown inside mega dropdown */
+.dropdown-submenu {
+  position: relative;
+}
+
+.dropdown-submenu .sub-items {
+  display: none;
+  position: absolute;
+  left: 70%; /* 100% se kam karke thoda pass laya */
+  top: 0;
+  background: #fff;
+  padding: 0.5rem 1rem;
+  min-width: 180px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1051;
+}
+
+.dropdown-submenu:hover .sub-items {
+  display: block;
+}
+
+.sub-items .dropdown-item {
+  padding: 4px 0;
+  font-size: 0.9rem;
+}
+
 
 /* Responsive design */
 @media (max-width: 991px) {

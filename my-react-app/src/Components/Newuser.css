@@ -1,0 +1,62 @@
+.register-container {
+  min-height: 90vh;
+  background-color: #fff;
+}
+
+.register-box {
+  width: 100%;
+  max-width: 450px;
+  background: #fff;
+}
+
+.form-label {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.form-control,
+.form-select {
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 10px;
+  font-size: 15px;
+}
+
+.btn-create {
+  background-color: #2a1ef5; /* same as Cycle.in blue */
+  font-weight: 500;
+  font-size: 16px;
+  border-radius: 6px;
+  padding: 10px 0;
+}
+
+.btn-create:hover {
+  background-color: #2216c7;
+}
+
+.link-custom {
+  color: #2a1ef5;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.link-custom:hover {
+  text-decoration: underline;
+}
+
+.small-text {
+  color: #555;
+  font-size: 14px;
+}
+
+.bluetext {
+  color: #1d1d1f;
+}
+
+.sansfamily {
+  font-family: "Inter", sans-serif;
+}
+
+.font_weight {
+  font-weight: 600;
+}

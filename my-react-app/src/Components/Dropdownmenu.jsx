@@ -4,7 +4,7 @@ import "./Dropdown.css";
 
 const Dropdownmenu = () => {
   // 🔹 Reusable Mega Dropdown Function
-  const MegaDropdown = ({ title, content, image }) => (
+  const MegaDropdown = ({ title, content }) => (
     <li className="nav-item dropdown position-static mega-dropdown">
       <a
         className="nav-link fw-semibold bluetext"
@@ -23,31 +23,51 @@ const Dropdownmenu = () => {
               <ul className="list-unstyled">
                 {content.col1.items.map((item, idx) => (
                   <li key={idx}>
-                    <a className="dropdown-item bluetext" href="#">
-                      {item}
-                    </a>
+                    {item.subItems ? (
+                      /* 🔹 Sub-dropdown for items like Dhoop Cone / Stick Dhoop */
+                      <div className="dropdown-submenu">
+                        <a className="dropdown-item bluetext" href="#">
+                          {item.name} <i className="bi bi-chevron-right ms-1"></i>
+                        </a>
+                        <ul className="list-unstyled sub-items">
+                          {item.subItems.map((sub, i) => (
+                            <li key={i}>
+                              <a className="dropdown-item bluetext" href="#">
+                                {sub}
+                              </a>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ) : (
+                      <a className="dropdown-item bluetext" href="#">
+                        {item.name || item}
+                      </a>
+                    )}
                   </li>
                 ))}
               </ul>
             </div>
 
-            {/* ✅ Column 3: Quantity */}
-            <div className="col-md-4">
-              <h6 className="fw-bold bluetext">{content.col3.title}</h6>
-              <ul className="list-unstyled">
-                {content.col3.items.map((item, idx) => (
-                  <li key={idx}>
-                    <a className="dropdown-item bluetext" href="#">
-                      {item}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            {/* ✅ Column 2: Quantity */}
+            {content.col3 && (
+              <div className="col-md-4">
+                <h6 className="fw-bold bluetext">{content.col3.title}</h6>
+                <ul className="list-unstyled">
+                  {content.col3.items.map((item, idx) => (
+                    <li key={idx}>
+                      <a className="dropdown-item bluetext" href="#">
+                        {item}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
 
-            {/* ✅ Column 4: Image */}
+            {/* ✅ Column 3: Image */}
             <div className="col-md-4 text-center">
-              <img src={image} alt="Dropdown" className="dropdown-img" />
+              <img src={content.image || dropdown1} alt="Dropdown" className="dropdown-img" />
             </div>
           </div>
         </div>
@@ -55,7 +75,57 @@ const Dropdownmenu = () => {
     </li>
   );
 
-  // 🔹 Dropdown Content Data
+  // 🔹 Dropdown Contents
+  const poojaContent = {
+    col1: {
+      title: "Product Type",
+      items: [
+        {
+          name: "Dhoop Cone",
+          subItems: [
+            "Gugal Cone Dhoop",
+            "Loban Cone Dhoop",
+            "Sandalwood Cone Dhoop",
+            "Jasmine Cone Dhoop",
+            "Lavender Cone Dhoop",
+            "Rose Cone Dhoop",
+          ],
+        },
+        {
+          name: "Stick Dhoop",
+          subItems: [
+            "Gugal Stick Dhoop",
+            "Loban Stick Dhoop",
+            "Sandalwood Stick Dhoop",
+            "Jasmine Stick Dhoop",
+            "Lavender Stick Dhoop",
+            "Rose Stick Dhoop",
+          ],
+        },
+        "Sambrani Cups (Guggal & Loban)",
+        "Navgrah Shanti Stick Dhoop",
+        "Sambrani Cups (21 ingredients)",
+        "Havan Tikki",
+        "Havan Samagri",
+        "Gaukripa Chandan Tikka",
+      ],
+    },
+    col3: {
+      title: "Quantity",
+      items: [
+        "100 gm / 200 gm",
+        "100 gm",
+        "1 Box (12 pcs)",
+        "100 gm",
+        "1 Box (12 pcs)",
+        "12 pcs",
+        "250 gm",
+        "1 pcs",
+      ],
+    },
+    image: dropdown1,
+  };
+
   const panchgavyaContent = {
     col1: {
       title: "Product Type",
@@ -72,50 +142,9 @@ const Dropdownmenu = () => {
     },
     col3: {
       title: "Quantity",
-      items: [
-        "100 gm",
-        "100 gm",
-        "100 gm",
-        "100 gm",
-        "250 ml",
-        "100 ml",
-        "100 gm",
-        "100 gm",
-      ],
+      items: ["100 gm", "100 gm", "100 gm", "100 gm", "250 ml", "100 ml", "100 gm", "100 gm"],
     },
-  };
-
-  const poojaContent = {
-    col1: {
-      title: "Product Type",
-      items: [
-        "Dhoop Cone in 6 fragrances",
-        "Stick Dhoop in 6 fragrances",
-        "Sambrani Cups (Guggal & Loban)",
-        "Navgrah Shanti Stick Dhoop",
-        "Sambrani Cups (21 ingredients)",
-        "Havan Tikki",
-        "Havan Samagri",
-        "Gaukripa Chandan Tikka",
-        "Deepak 1.5 inch",
-        "Deepak 2.5 inch",
-      ],
-    },
-    col3: {
-      title: "Quantity",
-      items: [
-        "100 gm / 200 gm",
-        "100 gm",
-        "1 Box (12 pcs)",
-        "100 gm",
-        "1 Box (12 pcs)",
-        "12 pcs",
-        "250 gm",
-        "1 pcs",
-        "1 pcs",
-        "1 pcs",
-      ],
-    },
+    image: dropdown1,
   };
 
   const sanitaryContent = {
@@ -147,54 +176,31 @@ const Dropdownmenu = () => {
         "500 ml",
       ],
     },
+    image: dropdown1,
   };
 
   const murtiContent = {
     col1: {
       title: "Product Type",
-      items: [
-        "Lord Ganesha Murti",
-        "Lord Krishna Murti",
-        "Lord Lakshmee Ganesh Murti"      
-      ],
+      items: ["Lord Ganesha Murti", "Lord Krishna Murti", "Lord Lakshmee Ganesh Murti"],
     },
     col3: {
       title: "Quantity",
-      items: [
-        "6 inch",
-        "8 inch",     
-      ],
+      items: ["6 inch", "8 inch"],
     },
+    image: dropdown1,
   };
 
-  // 🔹 New “Others” Dropdown Content
   const othersContent = {
     col1: {
       title: "Product Type",
-      items: [
-        "Cow Dung Cake",
-        "Cow Dung Powder",
-        "Gomay Ash (Cow Dung Bhasma)",
-        "Natural Compost Fertilizer",
-        "Gaukripa Herbal Agarbatti",
-        "Herbal Mosquito Repellent",
-        "Eco-Friendly Dustbin",
-        "Gaushala Gift Hampers",
-      ],
+      items: ["GauNile Floor Cleaner", "Gaumay Vaidik Asana", "Gaumay Vaidik mela"],
     },
     col3: {
-      title: "Quantity / Size",
-      items: [
-        "1 Kg Pack",
-        "500 gm",
-        "250 gm",
-        "5 Kg Bag",
-        "100 gm",
-        "50 ml Spray",
-        "Medium / Large",
-        "Custom Pack",
-      ],
+      title: "Quantity",
+      items: ["1 Ltr / 5 Ltr", "1 pcs", "1 pcs"], // example quantities
     },
+    image: dropdown1,
   };
 
   return (
@@ -202,20 +208,11 @@ const Dropdownmenu = () => {
       <div className="container">
         <div className="collapse navbar-collapse show">
           <ul className="navbar-nav gap-3">
-            <MegaDropdown title="Pooja Path" content={poojaContent} image={dropdown1} />
-            <MegaDropdown
-              title="Panchgavya Cosmetic Products"
-              content={panchgavyaContent}
-              image={dropdown1}
-            />
-            <MegaDropdown
-              title="Herbal Sanitary Products"
-              content={sanitaryContent}
-              image={dropdown1}
-            />
-            <MegaDropdown title="Murti" content={murtiContent} image={dropdown1} />
-            {/* ✅ Newly Added “Others” Column */}
-            <MegaDropdown title="Others" content={othersContent} image={dropdown1} />
+            <MegaDropdown title="Pooja Path" content={poojaContent} />
+            <MegaDropdown title="Panchgavya Cosmetic Products" content={panchgavyaContent} />
+            <MegaDropdown title="Herbal Sanitary Products" content={sanitaryContent} />
+            <MegaDropdown title="Murti" content={murtiContent} />
+            <MegaDropdown title="Others" content={othersContent} />
           </ul>
         </div>
       </div>

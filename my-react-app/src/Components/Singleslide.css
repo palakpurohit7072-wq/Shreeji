@@ -1,11 +1,12 @@
-
-.slider-image {
+/* 🔹 Image styling */
+.singleslide-container .slider-image {
   width: 100%;
   height: 70vh; /* Adjust height as needed */
   object-fit: cover;
 }
 
-.custom-dots {
+/* 🔹 Custom dots container */
+.singleslide-container .custom-dots {
   position: absolute;
   bottom: 20px;
   display: flex !important;
@@ -15,6 +16,8 @@
   margin: 0;
   list-style: none;
 }
+
+/* 🔹 Dot style */
 .custom-dot {
   width: 10px;
   height: 10px;
@@ -23,8 +26,15 @@
   margin: 0 4px;
   transition: all 0.3s ease;
 }
+
+/* 🔹 Active dot style */
 .slick-active .custom-dot {
   width: 25px;
   background-color: #2c2484;
   border-radius: 50px;
+}
+
+/* 🔹 Dot position adjustment */
+.slick-dots {
+  bottom: -40px !important;
 }
