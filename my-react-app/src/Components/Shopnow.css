@@ -1,75 +1,54 @@
 .shopnow-container .heading_shop_page {
   font-size: 25px;
 }
-
-.backbtn {
-  width: 134px;
-  height: 50px !important;
-  border-radius: 10px;
-}
-
-/* Dropdown buttons and select box */
-.shopnow-container .dropdown-toggle,
 .shopnow-container .form-select {
-  min-width: 150px;
-  font-size: 14px;
-  background-color: #fff;
   border-color: #ced4da;
   color: #2b2b2b;
-  font-weight: 500;
   border-radius: 30px;
-  padding: 10px 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
+  padding: 10px 30px 10px 20px; 
+  min-width: 150px;
 }
-
-/* Product card */
 .shopnow-container .product-card {
   border: none;
   transition: transform 0.3s ease;
 }
+.shopnow-container .btn.btn-outline-secondary:hover {
+  background-color: transparent !important;
+ 
+}
+
+
 .shopnow-container .product-card:hover {
   transform: translateY(-5px);
 }
 .shopnow-container .discount-badge {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;    /* fixed width */
-  height: 40px;   /* fixed height */
-  font-size: 0.8rem;
+  width: 35px;
+  height: 35px;
+  font-size: 0.75rem;
   border-radius: 50%;
-  font-weight: 600;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
 }
-.shopnow-container  .old_price{
-color:#BCB9D7; 
-
- }
+.shopnow-container .old_price {
+  color:#BCB9D7; 
+}
 .shopnow-container .btn-warning {
   background-color: #ffed4a !important;
   border: none;
   color: #000;
 }
-
 .shopnow-container .btn-warning:hover {
   background-color: #ffe100 !important;
   color: #000;
 }
-
-/* Product image */
 .shopnow-container .product-card img {
   height: 250px;
   object-fit: cover;
   transition: all 0.3s ease;
 }
-
-/* Wishlist button */
 .shopnow-container .btn i.bi-heart:hover {
   color: red !important;
 }
 .shopnow-container .hearticon{
-padding-top: 10px;
+  padding-top: 5px;
 }
+

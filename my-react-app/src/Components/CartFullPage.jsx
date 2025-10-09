@@ -29,12 +29,7 @@ export default function CartFullPage() {
       {/* Heading with Home button */}
       <h2 className="mb-4 d-flex justify-content-between align-items-center">
         Shopping Cart
-        <button
-          className="btn btn-sm btn-outline-primary"
-          onClick={() => navigate("/")}
-        >
-          Home
-        </button>
+      
       </h2>
 
       <div className="row">

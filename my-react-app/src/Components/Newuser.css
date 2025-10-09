@@ -1,15 +1,21 @@
 .register-container {
-  min-height: 90vh;
-  background-color: #fff;
+  min-height: 90vh; 
+}
+/* Remove blue outline (focus border) from inputs, selects, and textareas */
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none !important;
+  box-shadow: none !important;
+  border-color: #ccc !important; 
 }
 
-.register-box {
+.register-container .register-box {
   width: 100%;
-  max-width: 450px;
-  background: #fff;
+  max-width: 450px; 
 }
 
-.form-label {
+.register-container .form-label {
   font-size: 15px;
   font-weight: 500;
 }
@@ -22,41 +28,35 @@
   font-size: 15px;
 }
 
-.btn-create {
-  background-color: #2a1ef5; /* same as Cycle.in blue */
+.register-container .form-control.border-danger {
+  border-color: red !important;
+}
+
+.register-container .btn-creates {
+  background-color: #2c2484;
   font-weight: 500;
   font-size: 16px;
   border-radius: 6px;
   padding: 10px 0;
 }
-
-.btn-create:hover {
-  background-color: #2216c7;
-}
-
-.link-custom {
-  color: #2a1ef5;
-  text-decoration: none;
-  font-weight: 500;
-}
-
-.link-custom:hover {
+.register-container .link-custom:hover {
   text-decoration: underline;
 }
-
-.small-text {
+.register-container .small-text {
   color: #555;
   font-size: 14px;
 }
-
-.bluetext {
-  color: #1d1d1f;
+/* ✅ Message styles */
+.register-container .message-text {
+  font-size: 15px;
+  font-weight: 500;
+  margin-top: 10px;
 }
 
-.sansfamily {
-  font-family: "Inter", sans-serif;
+.register-container .success-text {
+  color: green;
 }
 
-.font_weight {
-  font-weight: 600;
+.register-container .error-text {
+  color: red;
 }

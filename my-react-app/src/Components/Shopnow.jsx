@@ -1,13 +1,11 @@
 import React, { useState } from "react";
 import "./Shopnow.css";
 import { useCart } from "../Context/CartContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useOutletContext } from "react-router-dom";
 import slider1 from "../assets/slider1.jpeg";
 import slider2 from "../assets/slider2.jpeg";
 import slider3 from "../assets/slider3.jpeg";
 import slide from "../assets/slide.jpg";
-import { useOutletContext } from "react-router-dom";
-
 
 const Shopnow = () => {
   const { addToCart } = useCart();
@@ -17,32 +15,43 @@ const Shopnow = () => {
   const [priceRange, setPriceRange] = useState([0, 400]);
   const [openDropdown, setOpenDropdown] = useState(null);
   const [sortOption, setSortOption] = useState("");
+  const [selectedTypes, setSelectedTypes] = useState([]);
 
   const toggleDropdown = (type) => {
     setOpenDropdown(openDropdown === type ? null : type);
   };
 
   const products = [
-    { id: 1, title: "Stop-O Power Bag - Lavender Camphor", price: 62, oldPrice: 65, discount: "-5%", rating: 4, reviews: 2, img: slider1, hoverImg: slider2 },
-    { id: 2, title: "Stop-O Power Bag - Amber Rose Air Freshener", price: 65, oldPrice: null, discount: "", rating: 5, reviews: 45, img: slider2, hoverImg: slider3 },
-    { id: 3, title: "Stop-O 4 in 1 Scented Bricks Pack", price: 172, oldPrice: 240, discount: "", rating: 4, reviews: 22, img: slider3, hoverImg: slide },
-    { id: 4, title: "Stop-O Power Bag - Tangerine Air Freshener", price: 65, oldPrice: null, discount: "", rating: 4, reviews: 1, img: slide, hoverImg: slider1 },
-    { id: 5, title: "Stop-O Power Bag - Musk Bliss", price: 70, oldPrice: 75, discount: "-6%", rating: 5, reviews: 8, img: slider1, hoverImg: slider2 },
-    { id: 6, title: "Stop-O Power Bag - Sandalwood Fresh", price: 68, oldPrice: null, discount: "", rating: 4, reviews: 12, img: slider2, hoverImg: slider3 },
-    { id: 7, title: "Stop-O Power Bag - Aqua Wave", price: 72, oldPrice: 80, discount: "-10%", rating: 5, reviews: 10, img: slider3, hoverImg: slide },
-    { id: 8, title: "Stop-O Power Bag - Citrus Zest", price: 66, oldPrice: null, discount: "", rating: 4, reviews: 5, img: slide, hoverImg: slider1 },
-    { id: 9, title: "Stop-O 2 in 1 Combo Pack", price: 120, oldPrice: 140, discount: "-14%", rating: 5, reviews: 7, img: slider1, hoverImg: slider2 },
-    { id: 10, title: "Stop-O Room Freshener - Floral Delight", price: 99, oldPrice: null, discount: "", rating: 4, reviews: 11, img: slider2, hoverImg: slider3 },
-    { id: 11, title: "Stop-O Power Bag - Jasmine Mist", price: 75, oldPrice: 85, discount: "-12%", rating: 5, reviews: 6, img: slider3, hoverImg: slide },
-    { id: 12, title: "Stop-O Power Bag - Ocean Breeze", price: 90, oldPrice: null, discount: "", rating: 4, reviews: 9, img: slide, hoverImg: slider1 },
-    { id: 13, title: "Stop-O Room Freshener - Vanilla Bliss", price: 110, oldPrice: 130, discount: "-15%", rating: 5, reviews: 4, img: slider1, hoverImg: slider2 },
-    { id: 14, title: "Stop-O Combo Pack - Lavender & Rose", price: 180, oldPrice: 210, discount: "-14%", rating: 4, reviews: 15, img: slider2, hoverImg: slider3 },
-    { id: 15, title: "Stop-O Power Bag - Green Apple Fresh", price: 78, oldPrice: 90, discount: "-13%", rating: 5, reviews: 13, img: slider3, hoverImg: slide },
+    { id: 1, title: "Stop-O Power Bag - Lavender Camphor", price: 62, oldPrice: 65, discount: "-5%", rating: 4, reviews: 2, img: slider1, hoverImg: slider2, type: "Power Bag" },
+    { id: 2, title: "Stop-O Power Bag - Amber Rose Air Freshener", price: 65, oldPrice: null, discount: "", rating: 5, reviews: 45, img: slider2, hoverImg: slider3, type: "Power Bag" },
+    { id: 3, title: "Stop-O 4 in 1 Scented Bricks Pack", price: 172, oldPrice: 240, discount: "", rating: 4, reviews: 22, img: slider3, hoverImg: slide, type: "Scented Bricks" },
+    { id: 4, title: "Stop-O Power Bag - Tangerine Air Freshener", price: 65, oldPrice: null, discount: "", rating: 4, reviews: 1, img: slide, hoverImg: slider1, type: "Power Bag" },
+    { id: 5, title: "Stop-O Power Bag - Musk Bliss", price: 70, oldPrice: 75, discount: "-6%", rating: 5, reviews: 8, img: slider1, hoverImg: slider2, type: "Power Bag" },
+    { id: 6, title: "Stop-O Power Bag - Sandalwood Fresh", price: 68, oldPrice: null, discount: "", rating: 4, reviews: 12, img: slider2, hoverImg: slider3, type: "Power Bag" },
+    { id: 7, title: "Stop-O Power Bag - Aqua Wave", price: 72, oldPrice: 80, discount: "-10%", rating: 5, reviews: 10, img: slider3, hoverImg: slide, type: "Power Bag" },
+    { id: 8, title: "Stop-O Power Bag - Citrus Zest", price: 66, oldPrice: null, discount: "", rating: 4, reviews: 5, img: slide, hoverImg: slider1, type: "Power Bag" },
+    { id: 9, title: "Stop-O 2 in 1 Combo Pack", price: 120, oldPrice: 140, discount: "-14%", rating: 5, reviews: 7, img: slider1, hoverImg: slider2, type: "Combo Pack" },
+    { id: 10, title: "Stop-O Room Freshener - Floral Delight", price: 99, oldPrice: null, discount: "", rating: 4, reviews: 11, img: slider2, hoverImg: slider3, type: "Room Freshener" },
+    { id: 11, title: "Stop-O Power Bag - Jasmine Mist", price: 75, oldPrice: 85, discount: "-12%", rating: 5, reviews: 6, img: slider3, hoverImg: slide, type: "Power Bag" },
+    { id: 12, title: "Stop-O Power Bag - Ocean Breeze", price: 90, oldPrice: null, discount: "", rating: 4, reviews: 9, img: slide, hoverImg: slider1, type: "Power Bag" },
+    { id: 13, title: "Stop-O Room Freshener - Vanilla Bliss", price: 110, oldPrice: 130, discount: "-15%", rating: 5, reviews: 4, img: slider1, hoverImg: slider2, type: "Room Freshener" },
+    { id: 14, title: "Stop-O Combo Pack - Lavender & Rose", price: 180, oldPrice: 210, discount: "-14%", rating: 4, reviews: 15, img: slider2, hoverImg: slider3, type: "Combo Pack" },
+    { id: 15, title: "Stop-O Power Bag - Green Apple Fresh", price: 78, oldPrice: 90, discount: "-13%", rating: 5, reviews: 13, img: slider3, hoverImg: slide, type: "Power Bag" },
   ];
 
-  const filteredProducts = products.filter(
-    (product) => product.price >= priceRange[0] && product.price <= priceRange[1]
-  );
+  const handleTypeChange = (type) => {
+    if (selectedTypes.includes(type)) {
+      setSelectedTypes(selectedTypes.filter((t) => t !== type));
+    } else {
+      setSelectedTypes([...selectedTypes, type]);
+    }
+  };
+
+  const filteredProducts = products.filter((product) => {
+    const priceMatch = product.price >= priceRange[0] && product.price <= priceRange[1];
+    const typeMatch = selectedTypes.length === 0 || selectedTypes.includes(product.type);
+    return priceMatch && typeMatch;
+  });
 
   const sortedProducts = [...filteredProducts].sort((a, b) => {
     if (sortOption === "lowToHigh") return a.price - b.price;
@@ -54,88 +63,84 @@ const Shopnow = () => {
 
   const clearAllFilters = () => {
     setPriceRange([0, 400]);
+    setSelectedTypes([]);
     setSortOption("");
     setOpenDropdown(null);
   };
 
   return (
     <div className="container my-5 shopnow-container">
-      <div className="mb-4 d-flex justify-content-between align-items-center">
-        <button className="text-white backbtn fw-semibold bg-blue" onClick={() => navigate("/")}>
-          Back to Home
+      {/* Header Buttons */}
+      <div className="mb-4 d-flex flex-wrap justify-content-between align-items-center gap-2">
+        <button type="button" className="btn btn-outline-secondary bluetext font_weight" onClick={() => navigate("/")}>
+          ← Back to Home
         </button>
-        <button className="text-white backbtn fw-semibold bg-blue" onClick={clearAllFilters}>
+        <button type="button" className="btn btn-outline-secondary bluetext font_weight" onClick={clearAllFilters}>
           Clear All
         </button>
       </div>
 
-      <div className="mb-4">
-        <h2 className="bluetext font_weight sansfamily heading_shop_page">Bathroom Freshner</h2>
-      </div>
+      <h2 className="bluetext font_weight sansfamily heading_shop_page mb-4">Bathroom Freshner</h2>
 
       <p className="sansfamily bluetext pt-4 font_size filter_title">Filter:</p>
 
-      <div className="d-flex flex-wrap justify-content-between align-items-center mb-4">
+      {/* Filters */}
+      <div className="d-flex flex-wrap justify-content-between align-items-center mb-4 gap-2">
         <div className="d-flex flex-wrap gap-2 position-relative">
-          {/* PRICE DROPDOWN */}
+          {/* Price Dropdown */}
           <div className="dropdown">
-            <button className="btn btn-light border sansfamily font_size bluetext dropdown-toggle arrow-img" onClick={() => toggleDropdown("price")}>
+            <button className="form-select sansfamily bluetext font_size bg-white fw-medium d-flex align-items-center justify-content-between position-relative cursor-pointer" onClick={() => toggleDropdown("price")}>
               Price
             </button>
             {openDropdown === "price" && (
-              <div className="dropdown-menu show p-3 shadow-sm" style={{ minWidth: "260px" }}>
+              <div className="dropdown-menu show p-3 shadow-sm">
                 <h6 className="fw-semibold mb-2">Filter by Price</h6>
-                <div className="d-flex align-items-center gap-2 mb-2">
+                <div className="d-flex align-items-center gap-2 mb-2 flex-wrap">
                   <input type="number" className="form-control" style={{ width: "80px" }} min="0" max="400" value={priceRange[0]} onChange={(e) => setPriceRange([+e.target.value, priceRange[1]])} />
                   <span>to</span>
                   <input type="number" className="form-control" style={{ width: "80px" }} min="0" max="400" value={priceRange[1]} onChange={(e) => setPriceRange([priceRange[0], +e.target.value])} />
                 </div>
                 <input type="range" className="form-range" min="0" max="400" value={priceRange[1]} onChange={(e) => setPriceRange([priceRange[0], +e.target.value])} />
                 <p className="text-muted small mb-2">Rs. {priceRange[0]} - Rs. {priceRange[1]}</p>
-                <button className="btn btn-sm btn-outline-secondary w-100" onClick={() => { setPriceRange([0, 400]); setOpenDropdown(null); }}>
-                  Reset
-                </button>
+                <button className="btn btn-sm btn-outline-secondary w-100" onClick={() => setPriceRange([0, 400])}>Reset</button>
               </div>
             )}
           </div>
 
-          {/* BRAND DROPDOWN */}
+          {/* Product Type Dropdown */}
           <div className="dropdown">
-            <button className="btn btn-light border sansfamily font_size bluetext dropdown-toggle arrow-img" onClick={() => toggleDropdown("brand")}>
-              Brand
-            </button>
-            {openDropdown === "brand" && (
-              <div className="dropdown-menu show p-3 shadow-sm" style={{ minWidth: "200px" }}>
-                <h6 className="fw-semibold mb-2">Select Brand</h6>
-                <ul className="list-unstyled mb-0">
-                  <li><button className="dropdown-item">Stop-O</button></li>
-                  <li><button className="dropdown-item">FreshAir</button></li>
-                  <li><button className="dropdown-item">AromaPlus</button></li>
-                </ul>
-              </div>
-            )}
-          </div>
-
-          {/* PRODUCT TYPE DROPDOWN */}
-          <div className="dropdown">
-            <button className="btn btn-light border sansfamily font_size bluetext dropdown-toggle arrow-img" onClick={() => toggleDropdown("type")}>
+            <button className="form-select sansfamily bluetext font_size" onClick={() => toggleDropdown("type")}>
               Product Type
             </button>
             {openDropdown === "type" && (
-              <div className="dropdown-menu show p-3 shadow-sm" style={{ minWidth: "200px" }}>
+              <div className="dropdown-menu show p-3 shadow-sm">
                 <h6 className="fw-semibold mb-2">Select Product Type</h6>
                 <ul className="list-unstyled mb-0">
-                  <li><button className="dropdown-item">Power Bag</button></li>
-                  <li><button className="dropdown-item">Room Freshener</button></li>
-                  <li><button className="dropdown-item">Scented Bricks</button></li>
+                  {["Power Bag", "Room Freshener", "Scented Bricks", "Combo Pack"].map((type) => (
+                    <li key={type}>
+                      <div className="form-check">
+                        <input
+                          className="form-check-input"
+                          type="checkbox"
+                          value={type}
+                          id={type}
+                          checked={selectedTypes.includes(type)}
+                          onChange={() => handleTypeChange(type)}
+                        />
+                        <label className="form-check-label" htmlFor={type}>
+                          {type}
+                        </label>
+                      </div>
+                    </li>
+                  ))}
                 </ul>
               </div>
             )}
           </div>
         </div>
 
-        {/* SORT DROPDOWN */}
-        <div>
+        {/* Sort Dropdown */}
+        <div className="flex-grow-1 flex-md-grow-0">
           <select className="form-select sansfamily bluetext font_size border" value={sortOption} onChange={(e) => setSortOption(e.target.value)}>
             <option value="">Sort by</option>
             <option value="lowToHigh">Price: Low to High</option>
@@ -148,9 +153,10 @@ const Shopnow = () => {
 
       <p className="text-muted">{sortedProducts.length} products</p>
 
-      <div className="row">
+      {/* Product Grid */}
+      <div className="row g-3">
         {sortedProducts.map((product) => (
-          <div key={product.id} className="col-md-3 col-sm-6 mb-4">
+          <div key={product.id} className="col-6 col-sm-6 col-md-4 col-lg-3">
             <div className="card h-100 product-card shadow-sm">
               <div className="position-relative">
                 <img
@@ -162,21 +168,15 @@ const Shopnow = () => {
                   style={{ transition: "0.3s ease" }}
                 />
                 {product.discount && (
-                  <span className="badge bg-white text-dark discount-badge position-absolute top-0 end-0">
-                    {product.discount}
-                  </span>
+                  <span className="badge bg-white fw-semibold text-dark discount-badge position-absolute d-flex align-items-center justify-content-center top-0 end-0">{product.discount}</span>
                 )}
               </div>
 
               <div className="card-body d-flex flex-column">
-                <h6 className="product-title ansfamily fs-5 bluetext ">{product.title}</h6>
-                <div className="d-flex align-items-center mb-2 gap-2">
-                  <p className="mb-0 sansfamily font_size bluetext fs-5">Rs. {product.price}</p>
-                  {product.oldPrice && (
-                    <p className="mb-0 sansfamily font_size fs-5 text-decoration-line-through old_price">
-                      Rs. {product.oldPrice}
-                    </p>
-                  )}
+                <h6 className="product-title ansfamily fs-6 bluetext">{product.title}</h6>
+                <div className="d-flex align-items-center mb-2 gap-2 flex-wrap">
+                  <p className="mb-0 sansfamily font_size bluetext fs-6">Rs. {product.price}</p>
+                  {product.oldPrice && <p className="mb-0 sansfamily font_size fs-6 text-decoration-line-through old_price">Rs. {product.oldPrice}</p>}
                 </div>
 
                 <div className="mb-2">
@@ -185,22 +185,9 @@ const Shopnow = () => {
                   <small> ({product.reviews})</small>
                 </div>
 
-                <div className="d-flex gap-2 mt-auto">
-                  <button
-                    className="btn btn-warning flex-grow-1 fw-semibold text-danger"
-                    onClick={() => {
-                      addToCart({ id: product.id, name: product.title, price: product.price, img: product.img });
-                      setShowCart(true); // 👈 Drawer khol do
-                    }}
-                  >
-                    ADD
-                  </button>
-
-                  <button
-                    className="btn border border-warning bg-transparent d-flex align-items-center justify-content-center hearticon"
-
-                    onClick={() => navigate("/wishlist")}
-                  >
+                <div className="d-flex gap-2 mt-auto flex-wrap">
+                  <button className="btn btn-warning flex-grow-1 fw-semibold text-danger" onClick={() => { addToCart({ id: product.id, name: product.title, price: product.price, img: product.img }); setShowCart(true); }}>ADD</button>
+                  <button className="btn border border-warning bg-transparent d-flex align-items-center justify-content-center hearticon">
                     <i className="bi bi-heart text-danger fs-5"></i>
                   </button>
                 </div>

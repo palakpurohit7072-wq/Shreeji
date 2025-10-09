@@ -26,7 +26,7 @@ const Cycleinhance = () => {
     <div className="container Cycleinhancepart my-4">
       {/* 🔹 Heading */}
       <h2 className="bluetext mb-4 fragnance_heading fw-semibold sansfamily">
-        Cycle Incense Makes Sense
+        Shree Jee Gavya Incense Makes Sense
       </h2>
 
       {/* 🔹 Main content wrapper */}

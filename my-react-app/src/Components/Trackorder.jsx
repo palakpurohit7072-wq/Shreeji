@@ -101,7 +101,7 @@ const Trackorder = () => {
       {/* 🔹 Logo Section */}
       <div className="text-center mt-4">
         <h1 className="fw-bold text-primary">
-          CYCLE<span className="text-danger">.in</span>
+          Shree Jee Gavya<span className="text-danger">.in</span>
         </h1>
       </div>
 

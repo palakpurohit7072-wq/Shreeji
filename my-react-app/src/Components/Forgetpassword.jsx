@@ -36,20 +36,18 @@ const Forgetpassword = () => {
     alert("✅ Password reset successful! Please login with your new password.");
     navigate("/account"); // Redirect to login
   };
-
   return (
-    <div className="reset-page">
-      <div className="reset-container">
-        <h2>Reset your password</h2>
+  
+      <div className="reset-page d-flex justify-content-center align-items-center py-4 bg-white">
+      {/* <div className="reset-container bg-white"> */}
+        <div className="reset-container bg-white p-3 p-sm-4 rounded shadow w-100">
+        <h2 className="bluetext sansfamily fw-semibold">Reset your password</h2>
 
         {/* Step 1: Ask for email */}
         {step === 1 ? (
           <>
-            <p className="info-text">
-              We will send you an email to reset your password.
-            </p>
             <form className="reset-form" onSubmit={handleEmailSubmit}>
-              <label htmlFor="email">Email</label>
+              <label htmlFor="email" className="bluetext sansfamily font_size">Email</label>
               <input
                 type="email"
                 id="email"
@@ -60,15 +58,14 @@ const Forgetpassword = () => {
               />
 
               <div className="buttons">
-                <button type="submit" className="submit-btn">
+                <button type="submit" className="submit-btn  text-light bg-blue">
                   Submit
                 </button>
                 <button
                   type="button"
-                  className="cancel-btn"
-                  onClick={() => navigate("/account")}
-                >
-                  Cancel
+                  className="cancel-btn bluetext blueborder"
+                  onClick={() => navigate("/login")}
+                >                  Cancel
                 </button>
               </div>
             </form>

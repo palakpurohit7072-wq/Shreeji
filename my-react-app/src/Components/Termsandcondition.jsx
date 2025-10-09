@@ -12,7 +12,7 @@ const Termsandcondition = () => {
       <section className="mb-4">
         <h3>1. Acceptance of Terms</h3>
         <p>
-          By accessing or using the Cycle.in website, you agree to comply with and be bound by these Terms and Conditions.
+          By accessing or using the Shree Jee Gavya.in website, you agree to comply with and be bound by these Terms and Conditions.
         </p>
       </section>
 
@@ -20,7 +20,7 @@ const Termsandcondition = () => {
       <section className="mb-4">
         <h3>2. Eligibility</h3>
         <p>
-          Use of the Cycle.in Website is available only to persons who can form legally binding contracts under the Indian Contract Act, 1872.
+          Use of the Shree Jee Gavya.in Website is available only to persons who can form legally binding contracts under the Indian Contract Act, 1872.
         </p>
       </section>
 
@@ -51,7 +51,7 @@ const Termsandcondition = () => {
       </div>
 
       <footer className="text-center mt-5 pt-3 border-top">
-        <p>&copy; {new Date().getFullYear()} Cycle.in. All Rights Reserved.</p>
+        <p>&copy; {new Date().getFullYear()} Shree Jee Gavya.in. All Rights Reserved.</p>
       </footer>
     </div>
   );

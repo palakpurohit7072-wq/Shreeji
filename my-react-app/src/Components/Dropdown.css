@@ -3,13 +3,13 @@
   display: block;
   margin-top: 0;
 }
-/* ✅ Make Navbar Sticky (same as Cycle.in style) */
+
 .main-navbar {
   position: sticky;
   top: 0;
-  z-index: 1050; /* ensures it stays above other content */
-  background: #fff; /* white background like cycle.in */
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); /* subtle bottom shadow */
+  z-index: 1050; 
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 /* Mega dropdown full width and clean */

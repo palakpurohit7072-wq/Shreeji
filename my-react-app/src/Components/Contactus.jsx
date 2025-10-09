@@ -85,7 +85,7 @@ const Contactus = () => {
               Looking to become a distributor? <br />
               <a href="#">Click Here</a> to fill out our distributor enquiry form
             </p>
-            <h4>Cycle.in</h4>
+            <h4>Shree Jee Gavya.in</h4>
             <p>
               N. Ranga Rao & Sons Private Limited
               <br />
