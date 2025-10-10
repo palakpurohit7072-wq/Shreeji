@@ -55,8 +55,7 @@
 
 /* Hover Effect */
 .admin-page-container .admin-table tr:hover {
-  background: #f1f7ff;
-  transition: background 0.25s ease;
+  background: #f1f7ff; 
 }
 
 /* Status Colors (with soft background badges) */
