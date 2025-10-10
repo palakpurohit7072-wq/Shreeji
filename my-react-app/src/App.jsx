@@ -22,9 +22,9 @@ import Newuser from "./Components/Newuser";
 
 // 🟢 Admin imports
 import AdminLayout from "./Adminpanel/AdminLayout";
-import Dashboard from "./Adminpanel/pages/Dashboard";
-import OrdersList from "./Adminpanel/pages/OrdersList";
-import AllProducts from "./Adminpanel/pages/AllProducts";
+import Dashboard from "./Adminpanel/Pages/Dashboard";
+import OrdersList from "./Adminpanel/Pages/OrdersList";
+import AllProducts from "./Adminpanel/Pages/AllProducts";
 
 // import Changepassword from "./Adminpanel/pages/Changepassword";
 const App = () => {
