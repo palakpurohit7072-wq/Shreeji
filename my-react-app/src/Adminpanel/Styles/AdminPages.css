@@ -1,45 +1,102 @@
 .admin-page-container {
-  padding: 90px 20px 20px; /* ✅ top padding instead of margin-top */
+  padding: 90px 30px 30px; /* top padding for header spacing */
   margin-left: 220px; /* sidebar space */
-  background: #fff;
-  border-radius: 10px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  min-height: calc(100vh - 100px);
-}
-/* Optional - make heading look better */
-.admin-page-container h2 {
-  margin-bottom: 20px;
-  font-size: 24px;
-  font-weight: 600;
-  color: #333;
+  background: #f9fafb; /* light gray background for contrast */
+  min-height: 100vh;
+  font-family: "Inter", sans-serif;
 }
 
+/* Heading Style */
+.admin-page-container h2 {
+  margin-bottom: 25px;
+  font-size: 26px;
+  font-weight: 700;
+  color: #222;
+  letter-spacing: 0.5px;
+  border-left: 4px solid #007bff;
+  padding-left: 10px;
+}
+
+/* Table Wrapper */
 .admin-page-container .admin-table {
   width: 100%;
-  border-collapse: collapse;
-  margin-top: 15px;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
 }
 
-.admin-page-container .admin-table th,
+/* Table Header */
+.admin-page-container .admin-table th {
+  background: linear-gradient(90deg, #007bff, #00bfff);
+  color: #fff;
+  text-align: left;
+  padding: 14px 16px;
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: 0.3px;
+}
+
+/* Table Cells */
 .admin-page-container .admin-table td {
-  padding: 10px 12px;
+  padding: 14px 16px;
+  font-size: 15px;
+  color: #333;
   border-bottom: 1px solid #eee;
 }
 
-
-.admin-page-container .admin-table th {
-  background-color: #f6f6f6;
-  text-align: left;
+/* Alternate Row Background */
+.admin-page-container .admin-table tr:nth-child(even) {
+  background: #fafafa;
 }
 
+/* Hover Effect */
+.admin-page-container .admin-table tr:hover {
+  background: #f1f7ff;
+  transition: background 0.25s ease;
+}
+
+/* Status Colors (with soft background badges) */
 .admin-page-container .delivered {
-  color: green;
+  color: #0a8f3c;
+  background: #e6f8ec;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-weight: 600;
+  display: inline-block;
 }
 
 .admin-page-container .canceled {
-  color: red;
+  color: #d93025;
+  background: #fde8e8;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-weight: 600;
+  display: inline-block;
 }
 
 .admin-page-container .pending {
-  color: orange;
+  color: #ff9800;
+  background: #fff3e0;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-weight: 600;
+  display: inline-block;
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .admin-page-container {
+    margin-left: 0;
+    padding: 80px 15px;
+  }
+
+  .admin-page-container .admin-table th,
+  .admin-page-container .admin-table td {
+    font-size: 13px;
+    padding: 10px;
+  }
 }
