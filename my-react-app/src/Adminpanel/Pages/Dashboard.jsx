@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/Dashboard.css";
+import "../Styles/Dashboard.css";
 import StatCard from "../Components/StatCard";
 import {
   LineChart,

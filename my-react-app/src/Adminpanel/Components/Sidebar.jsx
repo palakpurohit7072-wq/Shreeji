@@ -1,7 +1,7 @@
 import React from "react";
 import { FaTachometerAlt, FaBoxOpen, FaList, FaUser } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import "../styles/Sidebar.css";
+import "../Styles/Sidebar.css";
 
 const Sidebar = () => {
   return (

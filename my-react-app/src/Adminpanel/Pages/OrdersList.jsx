@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/AdminPages.css";
+import "../Styles/AdminPages.css";
 
 const OrdersList = () => {
   const orders = [
