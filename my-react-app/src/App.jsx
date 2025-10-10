@@ -26,7 +26,6 @@ import Dashboard from "./Adminpanel/Pages/Dashboard";
 import OrdersList from "./Adminpanel/Pages/OrdersList";
 import AllProducts from "./Adminpanel/Pages/AllProducts";
 
-// import Changepassword from "./Adminpanel/pages/Changepassword";
 const App = () => {
   return (
     <Routes>
@@ -54,8 +53,7 @@ const App = () => {
       <Route path="/admin" element={<AdminLayout />}>
         <Route index element={<Dashboard />} />
         <Route path="products" element={<AllProducts />} />
-        <Route path="orders" element={<OrdersList />} />
-        {/* <Route path="change-password" element={<Changepassword />} /> */}
+        <Route path="orders" element={<OrdersList />} />    
       </Route>
     </Routes>
   );
