@@ -1,16 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../Styles/AllProducts.css";
 
 const AllProducts = () => {
-  const [products, setProducts] = useState([
-    { id: 1, name: "Product A", price: 500, stock: 20 },
-    { id: 2, name: "Product B", price: 700, stock: 15 },
-    { id: 3, name: "Product C", price: 400, stock: 10 },
-  ]);
+  // 🧠 Load from localStorage OR use default products
+  const [products, setProducts] = useState(() => {
+    const saved = localStorage.getItem("products");
+    return saved
+      ? JSON.parse(saved)
+      : [
+          { id: 1, name: "Product A", price: 500, stock: 20 },
+          { id: 2, name: "Product B", price: 700, stock: 15 },
+          { id: 3, name: "Product C", price: 400, stock: 10 },
+        ];
+  });
 
   const [newProduct, setNewProduct] = useState({ name: "", price: "", stock: "" });
   const [searchTerm, setSearchTerm] = useState("");
   const [editProduct, setEditProduct] = useState(null);
+
+  // 💾 Auto-save to localStorage whenever products change
+  useEffect(() => {
+    localStorage.setItem("products", JSON.stringify(products));
+  }, [products]);
 
   // ➕ Add product
   const handleAdd = (e) => {
@@ -125,7 +136,7 @@ const AllProducts = () => {
         </div>
       </div>
 
-      {/* ✏️ Modal */}
+      {/* ✏️ Edit Modal */}
       {editProduct && (
         <div className="modal-overlay">
           <div className="modal">
@@ -148,7 +159,9 @@ const AllProducts = () => {
               />
               <div className="modal-btns">
                 <button type="submit" className="save-btn">Save</button>
-                <button type="button" className="cancel-btn" onClick={() => setEditProduct(null)}>Cancel</button>
+                <button type="button" className="cancel-btn" onClick={() => setEditProduct(null)}>
+                  Cancel
+                </button>
               </div>
             </form>
           </div>
