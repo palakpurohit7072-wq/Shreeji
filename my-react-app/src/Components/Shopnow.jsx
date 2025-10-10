@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Shopnow.css";
 import { useCart } from "../Context/CartContext";
-import { useNavigate, useOutletContext } from "react-router-dom";
+import { useNavigate,  Link ,useOutletContext } from "react-router-dom";
 import slider1 from "../assets/slider1.jpeg";
 import slider2 from "../assets/slider2.jpeg";
 import slider3 from "../assets/slider3.jpeg";
@@ -72,7 +72,7 @@ const Shopnow = () => {
     <div className="container my-5 shopnow-container">
       {/* Header Buttons */}
       <div className="mb-4 d-flex flex-wrap justify-content-between align-items-center gap-2">
-        <button type="button" className="btn btn-outline-secondary bluetext font_weight" onClick={() => navigate("/")}>
+        <button type="button" className="btn btn-outline-secondary  font_weight" onClick={() => navigate("/")}>
           ← Back to Home
         </button>
         <button type="button" className="btn btn-outline-secondary bluetext font_weight" onClick={clearAllFilters}>
@@ -173,7 +173,13 @@ const Shopnow = () => {
               </div>
 
               <div className="card-body d-flex flex-column">
-                <h6 className="product-title ansfamily fs-6 bluetext">{product.title}</h6>
+                <h6 className="product-title ansfamily fs-6 bluetext">   <Link
+                  to={`/product/${product.id}`}
+                  className="text-decoration-none text-dark"
+                >
+                  {product.title}
+                </Link></h6>
+
                 <div className="d-flex align-items-center mb-2 gap-2 flex-wrap">
                   <p className="mb-0 sansfamily font_size bluetext fs-6">Rs. {product.price}</p>
                   {product.oldPrice && <p className="mb-0 sansfamily font_size fs-6 text-decoration-line-through old_price">Rs. {product.oldPrice}</p>}

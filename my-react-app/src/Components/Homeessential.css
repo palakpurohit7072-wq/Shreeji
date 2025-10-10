@@ -1,21 +1,21 @@
 .main_homeessential{
 background-color: #efefef;
 }
-.Homeessential_part .homeessential_text{
+.main_homeessential .Homeessential_part .homeessential_text{
 font-size: 24px;
 }
- .Homeessential_part .card-titles{
+.main_homeessential .Homeessential_part .card-titles{
 font-size: 20px;
 }
-.Homeessential_part .card-tex{
+.main_homeessential .Homeessential_part .card-tex{
 font-size: 15px;
 }
-.Homeessential_part .shop_btn{
+.main_homeessential  .Homeessential_part .shop_btn{
     border-radius: 10px;
 padding: 11px 90px!important;
 color:#ed2529;
 }
-.Homeessential_part .shop_btn:hover {
+.main_homeessential  .Homeessential_part .shop_btn:hover {
     background-color: #2c2484;
     border-color: #2c2484;
 }

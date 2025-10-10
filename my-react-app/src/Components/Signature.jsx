@@ -13,15 +13,16 @@ const Signature = () => {
   // ✅ yahi line missing thi
   const { addToCart } = useCart();
   const navigate = useNavigate();
-   const { setShowCart } = useOutletContext(); // ✅ get setShowCart from Layout
+
+  const { setShowCart, setShowWishlist } = useOutletContext();
   // ✅ price numbers me honi chahiye (string me nahi)
-   const products = [
-     { id: 11, title: "1Camphor Vaporizer (Premium) with Bhimseni Camphor Tablets 100 gm", price: 691, oldPrice: 769, discount: "-10%", rating: 3, reviews: 33, img: slide, hoverImg: slider1 },
-     { id: 12, title: "1Naivedya Cup Sambrani Combo Pack of 3", price: 253, oldPrice: 270, discount: "-6%", rating: 4, reviews: 36, img: slider1, hoverImg: slider2 },
-     { id: 13, title: "1Camphor Mosquito Repellent Refill – Pack of 3", price: 375, oldPrice: null, discount: "", rating: 4, reviews: 30, img: slider2, hoverImg: slider3 },
-     { id: 14, title: "1Woods Agarbatti Combo – Pack of 2", price: 396, oldPrice: 440, discount: "-10%", rating: 5, reviews: 55, img: slider3, hoverImg: slide },
-     { id: 15, title: "1Eco-Friendly Havan Cups – 12 pcs", price: 199, oldPrice: 220, discount: "-9%", rating: 4, reviews: 18, img: slide, hoverImg: slider1 },
-   ];
+  const products = [
+    { id: 11, title: "1Camphor Vaporizer (Premium) with Bhimseni Camphor Tablets 100 gm", price: 691, oldPrice: 769, discount: "-10%", rating: 3, reviews: 33, img: slide, hoverImg: slider1 },
+    { id: 12, title: "1Naivedya Cup Sambrani Combo Pack of 3", price: 253, oldPrice: 270, discount: "-6%", rating: 4, reviews: 36, img: slider1, hoverImg: slider2 },
+    { id: 13, title: "1Camphor Mosquito Repellent Refill – Pack of 3", price: 375, oldPrice: null, discount: "", rating: 4, reviews: 30, img: slider2, hoverImg: slider3 },
+    { id: 14, title: "1Woods Agarbatti Combo – Pack of 2", price: 396, oldPrice: 440, discount: "-10%", rating: 5, reviews: 55, img: slider3, hoverImg: slide },
+    { id: 15, title: "1Eco-Friendly Havan Cups – 12 pcs", price: 199, oldPrice: 220, discount: "-9%", rating: 4, reviews: 18, img: slide, hoverImg: slider1 },
+  ];
 
   const settings = {
     dots: true,
@@ -125,10 +126,9 @@ const Signature = () => {
                   >
                     ADD
                   </button>
-
                   <button
                     className="btn border border-warning rounded-2 bg-transparent d-flex align-items-center justify-content-center yellowicon"
-                    onClick={() => navigate("/wishlist")}
+                    onClick={() => setShowWishlist(true)} // ✅ show wishlist popup
                   >
                     <i className="bi bi-heart text-danger fs-5"></i>
                   </button>

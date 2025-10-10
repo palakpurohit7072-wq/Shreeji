@@ -55,7 +55,7 @@ const HomeEssentials = () => {
                   <div className="mt-auto d-flex justify-content-center">
                     {/* ✅ On click → navigate to Shopnow page */}
                     <button
-                      className="px-4 shop_btn fs-6 yellow_background yellowborder sansfamily fw-semibold"
+                      className="px-4 shop_btn fs-6 btn btn-warning text-danger fw-semibold"
                       onClick={() => navigate("/shopnow")}
                     >
                       Shop Now

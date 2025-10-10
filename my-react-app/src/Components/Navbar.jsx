@@ -1,4 +1,3 @@
-// Navbar.jsx
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useCart } from "../Context/CartContext";
@@ -7,126 +6,146 @@ import shreejilogo from "../assets/shreejilogo.png";
 import dropdown1 from "../assets/dropdown1.png";
 import "./Navbar.css";
 
-function Navbar({ setShowCart }) {
-  const { totalItems, totalPrice } = useCart();
+const dropdownData = {
+  pooja: {
+    title: "Pooja Path",
+    col1: {
+      title: "Product Type",
+      items: [
+        { name: "Dhoop Cone", subItems: ["Gugal Cone Dhoop", "Loban Cone Dhoop", "Sandalwood Cone Dhoop", "Jasmine Cone Dhoop", "Lavender Cone Dhoop", "Rose Cone Dhoop"] },
+        { name: "Stick Dhoop", subItems: ["Gugal Stick Dhoop", "Loban Stick Dhoop", "Sandalwood Stick Dhoop", "Jasmine Stick Dhoop", "Lavender Stick Dhoop", "Rose Stick Dhoop"] },
+        "Sambrani Cups (Guggal & Loban)",
+        "Navgrah Shanti Stick Dhoop",
+        "Sambrani Cups (21 ingredients)",
+        "Havan Tikki",
+        "Havan Samagri",
+        "Gaukripa Chandan Tikka",
+      ],
+    },
+    col3: {
+      title: "Quantity",
+      items: ["100 gm / 200 gm", "100 gm", "1 Box (12 pcs)", "100 gm", "1 Box (12 pcs)", "12 pcs", "250 gm", "1 pcs"],
+    },
+    image: dropdown1,
+  },
+  panchgavya: {
+    title: "Panchgavya Cosmetic Products",
+    col1: {
+      title: "Product Type",
+      items: [
+        "Panchgavya Neem, Aloe Vera, Tulsi Soap",
+        "Panchgavya Ubtan Soap",
+        "Panchgavya Milk Soap",
+        "Panchgavya Aloe Vera Soap",
+        "Panchgavya Amla Reetha & Shikakai Shampoo Regular",
+        "Panchgavya Advance Hair Oil",
+        "Face Pack",
+        "Face Cream",
+      ],
+    },
+    col3: { title: "Quantity", items: ["100 gm", "100 gm", "100 gm", "100 gm", "250 ml", "100 ml", "100 gm", "100 gm"] },
+    image: dropdown1,
+  },
+  sanitary: {
+    title: "Herbal Sanitary Products",
+    col1: {
+      title: "Product Type",
+      items: [
+        "Herbal Neem-Tulsi Hand Wash",
+        "Herbal Sandal Wood Hand Wash",
+        "Herbal Lavender Hand Wash",
+        "Herbal Rakh & Neem Dishwash Gel",
+        "Herbal Lemon Dishwash Gel",
+        "Gaunile Floor Cleaner",
+        "Herbal Toilet Cleaner",
+        "Glass Cleaner",
+        "Bathroom Cleaner",
+      ],
+    },
+    col3: { title: "Quantity", items: ["250 ml / 500 ml", "250 ml / 500 ml", "250 ml / 500 ml", "250 ml / 500 ml", "250 ml / 500 ml", "1 Ltr / 5 Ltr", "250 ml / 500 ml", "500 ml", "500 ml"] },
+    image: dropdown1,
+  },
+  murti: {
+    title: "Murti",
+    col1: { title: "Product Type", items: ["Lord Ganesha Murti", "Lord Krishna Murti", "Lord Lakshmee Ganesh Murti"] },
+    col3: { title: "Quantity", items: ["6 inch", "8 inch", "10 inch"] },
+    image: dropdown1,
+  },
+  others: {
+    title: "Others",
+    col1: { title: "Product Type", items: ["GauNile Floor Cleaner", "Gaumay Vaidik Asana", "Gaumay Vaidik Mela"] },
+    col3: { title: "Quantity", items: ["1 Ltr / 5 Ltr", "1 pcs", "1 pcs"] },
+    image: dropdown1,
+  },
+};
+
+function Navbar({ setShowCart, setShowWishlist, totalItems, totalPrice }) {
+  const { cartItems } = useCart();
   const [menuOpen, setMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState(null);
   const [openSubDropdown, setOpenSubDropdown] = useState(null);
-  const [openItems, setOpenItems] = useState({});
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
     setOpenDropdown(null);
     setOpenSubDropdown(null);
-    setOpenItems({});
   };
 
-  const toggleDropdown = (key) => {
-    setOpenDropdown(openDropdown === key ? null : key);
-    setOpenSubDropdown(null);
-    setOpenItems({});
-  };
+  const renderSubItems = (subItems, parentKey, idx) => (
+    <ul className="list-unstyled ps-3 mb-1">
+      {subItems.map((sub, subIdx) => (
+        <li key={subIdx}>
+          <a href="#" className="nav-link small">{sub}</a>
+        </li>
+      ))}
+    </ul>
+  );
 
-  const toggleSubDropdown = (key) => {
-    setOpenSubDropdown(openSubDropdown === key ? null : key);
-    setOpenItems((prev) => ({ ...prev, [key]: false }));
-  };
-
-  const toggleItemDetails = (key) => {
-    setOpenItems((prev) => ({ ...prev, [key]: !prev[key] }));
-  };
-
-  const dropdownData = {
-    pooja: {
-      title: "Pooja Path",
-      image: dropdown1,
-      col1: { title: "Product", items: ["Dhoop Cone in 6 fragrances", "Stick Dhoop in 6 fragrances", "Sambrani Cups (Guggal & Loban)"] },
-      col2: { title: "Price", items: ["70/150 Rs", "80 Rs", "70 Rs"] },
-      col3: { title: "Quantity", items: ["100 gm / 200 gm", "100 gm", "1 Box (12 pcs)"] },
-    },
-    panchgavya: {
-      title: "Panchgavya Cosmetic Products",
-      image: dropdown1,
-      col1: { title: "Product", items: ["Neem Soap", "Ubtan Soap", "Face Pack"] },
-      col2: { title: "Price", items: ["50 Rs", "50 Rs", "70 Rs"] },
-      col3: { title: "Quantity", items: ["100 gm", "100 gm", "100 gm"] },
-    },
-    sanitary: {
-      title: "Herbal Sanitary Products",
-      image: dropdown1,
-      col1: { title: "Product", items: ["Herbal Hand Wash", "Sandal Hand Wash", "Glass Cleaner"] },
-      col2: { title: "Price", items: ["80 Rs", "80 Rs", "60 Rs"] },
-      col3: { title: "Quantity", items: ["250 ml", "250 ml", "500 ml"] },
-    },
-  };
-
-  const renderSubDropdown = (menuKey) => {
-    const data = dropdownData[menuKey];
-    if (!data) return null;
-    const cols = [data.col1, data.col2, data.col3];
-
-    return (
-      <div className="ps-3 mt-2">
-        {cols.map((col, colIdx) => (
-          <div key={colIdx} className="mb-2">
-            <div className="d-flex justify-content-between align-items-center">
-              <span className="fw-semibold">{col.title}</span>
-              <i
-                className={`bi ${openSubDropdown === `${menuKey}-${colIdx}` ? "bi-chevron-up" : "bi-chevron-down"}`}
-                onClick={() => toggleSubDropdown(`${menuKey}-${colIdx}`)}
-              ></i>
-            </div>
-
-            {openSubDropdown === `${menuKey}-${colIdx}` &&
-              col.items.map((item, idx) => (
-                <div key={idx} className="ps-3 mt-1 d-flex flex-column align-items-start">
-                  <div className="d-flex justify-content-between align-items-center w-100">
-                    <span>{item}</span>
-                    <i
-                      className={`bi ${openItems[`${menuKey}-${colIdx}-${idx}`] ? "bi-chevron-up" : "bi-chevron-down"}`}
-                      onClick={() => toggleItemDetails(`${menuKey}-${colIdx}-${idx}`)}
-                    ></i>
-                  </div>
-
-                  {openItems[`${menuKey}-${colIdx}-${idx}`] && (
-                    <div className="ps-3 mt-1 w-100 d-flex justify-content-between">
-                      <span>Product: {data.col1.items[idx]}</span>
-                      <span>Price: {data.col2.items[idx]}</span>
-                      <span>Quantity: {data.col3.items[idx]}</span>
-                    </div>
-                  )}
-                </div>
-              ))}
-          </div>
-        ))}
-      </div>
-    );
-  };
-
-  const renderDropdownItem = (key) => {
+  const renderDropdownContent = (key) => {
     const data = dropdownData[key];
     if (!data) return null;
 
     return (
-      <li className="nav-item mb-2">
-        <div className="d-flex justify-content-between align-items-center">
-          <a
-            href="#"
-            className="nav-link fw-semibold bluetext w-100"
-            onClick={(e) => {
-              e.preventDefault();
-              toggleDropdown(key);
-            }}
-          >
-            {data.title}
-          </a>
-          <i
-            className={`bi ms-2 ${openDropdown === key ? "bi-chevron-up" : "bi-chevron-down"}`}
-            onClick={() => toggleDropdown(key)}
-          ></i>
+      <div className="p-3 bg-light rounded mb-3 border">
+        <div className="row text-start">
+          {data.col1 && (
+            <div className="col-12 mb-2">
+              <strong>{data.col1.title}</strong>
+              <ul className="list-unstyled">
+                {data.col1.items.map((item, idx) => (
+                  <li key={idx}>
+                    {item.subItems ? (
+                      <>
+                        <span
+                          className="nav-link small d-flex justify-content-between align-items-center"
+                          style={{ cursor: "pointer" }}
+                          onClick={() => setOpenSubDropdown(openSubDropdown === `${key}-${idx}` ? null : `${key}-${idx}`)}
+                        >
+                          {item.name} <span>{openSubDropdown === `${key}-${idx}` ? "▾" : "▸"}</span>
+                        </span>
+                        {openSubDropdown === `${key}-${idx}` && renderSubItems(item.subItems, key, idx)}
+                      </>
+                    ) : (
+                      <a href="#" className="nav-link small">{item.name || item}</a>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {data.col3 && (
+            <div className="col-12 mb-2">
+              <strong>{data.col3.title}</strong>
+              <ul className="list-unstyled">
+                {data.col3.items.map((item, idx) => (
+                  <li key={idx}><a href="#" className="nav-link small">{item}</a></li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
-        {openDropdown === key && renderSubDropdown(key)}
-      </li>
+      </div>
     );
   };
 
@@ -134,9 +153,7 @@ function Navbar({ setShowCart }) {
     <div className="container py-3">
       {/* Mobile Header */}
       <div className="d-flex d-lg-none align-items-center justify-content-between mobile-header">
-        <button className="navbar-toggler border-0" onClick={toggleMenu}>
-          {menuOpen ? "×" : "☰"}
-        </button>
+        <button className="navbar-toggler border-0" onClick={toggleMenu}>{menuOpen ? "×" : "☰"}</button>
         <img src={shreejilogo} alt="Logo" height="60" width="90" />
         <Link to="/wishlist">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" className="mobile-heart">
@@ -148,56 +165,47 @@ function Navbar({ setShowCart }) {
       {/* Mobile Search */}
       <div className="d-lg-none mt-2">
         <Form className="d-flex w-100">
-          <FormControl
-            type="search"
-            placeholder="Search for Dhoop Stick"
-            aria-label="Search"
-            style={{ height: "40px", borderRadius: "10px" }}
-          />
+          <FormControl type="search" placeholder="Search for Dhoop Stick" aria-label="Search" style={{ height: "40px", borderRadius: "10px" }} />
         </Form>
       </div>
 
-      {/* Mobile Hamburger Menu */}
+      {/* Mobile Menu */}
       {menuOpen && (
         <ul className="list-unstyled p-3 bg-light rounded d-lg-none">
-          {Object.keys(dropdownData).map((key) => renderDropdownItem(key))}
-          <li>
-            <a className="dropdown-item fw-bold" href="#">
-              Blog
-            </a>
-          </li>
+          {Object.keys(dropdownData).map((key) => (
+            <li key={key} className="mb-2">
+              <a href="#" className="nav-link fw-semibold d-flex justify-content-between align-items-center"
+                onClick={(e) => { e.preventDefault(); setOpenDropdown(openDropdown === key ? null : key); setOpenSubDropdown(null); }}>
+                {dropdownData[key].title} <span>{openDropdown === key ? "▾" : "▸"}</span>
+              </a>
+              {openDropdown === key && renderDropdownContent(key)}
+            </li>
+          ))}
         </ul>
       )}
 
-      {/* Desktop Header */}
+      {/* Desktop Navbar */}
       <div className="d-none d-lg-flex justify-content-between align-items-center desktop-header flex-wrap">
         <div className="left_part">
           <img src={shreejilogo} alt="Logo" height="80" width="100" />
         </div>
-
-        <div className="right_part d-flex align-items-center gap-3 flex-grow-1 justify-content-end flex-wrap">
+        <div className="right_part d-flex align-items-center gap-3 flex-grow-1 justify-content-end">
           <Form className="d-flex flex-grow-1" style={{ maxWidth: "690px" }}>
-            <FormControl
-              type="search"
-              placeholder="Search for Dhoop Stick"
-              aria-label="Search"
-              style={{ width: "100%", height: "40px" }}
-            />
+            <FormControl type="search" placeholder="Search for Dhoop Stick" aria-label="Search" />
           </Form>
-
           <div className="buttons-wrapper d-flex align-items-center gap-2">
-            {/* Account Button */}
             <Link
               to="/login"
               className="btns fw-semibold bg-light bluetext blueborder d-flex align-items-center justify-content-center gap-2 text-decoration-none"
               style={{ minWidth: "150px", padding: "8px 12px" }}
             >
               <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-                <path d="M18.3333 19.25V17.4167C18.3333 16.4442 17.947 15.5116 17.2593 14.8239C16.5717 14.1363 15.6391 13.75 14.6666 13.75H7.33329C6.36083 13.75 5.4282 14.1363 4.74057 14.8239C4.05293 15.5116 3.66663 16.4442 3.66663 17.4167V19.25" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                <path d="M11 10.0833C13.0251 10.0833 14.6667 8.44171 14.6667 6.41667C14.6667 4.39162 13.0251 2.75 11 2.75C8.975 2.75 7.33337 4.39162 7.33337 6.41667C7.33337 8.44171 8.975 10.0833 11 10.0833Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M18.3333 19.25V17.4167C18.3333 16.4442 17.947 15.5116 17.2593 14.8239C16.5717 14.1363 15.6391 13.75 14.6666 13.75H7.33329C6.36083 13.75 5.4282 14.1363 4.74057 14.8239C4.05293 15.5116 3.66663 16.4442 3.66663 17.4167V19.25" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M11 10.0833C13.0251 10.0833 14.6667 8.44171 14.6667 6.41667C14.6667 4.39162 13.0251 2.75 11 2.75C8.975 2.75 7.33337 4.39162 7.33337 6.41667C7.33337 8.44171 8.975 10.0833 11 10.0833Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
               Account
             </Link>
+            
 
             {/* Cart Button */}
             <button
@@ -213,11 +221,11 @@ function Navbar({ setShowCart }) {
               Rs {(Number(totalPrice) || 0).toFixed(2)} ({totalItems || 0})
             </button>
 
-            <Link to="/wishlist">
+            <button onClick={() => setShowWishlist(true)} className="btn border-0 bg-transparent p-0">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" className="heart-icon d-none d-lg-block">
                 <path d="M29.728 10.656q0-1.472-0.384-2.56t-0.992-1.76-1.472-1.056-1.664-0.576-1.76-0.128-1.984 0.448-1.984 1.152-1.536 1.28-1.088 1.088q-0.32 0.416-0.864 0.416t-0.864-0.416q-0.448-0.48-1.088-1.088t-1.536-1.28-1.984-1.152-1.984-0.448-1.76 0.128-1.664 0.576-1.472 1.056-0.992 1.76-0.384 2.56q0 2.976 3.36 6.336l10.368 9.984 10.368-9.984q3.36-3.36 3.36-6.336zM32 10.656q0 3.936-4.096 8.032l-11.104 10.72q-0.32 0.32-0.8 0.32t-0.8-0.32l-11.136-10.752q-0.16-0.16-0.48-0.48t-0.992-1.184-1.216-1.728-0.96-2.144-0.416-2.464q0-3.936 2.272-6.144t6.272-2.24q1.088 0 2.24 0.384t2.144 1.056 1.728 1.216 1.344 1.216q0.64-0.64 1.344-1.216t1.728-1.216 2.144-1.056 2.24-0.384q4 0 6.272 2.24t2.272 6.144z"></path>
               </svg>
-            </Link>
+            </button>
           </div>
         </div>
       </div>

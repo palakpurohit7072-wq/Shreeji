@@ -6,14 +6,13 @@ import slider1 from "../assets/slider1.jpeg";
 import slider2 from "../assets/slider2.jpeg";
 import slider3 from "../assets/slider3.jpeg";
 import slide from "../assets/slide.jpg";
-
 import { useCart } from "../Context/CartContext";
 import { useNavigate } from "react-router-dom";
-
+import { useOutletContext } from "react-router-dom"; // ✅ added useOutletContext
 function SingleProduct() {
   const [quantity, setQuantity] = useState(1);
   const [mainImg, setMainImg] = useState(slide);
-
+  const { setShowCart } = useOutletContext(); // ✅ get setShowCart from Layout
   const { addToCart } = useCart();
   const navigate = useNavigate();
 
@@ -187,6 +186,11 @@ function SingleProduct() {
             </button>
             <div className="collapse" id="specs">
               <div className="card card-body">Details about specifications…</div>
+            </div>
+            <div className="text-center mt-5">
+              <button className="btn btn-outline-secondary" onClick={() => navigate("/")}>
+                ← Back to Home
+              </button>
             </div>
           </div>
         </div>

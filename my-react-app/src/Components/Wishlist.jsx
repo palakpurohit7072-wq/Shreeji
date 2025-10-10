@@ -1,47 +1,32 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; // ✅ import navigate hook
+import React from "react";
 import "./Wishlist.css";
-
-const Wishlist = () => {
-  const [show, setShow] = useState(true);
-  const navigate = useNavigate(); // ✅ initialize navigate
-
-  if (!show) return null;
-
+import { useNavigate } from "react-router-dom"; // ✅ added useOutletContext
+const Wishlist = ({ setShowWishlist }) => {
+    const navigate = useNavigate();
+  
   return (
     <div className="wishlist-overlay">
       <div className="wishlist-box">
-        {/* Close button */}
         <button
           type="button"
           className="wishlist-close"
-          onClick={() => setShow(false)}
+          onClick={() => setShowWishlist(false)}
         >
           ✕
         </button>
 
-        {/* Title */}
         <div className="wishlist-header">
           <span className="wishlist-heart">💛</span>
           <h5 className="wishlist-title">My Wishlist</h5>
         </div>
 
-        {/* Message */}
         <p className="wishlist-text">
           Please login to save your wishlist across devices.
         </p>
-
-        {/* Login Button */}
-        <button
-          className="wishlist-login-btn"
-          onClick={() => navigate("/login")} // ✅ navigate to login page
-        >
-          LOGIN
-        </button>
+        <button className="wishlist-login-btn" onClick={() => navigate("/login")}>  LOGIN </button>
       </div>
-    </div>
+    </div >
   );
 };
 
 export default Wishlist;
-

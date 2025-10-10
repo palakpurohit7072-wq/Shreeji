@@ -12,10 +12,6 @@
   border: none;
   transition: transform 0.3s ease;
 }
-.shopnow-container .btn.btn-outline-secondary:hover {
-  background-color: transparent !important;
- 
-}
 
 
 .shopnow-container .product-card:hover {
@@ -51,4 +47,8 @@
 .shopnow-container .hearticon{
   padding-top: 5px;
 }
-
+.shopnow-container .product-title:hover {
+  text-decoration: underline;
+  cursor: pointer;
+  color:#2c2484;
+}

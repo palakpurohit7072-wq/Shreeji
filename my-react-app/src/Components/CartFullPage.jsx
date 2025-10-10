@@ -22,97 +22,122 @@ export default function CartFullPage() {
     0
   );
 
-  const freeShippingLimit = 500; // Example limit
+  const freeShippingLimit = 500;
 
   return (
-    <div className="container py-4">
-      {/* Heading with Home button */}
-      <h2 className="mb-4 d-flex justify-content-between align-items-center">
+    <div className="container py-4 cart-page">
+      {/* Heading */}
+      <h2 className="mb-4 bluetext sansfamily cartfull_heading">
         Shopping Cart
-      
       </h2>
 
       <div className="row">
-        {/* Left Section: Cart Items */}
-        <div className="col-lg-8">
-          {cartItems.map((item) => (
-            <div
-              key={item.id}
-              className="d-flex gap-3 align-items-center border-bottom pb-3 mb-3"
-            >
-              <img
-                src={item.img}
-                alt={item.name}
-                style={{ width: 100, height: 100, objectFit: "cover" }}
-              />
-              <div className="flex-grow-1">
-                <h5>{item.name}</h5>
-                <p className="text-muted small">{item.desc}</p>
-                <p className="mb-1">Price: ₹{item.price}</p>
+        {/* LEFT SIDE: Product Table */}
+        <div className="col-lg-8 cart-left">
+          <div className="cart-header bluetext sansfamily font_weight">
+            <div>Product</div>
+            <div className="text-center">Quantity</div>
+            <div className="text-end">Total</div>
+          </div>
 
-                {/* Quantity Control */}
-                <div className="d-flex align-items-center mb-2">
+          {cartItems.map((item) => (
+            <div key={item.id} className="cart-row">
+              {/* Product Column */}
+              <div className="col-product">
+                <img src={item.img} alt={item.name} />
+                <div>
+                  <p className="item-price sansfamily font_size bluetext mb-1">
+                    <span >Rs. {item.price.toFixed(2)}</span>
+                  </p>
+                  {/* { <p className="item-name">{item.name}</p> } */}
+                  {item.desc && (
+                    <p className="sansfamily font_size bluetext mb-1">{item.desc}</p>
+                  )}
+
+                </div>
+              </div>
+
+              {/* Quantity Column + Remove Button (side by side like screenshot) */}
+              <div className="col-qty">
+                <div className="qty-controls">
                   <button
-                    className="btn btn-sm btn-outline-secondary"
+                    className="qty-btn"
                     onClick={() => decreaseQty(item.id)}
                   >
-                    -
+                    <svg
+                      width="12"
+                      height="12"
+                      viewBox="0 0 12 12"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path d="M12 5V7H0V5H12Z" fill="#2c2484" />
+                    </svg>
+
                   </button>
-                  <span className="px-3">{item.quantity}</span>
-                  <button
-                    className="btn btn-sm btn-outline-secondary"
-                    onClick={() => addToCart(item)}
-                  >
-                    +
+                  <span>{item.quantity}</span>
+                  <button className="qty-btn" onClick={() => addToCart(item)}>
+                    <svg
+                      width="12"
+                      height="12"
+                      viewBox="0 0 12 12"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path d="M5 0H7V12H5V0Z" fill="#2c2484" />
+                      <path d="M12 5V7H0V5H12Z" fill="#2c2484" />
+                    </svg>
+
                   </button>
                 </div>
-
-                <p className="fw-semibold mb-1">
-                  Total: ₹{item.price * item.quantity}
-                </p>
                 <button
-                  className="btn btn-sm btn-danger"
+                  className="remove-link"
                   onClick={() => removeFromCart(item.id)}
                 >
                   Remove
                 </button>
               </div>
+
+              {/* Total Column */}
+              <div className="col-total text-end bluetext sansfamily">
+                Rs. {(item.price * item.quantity).toFixed(2)}
+              </div>
             </div>
           ))}
         </div>
 
-        {/* Right Section: Order Summary */}
-        <div className="col-lg-4">
-          <div className="border rounded p-3 shadow-sm">
-            <h5>Order Summary</h5>
-            <p className="fs-5 fw-bold">Rs. {totalPrice.toFixed(2)}</p>
+        {/* RIGHT SIDE: Order Summary */}
+        <div className="col-lg-4 cart-right">
 
-            <div className="alert alert-light small">
+          <div className="free-shipping-alert sansfamily font_size">
+            You are eligible for free shipping!
+          </div>
+
+
+          <div className="summary-box shadow-sm">
+            <h5 className="bluetext sansfamily">Order Summary</h5>
+            <p className="total-amount bluetext sansfamily ">Rs. {totalPrice.toFixed(2)}</p>
+
+            <div className="shipping-box bluetext sansfamily">
               Free Shipping On All Orders Above ₹{freeShippingLimit}
             </div>
 
-            <div className="mb-3">
-              <label className="form-label small">GST number (Optional)</label>
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Enter GST Number"
-              />
+            <div className="gst-box">
+              <label className="form-label small bluetext sansfamily">GST number (Optional)</label>
+              <input className="bluetext sansfamily" type="text" placeholder="Enter GST Number" />
             </div>
 
-            <p className="small text-muted mb-3">
+            <p className="note bluetext sansfamily">
               Tax included. Shipping calculated at checkout.
             </p>
 
-            {/* Checkout Button */}
             <button
-              className="btn btn-outline-primary w-100 mb-2"
+              className="btn btn-outline-primary w-100 mb-2 cartcheckoutbtn"
               onClick={() => navigate("/checkout")}
             >
               Check Out
             </button>
 
-            {/* Continue Shopping Button */}
             <button
               className="btn btn-secondary w-100"
               onClick={() => navigate("/")}
@@ -125,4 +150,3 @@ export default function CartFullPage() {
     </div>
   );
 }
-

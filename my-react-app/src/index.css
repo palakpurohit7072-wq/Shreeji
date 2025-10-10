@@ -4,10 +4,10 @@
     box-sizing: border-box;
 }
 .bluetext{   /* custom  bootstrap classes */
-color: #2c2484!important;
+color: #2c2484;
 }
 .blueborder{
- border-width: 1px #2c2484;
+ border: 1px #2c2484;
 }
 .bg-blue{
 background-color: #2c2484;
@@ -23,9 +23,6 @@ background-color: #fff350
 }
 .font_size{
   font-size: 15px;
-}
-.font_weight_semi{
-  font-weight: 600;
 }
 .font_weight{
   font-weight: 500;

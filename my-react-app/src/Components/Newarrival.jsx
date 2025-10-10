@@ -12,7 +12,8 @@ const NewArrivalSlider = () => {
   const sliderRef = useRef(null); // 🔹 ref create
   const navigate = useNavigate();
   const { addToCart } = useCart();
-    const { setShowCart } = useOutletContext(); // ✅ get setShowCart from Layout
+
+  const { setShowCart, setShowWishlist } = useOutletContext();
   const products = [
     { id: 16, title: "Camphor Vaporizer (Premium) with Bhimseni Camphor Tablets 100 gm", price: "Rs. 691.00", oldPrice: "Rs. 769.00", discount: "-10%", rating: 3, reviews: 33, img: slide, hoverImg: slider1 },
     { id: 92, title: "Naivedya Cup Sambrani Combo Pack of 3", price: "Rs. 253.00", oldPrice: "Rs. 270.00", discount: "-6%", rating: 4, reviews: 36, img: slider1, hoverImg: slider2 },
@@ -45,7 +46,7 @@ const NewArrivalSlider = () => {
     ],
   };
 
-   return (
+  return (
     <div className="container arrival-sliders my-5">
       <div className="row mb-4">
         <div className="col-6">
@@ -117,13 +118,13 @@ const NewArrivalSlider = () => {
                   >
                     ADD
                   </button>
-
                   <button
                     className="btn border border-warning rounded-2 bg-transparent d-flex align-items-center justify-content-center yellowicon"
-                    onClick={() => navigate("/wishlist")}
+                    onClick={() => setShowWishlist(true)} // ✅ show wishlist popup
                   >
                     <i className="bi bi-heart text-danger fs-5"></i>
                   </button>
+
                 </div>
               </div>
             </div>

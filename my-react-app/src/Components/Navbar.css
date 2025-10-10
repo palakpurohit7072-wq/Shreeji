@@ -9,7 +9,15 @@
   justify-content: center;
   gap: 5px;
 }
-
+.nav-link{
+  color: #2c2484;
+  font-size: 15px;
+    font-family: 'sans-serif'; 
+}
+.nav-link:hover{
+  color: #E4040D;
+ 
+}
 .right_part .btns.bluetext {
   color: #2c2484;
   background-color: #fff;

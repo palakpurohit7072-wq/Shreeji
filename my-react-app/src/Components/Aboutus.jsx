@@ -42,6 +42,11 @@ const Aboutus = () => {
           <img src={slider1} alt="Agarbatti incense" />
         </div>
       </div>
+       <div className="text-center mt-5">
+          <button className="btn btn-outline-secondary" onClick={() => navigate("/")}>
+            ← Back to Home
+          </button>
+        </div>
     </div>
   );
 };

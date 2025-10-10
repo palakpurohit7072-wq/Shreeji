@@ -4,34 +4,39 @@ import Footer from "./Footer";
 import Dropdownmenu from "./Dropdownmenu";
 import { Outlet } from "react-router-dom";
 import { useCart } from "../Context/CartContext";
-import CartDrawer from "./CartDrawer"; 
-import ScrollToTop from "./ScrollToTop"; // ✅ Import ScrollToTop component
+import CartDrawer from "./CartDrawer";
+import Wishlist from "./Wishlist";
+import ScrollToTop from "./ScrollToTop";
 
 const Layout = () => {
+  const {  totalItems, totalPrice } = useCart();
   const [showCart, setShowCart] = useState(false);
-  const { totalItems, cartItems } = useCart();
-
-  // 💰 Calculate total price for all items
-  const totalPrice = cartItems.reduce(
-    (acc, item) => acc + item.price * item.quantity,
-    0
-  );
+  const [showWishlist, setShowWishlist] = useState(false);
 
   return (
     <>
-      {/* ✅ Automatically scroll to top on every route change */}
       <ScrollToTop />
-      {/* 🔹 Navbar with Cart Toggle */}
+      {/* Navbar with both props */}
       <Navbar
         setShowCart={setShowCart}
+        setShowWishlist={setShowWishlist}
         totalItems={totalItems}
         totalPrice={totalPrice}
-      />  
+      />
+
       <Dropdownmenu />
+
+      {/* Outlet for nested routes */}
       <main>
-        <Outlet context={{ setShowCart }} />
-      </main>    
-      <CartDrawer showCart={showCart} setShowCart={setShowCart} />   
+        <Outlet context={{ setShowCart, setShowWishlist }} />
+      </main>
+
+      {/* Popups */}
+      {showCart && <CartDrawer showCart={showCart} setShowCart={setShowCart} />}
+      {showWishlist && (
+        <Wishlist showWishlist={showWishlist} setShowWishlist={setShowWishlist} />
+      )}
+
       <Footer />
     </>
   );

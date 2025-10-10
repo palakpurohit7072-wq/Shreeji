@@ -54,8 +54,8 @@
   border-color: #5b4df5;
 }
 
-.contact-form-section button {
-  width: 120px;
+.contact_submitbtn{
+    width: 120px;
   background-color: #24156a;
   color: white;
   font-weight: 600;
@@ -64,10 +64,6 @@
   padding: 10px 0;
   cursor: pointer;
   transition: 0.3s ease;
-}
-
-.contact-form-section button:hover {
-  background-color: #3d2dc1;
 }
 
 /* Right Info Box */

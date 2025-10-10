@@ -66,16 +66,15 @@ const Contactus = () => {
                 value={formData.message}
                 onChange={handleChange}
               ></textarea>
-              <button type="submit">Submit</button>
+              <button type="submit" className="contact_submitbtn">Submit</button>
             </form>
 
             {/* 🔹 Back to Home Button */}
-            <button
-              className="btn btn-outline-secondary mt-3"
-              onClick={() => navigate("/")} // Navigates to home
-            >
-              ← Back to Home
-            </button>
+           <div className="text-center mt-5">
+          <button className="btn btn-outline-secondary" onClick={() => navigate("/")}>
+            ← Back to Home
+          </button>
+        </div>
           </div>
 
           {/* Right Info Section */}
