@@ -1,8 +1,9 @@
 import React from "react";
 import "./Aboutus.css";
 import slider1 from "../assets/slider1.jpeg"; // your local image
-
+import { useNavigate } from "react-router-dom";
 const Aboutus = () => {
+    const navigate = useNavigate();
   return (
     <div className="aboutus-container">   
       <div className="aboutus-box">

@@ -1,43 +1,37 @@
 import React from "react";
 import "./Footer.css";
-import { Link } from "react-router-dom"; // ✅ Added for internal routing
+import { Link } from "react-router-dom";
 
-// 🔹 Import all images
+// Images
 import icon from "../assets/icon.png";
 import tel from "../assets/tel.png";
 import mail from "../assets/mail.png";
 import generated from "../assets/generated.png";
 import yellowcircleicon from "../assets/yellowcircleicon.png";
-import payment from "../assets/payment.png"; // single image for all payment logos
+import payment from "../assets/payment.png";
 
 const Footer = () => {
   return (
     <>
-      {/* 🔹 Secure Payment & Free Delivery Section */}
+      {/* 🔹 Top Banner Section */}
       <section className="footer-top-banner py-5">
         <div className="container">
-          <div className="row align-items-center">
-            {/* Secure Payment */}
-            <div className="col-md-6 mb-3 mb-md-0">
-              <div className="d-flex flex-column flex-md-row align-items-center justify-content-center payment_part">
-                <div className="icon-circle bg-warning d-flex align-items-center justify-content-center me-md-3 mb-2 mb-md-0">
+          <div className="row align-items-center text-center text-md-start">
+            <div className="col-md-6 mb-4 mb-md-0">
+              <div className="d-flex align-items-center justify-content-center justify-content-md-start gap-3">
+                <div className="icon-circle bg-warning d-flex align-items-center justify-content-center">
                   <img src={yellowcircleicon} alt="Secure Payment" width="40" height="40" />
                 </div>
                 <div>
-                  <h5 className="fw-bold mb-1 secure_payment_heading sansfamily bluetext">
-                    Secure payment
-                  </h5>
-                  <p className="mb-0 secure_payment_title sansfamily bluetext">
-                    Shop confidently with a secure payment gateway
-                  </p>
+                  <h5 className="fw-bold mb-1 sansfamily bluetext">Secure payment</h5>
+                  <p className="mb-0 sansfamily bluetext">Shop confidently with a secure payment gateway</p>
                 </div>
               </div>
             </div>
 
-            {/* Free Delivery */}
             <div className="col-md-6">
-              <div className="d-flex flex-column flex-md-row align-items-center justify-content-center payment_part">
-                <div className="icon-circle bg-warning d-flex align-items-center justify-content-center me-md-3 mb-2 mb-md-0">
+              <div className="d-flex align-items-center justify-content-center justify-content-md-start gap-3">
+                <div className="icon-circle bg-warning d-flex align-items-center justify-content-center">
                   <img src={generated} alt="Free Delivery" width="40" height="40" />
                 </div>
                 <div>
@@ -53,14 +47,14 @@ const Footer = () => {
       </section>
 
       {/* 🔹 Main Footer Section */}
-      <footer className="footersection bg-blue text-light pt-5 pb-3 mt-0">
+      <footer className="footersection bg-blue text-light pt-5 pb-3">
         <div className="container">
-          {/* Top Section */}
-          <div className="row footer-top-row d-flex">
-            {/* About */}
-            <div className="col-md-3 mb-4">
-              <h6 className="about_column footer_title sansfamily font_size fw-medium text-light">ABOUT</h6>
-              <p className="small footer_col_text sansfamily font_size text-light">
+          {/* Top Columns */}
+          <div className="row footer-top-row mb-4 gy-4">
+            {/* ABOUT */}
+            <div className="col-md-3">
+              <h6 className="footer_title">ABOUT</h6>
+              <p className="footer_col_text">
                 Discover handcrafted luxury incense, pure puja essentials, premium gifting
                 range, and curated spiritual products loved in 75 countries. Rooted in
                 tradition, innovation, and eco-consciousness, Shreejeegavya.in brings the
@@ -69,59 +63,32 @@ const Footer = () => {
               </p>
             </div>
 
-            {/* Policies */}
-            <div className="col-md-2 mb-4">
-              <h6 className="sansfamily fw-medium footer_title font_size">POLICIES</h6>
-              <ul className="list-unstyled font_size footer_col_text sansfamily">
-                {/* ✅ Updated to React Router Links */}
-                <li>
-                  <Link to="/privacy" className="text-light text-decoration-none">
-                    Privacy Policy
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/shippingdelivery" className="text-light text-decoration-none">
-                    Shipping & Delivery
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/termsandcondition" className="text-light text-decoration-none">
-                    Terms & Conditions
-                  </Link>
-                </li>
-               <li>
-                  <Link to="/returnandrfund" className="text-light text-decoration-none">
-                   Returns & Refund
-                  </Link>
-                </li>
+            {/* POLICIES */}
+            <div className="col-md-2">
+              <h6 className="footer_title">POLICIES</h6>
+              <ul className="list-unstyled footer_col_text">
+                <li><Link to="/privacy" className="text-light text-decoration-none">Privacy Policy</Link></li>
+                <li><Link to="/shippingdelivery" className="text-light text-decoration-none">Shipping & Delivery</Link></li>
+                <li><Link to="/termsandcondition" className="text-light text-decoration-none">Terms & Conditions</Link></li>
+                <li><Link to="/returnandrefund" className="text-light text-decoration-none">Returns & Refund</Link></li>
               </ul>
             </div>
 
-            {/* Brands */}
-            <div className="col-md-2 mb-4">
-              <h6 className="sansfamily fw-medium footer_title font_size">BRANDS</h6>
-              <ul className="list-unstyled font_size footer_col_text sansfamily">
-                <li><a href="#" className="text-light text-decoration-none">Amogha</a></li>
-                <li><a href="#" className="text-light text-decoration-none">Gavi</a></li>
-                <li><a href="#" className="text-light text-decoration-none">Karpure</a></li>
-                <li><a href="#" className="text-light text-decoration-none">Pujaroom</a></li>
-                <li><a href="#" className="text-light text-decoration-none">Pujayu</a></li>
-                <li><a href="#" className="text-light text-decoration-none">Soulveda</a></li>
-                <li><a href="#" className="text-light text-decoration-none">Pureprayer</a></li>
-                <li><a href="#" className="text-light text-decoration-none">Om Shanthi</a></li>
-                <li><a href="#" className="text-light text-decoration-none">Sampoorna Dhyan</a></li>
+            {/* BRANDS */}
+            <div className="col-md-2">
+              <h6 className="footer_title">BRANDS</h6>
+              <ul className="list-unstyled footer_col_text">
+                {["Amogha", "Gavi", "Karpure", "Pujaroom", "Pujayu", "Soulveda", "Pureprayer", "Om Shanthi", "Sampoorna Dhyan"].map((brand) => (
+                  <li key={brand}><a href="#" className="text-light text-decoration-none">{brand}</a></li>
+                ))}
               </ul>
             </div>
 
-            {/* Quick Links */}
-            <div className="col-md-2 mb-4">
-              <h6 className="sansfamily fw-medium footer_title font_size">QUICK LINKS</h6>
-              <ul className="list-unstyled font_size footer_col_text sansfamily">
-                <li>
-                  <Link to="/track" className="text-light text-decoration-none">
-                    Track Your Order
-                  </Link>
-                </li>
+            {/* QUICK LINKS */}
+            <div className="col-md-2">
+              <h6 className="footer_title">QUICK LINKS</h6>
+              <ul className="list-unstyled footer_col_text">
+                <li><Link to="/track" className="text-light text-decoration-none">Track Your Order</Link></li>
                 <li><Link to="/about" className="text-light text-decoration-none">About Us</Link></li>
                 <li><Link to="/contact" className="text-light text-decoration-none">Contact Us</Link></li>
                 <li><a href="#" className="text-light text-decoration-none">Blog Posts</a></li>
@@ -132,41 +99,38 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Middle Section */}
-          <div className="row mt-4">
-            {/* Business Information */}
-            <div className="col-md-3 mb-4">
-              <h6 className="sansfamily fw-medium middlefooter_heading font_size">BUSINESS INFORMATION</h6>
-              <div className="d-flex align-items-center mb-1">
-                <img src={icon} alt="Location" width="20" className="me-2" />
-                <p className="middle_col_text font_size sansfamily mb-0">Vanivilasa Road, Mysuru, Karnataka - 570004</p>
+          {/* Middle Row */}
+          <div className="row gy-4 align-items-start">
+            {/* Business Info */}
+            <div className="col-md-3">
+              <h6 className="middlefooter_heading">BUSINESS INFORMATION</h6>
+              <div className="footer-contact d-flex align-items-start gap-2 mb-2">
+                <img src={icon} alt="Location" width="20" className="mt-1" />
+                <p className="mb-0">Vanivilasa Road, Mysuru, Karnataka - 570004</p>
               </div>
-              <div className="d-flex align-items-center mb-1">
-                <img src={tel} alt="Phone" width="20" className="me-2" />
-                <p className="middle_col_text font_size sansfamily mb-0">1800-425-7729</p>
+              <div className="footer-contact d-flex align-items-start gap-2 mb-2">
+                <img src={tel} alt="Phone" width="20" className="mt-1" />
+                <p className="mb-0">1800-425-7729</p>
               </div>
-              <div className="d-flex align-items-center mb-0">
-                <img src={mail} alt="Email" width="20" className="me-2" />
-                <p className="middle_col_text font_size sansfamily mb-0">@shreejeegavya.in</p>
+              <div className="footer-contact d-flex align-items-start gap-2">
+                <img src={mail} alt="Email" width="20" className="mt-1" />
+                <p className="mb-0">care@shreejeegavya.in</p>
               </div>
             </div>
 
             {/* Follow */}
-            <div className="col-md-3 mb-4">
-              <h6 className="sansfamily fw-medium middlefooter_heading font_size">FOLLOW</h6>
-              <div className="d-flex gap-3">
-                <a href="#" className="text-light fs-5"><i className="bi bi-envelope"></i></a>
-                <a href="#" className="text-light fs-5"><i className="bi bi-facebook"></i></a>
-                <a href="#" className="text-light fs-5"><i className="bi bi-instagram"></i></a>
-                <a href="#" className="text-light fs-5"><i className="bi bi-linkedin"></i></a>
-                <a href="#" className="text-light fs-5"><i className="bi bi-pinterest"></i></a>
-                <a href="#" className="text-light fs-5"><i className="bi bi-youtube"></i></a>
+            <div className="col-md-3">
+              <h6 className="middlefooter_heading">FOLLOW</h6>
+              <div className="d-flex gap-3 fs-5">
+                {["envelope", "facebook", "instagram", "linkedin", "pinterest", "youtube"].map((icon, i) => (
+                  <a key={i} href="#" className="text-light"><i className={`bi bi-${icon}`}></i></a>
+                ))}
               </div>
             </div>
 
             {/* Newsletter */}
-            <div className="col-md-3 mb-4">
-              <h6 className="sansfamily fw-medium middlefooter_heading">NEWSLETTER</h6>
+            <div className="col-md-3">
+              <h6 className="middlefooter_heading">NEWSLETTER</h6>
               <form className="d-flex">
                 <input type="email" className="form-control me-2" placeholder="Enter your email" />
                 <button className="btn btn-secondary" type="submit">
@@ -175,9 +139,9 @@ const Footer = () => {
               </form>
             </div>
 
-            {/* Payment Methods */}
-            <div className="col-md-3 mb-4">
-              <h6 className="sansfamily fw-medium middlefooter_heading">PAYMENT METHODS</h6>
+            {/* Payment */}
+            <div className="col-md-3">
+              <h6 className="middlefooter_heading">PAYMENT METHODS</h6>
               <div className="bg-light p-3 rounded text-center">
                 <img src={payment} alt="Payment Methods" className="img-fluid" />
               </div>
@@ -187,14 +151,10 @@ const Footer = () => {
           {/* Bottom Footer */}
           <div className="row mt-4 border-top pt-3">
             <div className="col-md-6">
-              <p className="mb-0 sansfamily font_size text-light">
-                Copyright © 2025 Shree Jee Gavya.in
-              </p>
+              <p className="mb-0">Copyright © 2025 Shree Jee Gavya.in</p>
             </div>
             <div className="col-md-6 text-md-end">
-              <p className="mb-0 sansfamily font_size text-light">
-                Developed By BOOST STAR Experts
-              </p>
+              <p className="mb-0">Developed By BOOST STAR Experts</p>
             </div>
           </div>
         </div>
@@ -204,7 +164,3 @@ const Footer = () => {
 };
 
 export default Footer;
-
-
-
-

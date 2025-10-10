@@ -1,0 +1,35 @@
+.admin-sidebar {
+  width: 230px;
+  background-color: #1e1e1e;
+  color: white;
+  height: 100vh;
+  padding: 20px;
+  position: fixed;
+}
+
+.admin-logo {
+  font-size: 22px;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.admin-sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.admin-sidebar ul li {
+  margin: 20px 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+ 
+}
+.admin-sidebar ul li a,
+.admin-sidebar ul li a:visited,
+.admin-sidebar ul li a:active {
+  color: white !important;
+  text-decoration: none !important;
+  background: transparent !important;
+}

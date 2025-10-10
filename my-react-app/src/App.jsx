@@ -1,6 +1,7 @@
+import React from "react";
 import { Routes, Route } from "react-router-dom";
 
-// 🔹 Component imports
+// 🟢 User site imports
 import Layout from "./Components/Layout";
 import HomePage from "./Components/HomePage";
 import AccountPage from "./Components/AccountPage";
@@ -18,11 +19,18 @@ import Shippinganddelivery from "./Components/Shippinganddelivery";
 import Returnsandrefund from "./Components/Returnsandrefund";
 import Forgetpassword from "./Components/Forgetpassword";
 import Newuser from "./Components/Newuser";
-Shippinganddelivery
+
+// 🟢 Admin imports
+import AdminLayout from "./Adminpanel/AdminLayout";
+import Dashboard from "./Adminpanel/pages/Dashboard";
+import OrdersList from "./Adminpanel/pages/OrdersList";
+import AllProducts from "./Adminpanel/pages/AllProducts";
+
+// import Changepassword from "./Adminpanel/pages/Changepassword";
 const App = () => {
   return (
     <Routes>
-      {/* Layout wraps Navbar, Footer, etc. */}
+      {/* 🏠 User side */}
       <Route path="/" element={<Layout />}>
         <Route index element={<HomePage />} />
         <Route path="login" element={<AccountPage />} />
@@ -30,24 +38,28 @@ const App = () => {
         <Route path="checkout" element={<CheckoutPage />} />
         <Route path="wishlist" element={<Wishlist />} />
         <Route path="shopnow" element={<Shopnow />} />
+        <Route path="product/:id" element={<SingleProduct />} />
         <Route path="about" element={<Aboutus />} />
         <Route path="contact" element={<Contactus />} />
         <Route path="track" element={<Trackorder />} />
         <Route path="privacy" element={<Privacypolicy />} />
         <Route path="termsandcondition" element={<Termsandcondition />} />
-        <Route path="shippingdelivery" element={< Shippinganddelivery />} />
-        <Route path="returnandrfund" element={< Returnsandrefund />} />
-        <Route path="forgetpassword" element={< Forgetpassword />} />
-         <Route path="newuser" element={< Newuser />} />
-        {/* 🆕 Single Product Dynamic Route */}
-        <Route path="product/:id" element={<SingleProduct />} />
+        <Route path="shippingdelivery" element={<Shippinganddelivery />} />
+        <Route path="returnandrefund" element={<Returnsandrefund />} />
+        <Route path="forgetpassword" element={<Forgetpassword />} />
+        <Route path="newuser" element={<Newuser />} />
+      </Route>
+
+      {/* 🧭 Admin panel routes */}
+      <Route path="/admin" element={<AdminLayout />}>
+        <Route index element={<Dashboard />} />
+        <Route path="products" element={<AllProducts />} />
+        <Route path="orders" element={<OrdersList />} />
+        {/* <Route path="change-password" element={<Changepassword />} /> */}
       </Route>
     </Routes>
   );
 };
 
 export default App;
-
-
-
 

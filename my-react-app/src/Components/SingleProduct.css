@@ -54,12 +54,10 @@
   transition: 0.3s ease;
 }
 
-
 .single-product .qty-btn:hover {
   background-color: #032b75;
   color: white;
 }
-
 
 .single-product .qty-value {
   display: flex;

@@ -1,0 +1,28 @@
+.admin-page-container {
+  padding: 20px;
+  margin-left: 220px; /* sidebar space */
+  background: #fff;
+  border-radius: 10px;
+  margin-top: 20px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+.admin-table th, .admin-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid #eee;
+}
+
+.admin-table th {
+  background-color: #f6f6f6;
+  text-align: left;
+}
+
+.delivered { color: green; }
+.canceled { color: red; }
+.pending { color: orange; }

@@ -68,7 +68,7 @@ function SingleProduct() {
         {/* RIGHT DETAILS SECTION */}
         <div className="col-lg-6">
           <h5 className="bluetext fw-semibold">{product.brand}</h5>
-          <h3 className="fw-bold">{product.title}</h3>
+          <h3 className="fw-bold bluetext sansfamily">{product.title}</h3>
 
           <div className="mb-2">
             {"⭐".repeat(product.rating)}{"☆".repeat(5 - product.rating)}
@@ -102,10 +102,8 @@ function SingleProduct() {
             </div>
 
             {/* Add to cart */}
-
-
             <button
-              className="btn btn-warning fw-bold px-4"
+              className="btn btn-warning text-danger fw-bold px-4"
               onClick={() => {
                 for (let i = 0; i < quantity; i++) {
                   addToCart({
