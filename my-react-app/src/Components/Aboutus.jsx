@@ -4,9 +4,7 @@ import slider1 from "../assets/slider1.jpeg"; // your local image
 
 const Aboutus = () => {
   return (
-    <div className="aboutus-container">
-      <div className="breadcrumb">Home / About Us</div>
-
+    <div className="aboutus-container">   
       <div className="aboutus-box">
         {/* Left Section */}
         <div className="aboutus-text">
