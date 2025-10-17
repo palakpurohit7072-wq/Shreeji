@@ -32,7 +32,7 @@ import AdminLayout from "./Adminpanel/AdminLayout";
 import Dashboard from "./Adminpanel/Pages/Dashboard";
 import OrdersList from "./Adminpanel/Pages/OrdersList";
 import AllProducts from "./Adminpanel/Pages/AllProducts";
-import Changepassword from "./Adminpanel/Pages/Changepassword";
+// import Changepassword from "./Adminpanel/Pages/Changepassword";
 import ProductDetailsAdd from "./Adminpanel/Pages/ProductDetailsAdd";
 import ProductDetailsEdit from "./Adminpanel/Pages/ProductDetailsEdit";
 import OrderDetails from "./Adminpanel/Pages/OrderDetails";
@@ -74,7 +74,7 @@ const App = () => {
         <Route path="products" element={<AllProducts />} />
         <Route path="orders" element={<OrdersList />} />
         <Route path="orders/:orderId" element={<OrderDetails />} />
-        <Route path="change-password" element={<Changepassword />} />
+        {/* <Route path="change-password" element={<Changepassword />} /> */}
         <Route path="productdetailsadd" element={<ProductDetailsAdd />} />
         <Route path="productdetailsedit" element={<ProductDetailsEdit />} />
       </Route>
