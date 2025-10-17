@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import "../styles/Changepassword.css";
 
+import "../Styles/Changepassword.css";
 const ChangePassword = () => {
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
@@ -14,7 +14,7 @@ const ChangePassword = () => {
     // 🔹 Field validation
     if (!currentPassword || !newPassword || !confirmPassword) {
       setMessage("⚠️ All fields are required.");
-      setMessageType("error");
+      setMessageType("error");R
       return;
     }
 
