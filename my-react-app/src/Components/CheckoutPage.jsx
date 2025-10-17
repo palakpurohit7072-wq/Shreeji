@@ -1,16 +1,59 @@
 import React, { useState } from "react";
 import { useCart } from "../Context/CartContext";
-
-import "./CheckoutPage.css";
 import { useNavigate } from "react-router-dom";
+import "./CheckoutPage.css";
+
 const CheckoutPage = () => {
   const { cartItems, totalPrice, addToCart, decreaseQty, removeFromCart } = useCart();
   const [useDifferentBilling, setUseDifferentBilling] = useState(false);
   const [email, setEmail] = useState("");
   const [shippingMethod, setShippingMethod] = useState("free");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const navigate = useNavigate();
   const shippingCost = shippingMethod === "free" ? 0 : 50;
   const finalTotal = totalPrice + shippingCost;
+
+  // ✅ Function to handle Pay Now click
+  const handlePayNow = () => {
+    if (cartItems.length === 0) {
+      alert("Cart is empty!");
+      return;
+    }
+
+    // 🟢 Full name from input fields (instead of email)
+    const fullName = `${firstName} ${lastName}`.trim() || "Guest";
+
+    // 1️⃣ Create order object
+    const newOrder = {
+      id: `#${Date.now()}`, // unique ID
+      product: cartItems.map((item) => item.name).join(", "),
+      date: new Date().toLocaleDateString("en-US", {
+        month: "short",
+        day: "numeric",
+        year: "numeric",
+      }),
+      customer: fullName, // ✅ FIXED — use full name
+      status: "Delivered",
+      amount: `₹${finalTotal.toFixed(2)}`,
+      items: cartItems,
+    };
+
+    // 2️⃣ Get existing orders from localStorage
+    const existingOrders = JSON.parse(localStorage.getItem("orders")) || [];
+
+    // 3️⃣ Add new order at start
+    existingOrders.unshift(newOrder);
+
+    // 4️⃣ Save updated list
+    localStorage.setItem("orders", JSON.stringify(existingOrders));
+
+    // 5️⃣ Clear cart
+    cartItems.forEach((item) => removeFromCart(item.id));
+
+    // 6️⃣ Navigate to Orders List page
+    navigate("/admin/orders");
+  };
 
   return (
     <div className="checkout-page container my-4">
@@ -41,12 +84,27 @@ const CheckoutPage = () => {
           <form className="checkout-form mb-4">
             <div className="row g-2 mb-2">
               <div className="col-sm-6">
-                <input type="text" placeholder="First name" className="form-control" required />
+                <input
+                  type="text"
+                  placeholder="First name"
+                  className="form-control"
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
+                  required
+                />
               </div>
               <div className="col-sm-6">
-                <input type="text" placeholder="Last name" className="form-control" required />
+                <input
+                  type="text"
+                  placeholder="Last name"
+                  className="form-control"
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
+                  required
+                />
               </div>
             </div>
+
             <input type="text" placeholder="Address" className="form-control mb-2" required />
             <input type="text" placeholder="Apartment, suite, etc. (optional)" className="form-control mb-2" />
             <input type="text" placeholder="City" className="form-control mb-2" required />
@@ -103,17 +161,15 @@ const CheckoutPage = () => {
             <span>upivisamaster +13</span>
             <p>Additional payment methods</p>
             <p>
-              After clicking “Pay now”, you will be redirected to Razorpay Secure
-              (UPI, Cards, Int'l Cards, Wallets) to complete your purchase
-              securely.
+              After clicking “Pay now”, you will be redirected to Razorpay Secure (UPI, Cards, Int'l Cards, Wallets) to
+              complete your purchase securely.
             </p>
           </div>
 
           {/* Consent */}
           <label className="consent-label d-block mb-3">
-            <input type="checkbox" /> I hereby give my express consent to provide
-            my personal details as above. I have read and agree to the{" "}
-            <a href="#">Privacy Policy</a> & <a href="#">Terms</a>.
+            <input type="checkbox" /> I hereby give my express consent to provide my personal details as above. I have
+            read and agree to the <a href="#">Privacy Policy</a> & <a href="#">Terms</a>.
           </label>
 
           {/* Billing address */}
@@ -168,15 +224,13 @@ const CheckoutPage = () => {
             </form>
           )}
 
-          <button className="pay-btn btn btn-primary w-100 mb-2">
+          {/* ✅ Pay Now Button */}
+          <button className="pay-btn btn btn-primary w-100 mb-2" onClick={handlePayNow}>
             Pay now ₹{finalTotal.toFixed(2)}
           </button>
 
           <div className="text-center mt-5">
-            <button
-              className="btn btn-outline-secondary"
-              onClick={() => navigate("/")} // Navigates to home
-            >
+            <button className="btn btn-outline-secondary" onClick={() => navigate("/")}>
               ← Back to Home
             </button>
           </div>
@@ -237,4 +291,3 @@ const CheckoutPage = () => {
 };
 
 export default CheckoutPage;
-

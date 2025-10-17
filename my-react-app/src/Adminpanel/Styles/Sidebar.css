@@ -1,3 +1,4 @@
+
 .admin-sidebar {
   width: 230px;
   background-color: #1e1e1e;
@@ -5,6 +6,9 @@
   height: 100vh;
   padding: 20px;
   position: fixed;
+  top: 0;             /* 👈 Add this line */
+  left: 0;            /* 👈 Optional but recommended for clean alignment */
+  z-index: 1000;      /* 👈 Keeps sidebar above other content if overlapping */
 }
 
 .admin-sidebar .admin-logo {

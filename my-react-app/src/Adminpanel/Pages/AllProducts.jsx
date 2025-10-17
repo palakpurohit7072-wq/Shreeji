@@ -1,172 +1,125 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "../Styles/AllProducts.css";
+import { useNavigate, useOutletContext } from "react-router-dom";
+import { useCart } from "../../Context/CartContext";
+import sliderFallback from "../../assets/slider1.jpeg";
 
 const AllProducts = () => {
-  // 🧠 Load from localStorage OR use default products
-  const [products, setProducts] = useState(() => {
-    const saved = localStorage.getItem("products");
-    return saved
-      ? JSON.parse(saved)
-      : [
-          { id: 1, name: "Product A", price: 500, stock: 20 },
-          { id: 2, name: "Product B", price: 700, stock: 15 },
-          { id: 3, name: "Product C", price: 400, stock: 10 },
-        ];
-  });
+  const navigate = useNavigate();
+  const { userProducts, addToCart } = useCart();
+  const { setShowCart, setShowWishlist } = useOutletContext();
 
-  const [newProduct, setNewProduct] = useState({ name: "", price: "", stock: "" });
-  const [searchTerm, setSearchTerm] = useState("");
-  const [editProduct, setEditProduct] = useState(null);
-
-  // 💾 Auto-save to localStorage whenever products change
-  useEffect(() => {
-    localStorage.setItem("products", JSON.stringify(products));
-  }, [products]);
-
-  // ➕ Add product
-  const handleAdd = (e) => {
-    e.preventDefault();
-    if (!newProduct.name || !newProduct.price || !newProduct.stock) return;
-    setProducts([
-      ...products,
-      {
-        id: Date.now(),
-        name: newProduct.name,
-        price: Number(newProduct.price),
-        stock: Number(newProduct.stock),
-      },
-    ]);
-    setNewProduct({ name: "", price: "", stock: "" });
+  const handleAddToCart = (product) => {
+    addToCart({
+      id: product.id,
+      name: product.name,
+      desc: product.name,
+      price: product.salePrice || product.regularPrice,
+      img: product.mainImage || sliderFallback,
+    });
+    setShowCart(true);
   };
 
-  // ✏️ Edit
-  const handleEdit = (product) => setEditProduct(product);
-
-  // ✅ Update
-  const handleUpdate = (e) => {
-    e.preventDefault();
-    setProducts(products.map((p) => (p.id === editProduct.id ? editProduct : p)));
-    setEditProduct(null);
+  const handleCardClick = (productId) => {
+    navigate("/admin/productdetailsedit", { state: { productId } });
   };
-
-  // ❌ Delete
-  const handleDelete = (id) => {
-    if (window.confirm("Are you sure you want to delete this product?")) {
-      setProducts(products.filter((p) => p.id !== id));
-    }
-  };
-
-  // 🔍 Filter
-  const filtered = products.filter((p) =>
-    p.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
 
   return (
     <div className="all-products-page">
-      <div className="products-container">
-        <div className="products-header">
+      <div className="products-header">
+        <div>
           <h2>All Products</h2>
-          <input
-            type="text"
-            placeholder="🔍 Search product..."
-            className="search-input"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
+          <p>
+            <span style={{ color: "gray" }}>Home &gt; </span>All Products
+          </p>
         </div>
-
-        {/* ➕ Add Form */}
-        <form className="add-form" onSubmit={handleAdd}>
-          <input
-            type="text"
-            placeholder="Product Name"
-            value={newProduct.name}
-            onChange={(e) => setNewProduct({ ...newProduct, name: e.target.value })}
-          />
-          <input
-            type="number"
-            placeholder="Price (₹)"
-            value={newProduct.price}
-            onChange={(e) => setNewProduct({ ...newProduct, price: e.target.value })}
-          />
-          <input
-            type="number"
-            placeholder="Stock"
-            value={newProduct.stock}
-            onChange={(e) => setNewProduct({ ...newProduct, stock: e.target.value })}
-          />
-          <button type="submit" className="add-btn">+ Add Product</button>
-        </form>
-
-        {/* 📋 Product Table */}
-        <div className="table-container">
-          <table className="product-table">
-            <thead>
-              <tr>
-                <th>Product Name</th>
-                <th>Price (₹)</th>
-                <th>Stock</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {filtered.length > 0 ? (
-                filtered.map((p) => (
-                  <tr key={p.id}>
-                    <td>{p.name}</td>
-                    <td>₹{p.price}</td>
-                    <td>{p.stock}</td>
-                    <td>
-                      <button className="edit-btn" onClick={() => handleEdit(p)}>
-                        Edit
-                      </button>
-                      <button className="delete-btn" onClick={() => handleDelete(p.id)}>
-                        Delete
-                      </button>
-                    </td>
-                  </tr>
-                ))
-              ) : (
-                <tr>
-                  <td colSpan="4" className="no-data">No products found</td>
-                </tr>
-              )}
-            </tbody>
-          </table>
-        </div>
+        <button
+          className="add-product-btn"
+          onClick={() => navigate("/admin/productdetailsadd")}
+        >
+          + Add New Product
+        </button>
       </div>
 
-      {/* ✏️ Edit Modal */}
-      {editProduct && (
-        <div className="modal-overlay">
-          <div className="modal">
-            <h3>Edit Product</h3>
-            <form onSubmit={handleUpdate}>
-              <input
-                type="text"
-                value={editProduct.name}
-                onChange={(e) => setEditProduct({ ...editProduct, name: e.target.value })}
+      <div className="products-grid">
+        {userProducts.length === 0 && <p>No products available.</p>}
+
+        {userProducts.map((product) => (
+          <div
+            key={product.id}
+            className="product-card"
+            onClick={() => handleCardClick(product.id)}
+          >
+            <div className="product-card-header position-relative">
+              <img
+                src={product.mainImage || sliderFallback}
+                alt={product.name}
+                className="product-image"
+                style={{ transition: "0.3s ease" }}
               />
-              <input
-                type="number"
-                value={editProduct.price}
-                onChange={(e) => setEditProduct({ ...editProduct, price: e.target.value })}
-              />
-              <input
-                type="number"
-                value={editProduct.stock}
-                onChange={(e) => setEditProduct({ ...editProduct, stock: e.target.value })}
-              />
-              <div className="modal-btns">
-                <button type="submit" className="save-btn">Save</button>
-                <button type="button" className="cancel-btn" onClick={() => setEditProduct(null)}>
-                  Cancel
+
+              {product.discount && (
+                <span className="badge discount-badge position-absolute top-0 end-0 d-flex align-items-center justify-content-center">
+                  {product.discount}
+                </span>
+              )}
+            </div>
+
+            <div className="product-card-body d-flex flex-column flex-grow-1">
+              <h6 className="product-title fw-semibold bluetext sansfamily fs-6">
+                {product.name}
+              </h6>
+
+              <div className="d-flex align-items-center gap-2 mb-2">
+                {product.salePrice ? (
+                  <>
+                    <p className="mb-0 fw-bold bluetext fs-6">
+                      ₹{product.salePrice}
+                    </p>
+                    <p className="mb-0 text-muted text-decoration-line-through small sansfamily">
+                      ₹{product.regularPrice}
+                    </p>
+                  </>
+                ) : (
+                  <p className="mb-0 fw-bold bluetext fs-6">
+                    ₹{product.regularPrice}
+                  </p>
+                )}
+              </div>
+
+              {product.rating && (
+                <div className="mb-2">
+                  {"⭐".repeat(product.rating)}
+                  {"☆".repeat(5 - product.rating)}
+                  {product.reviews && <small> ({product.reviews})</small>}
+                </div>
+              )}
+
+              <div className="d-flex gap-2 mt-auto">
+                <button
+                  className="btn btn-warning flex-grow-1 text-danger fw-semibold"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleAddToCart(product);
+                  }}
+                >
+                  ADD
+                </button>
+
+                <button
+                  className="btn border border-warning rounded-2 bg-transparent d-flex align-items-center justify-content-center yellowicon"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setShowWishlist(true);
+                  }}
+                >
+                  <i className="bi bi-heart text-danger fs-5"></i>
                 </button>
               </div>
-            </form>
+            </div>
           </div>
-        </div>
-      )}
+        ))}
+      </div>
     </div>
   );
 };

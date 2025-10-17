@@ -1,0 +1,62 @@
+/* ===== Admin Footer Styling ===== */
+.admin-footer {
+  background-color: #f5f5f5;
+  padding: 15px 30px;
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  color: #555;
+  border-top: 1px solid #ddd;
+  width: calc(100% - 230px); /* sidebar width adjust */
+  margin-left: 230px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.admin-footer-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* LEFT TEXT */
+.footer-left {
+  color: #555;
+}
+
+/* RIGHT LINKS */
+.footer-right {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.footer-right a {
+  color: #555;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-right a:hover {
+  text-decoration: underline;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 992px) {
+  .admin-footer {
+    width: 100%;
+    margin-left: 0;
+    text-align: center;
+  }
+
+  .admin-footer-container {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .footer-right {
+    justify-content: center;
+  }
+}
+
+

@@ -1,307 +1,190 @@
-/* 🌟 Page Wrapper */
 .all-products-page {
+  padding: 30px 40px;
+  background-color: #f6f7fb;
   min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  padding: 80px 20px 40px;
-  background: #f7f9fc; /* Soft grayish background */
-  font-family: "Inter", "Poppins", sans-serif;
+  font-family: "Poppins", sans-serif;
+  box-sizing: border-box;
+
+  /* 🟢 Important: create space for sidebar & top navbar */
+  margin-left: 230px; /* same width as sidebar */
+  margin-top: 70px; /* space for top header */
+}
+.all-products-page .breadcrumb-link {
+    color: #7a7a7a; /* grey color */
+    text-decoration: none;
 }
 
-/* 🧱 Main Card */
-.products-container {
-  width: 100%;
-  max-width: 1100px;
-  margin-left: 220px;
-  background: #ffffff;
-  border-radius: 16px;
-  padding: 30px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-  transition: 0.3s ease;
+.all-products-page .breadcrumb-link:hover {
+    text-decoration: underline; /* optional hover effect */
 }
 
-.products-container:hover {
-  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.08);
-}
-
-/* 🏷️ Header Section */
+/* Header */
 .products-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
+  margin-bottom: 25px;
 }
 
 .products-header h2 {
-  font-size: 26px;
-  font-weight: 700;
-  color: #2c2484;
-  margin-bottom: 15px;
-  letter-spacing: 0.5px;
-  position: relative;
-}
-
-.products-header h2::after {
-  content: "";
-  display: block;
-  width: 60px;
-  height: 4px;
-  background: linear-gradient(90deg, #2c2484, #5b4ff3);
-  border-radius: 10px;
-  margin-top: 6px;
-}
-
-/* 🔍 Search Input */
-.search-input {
-  width: 260px;
-  padding: 10px 14px;
-  border-radius: 12px;
-  border: 1.5px solid #ddd;
-  background: #fafafa;
-  font-size: 14px;
-  transition: 0.25s;
-}
-
-.search-input:focus {
-  border-color: #2c2484;
-  background: #fff;
-  box-shadow: 0 0 5px rgba(44, 36, 132, 0.2);
-}
-
-/* ➕ Add Product Form */
-.add-form {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 14px;
-  margin: 25px 0 35px;
-  background: #f9f9fe;
-  padding: 18px;
-  border-radius: 12px;
-  box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.05);
-}
-
-.add-form input {
-  flex: 1;
-  min-width: 180px;
-  padding: 10px 12px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  font-size: 14px;
-  transition: 0.25s;
-}
-
-.add-form input:focus {
-  border-color: #2c2484;
-  background: #fff;
-  box-shadow: 0 0 4px rgba(44, 36, 132, 0.2);
-}
-
-.add-btn {
-  background: linear-gradient(90deg, #2c2484, #5b4ff3);
-  color: #fff;
-  border: none;
-  padding: 10px 18px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 14px;
-  transition: all 0.3s ease;
-}
-
-.add-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 10px rgba(44, 36, 132, 0.3);
-}
-
-/* 📋 Table Container */
-.table-container {
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.05);
-  background: #fff;
-}
-
-/* Table Core */
-.product-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.product-table th {
-  background: linear-gradient(90deg, #2c2484, #5b4ff3);
-  color: #fff;
+  font-size: 22px;
   font-weight: 600;
-  padding: 14px;
-  font-size: 15px;
-  text-align: center;
+  color: #2b2b2b;
+  margin-bottom: 4px;
 }
 
-.product-table td {
-  padding: 14px;
-  text-align: center;
+.products-header p {
+  color: #888;
   font-size: 14px;
-  border-bottom: 1px solid #eee;
-  color: #333;
 }
 
-.product-table tr:nth-child(even) {
-  background: #fafafa;
-}
-
-.product-table tr:hover {
-  background: #f2f4ff;
-  transition: 0.25s;
-}
-
-.no-data {
-  padding: 20px;
-  color: #999;
-  text-align: center;
-}
-
-/* 🖊 Action Buttons */
-.edit-btn,
-.delete-btn {
-  border: none;
-  padding: 8px 14px;
+.add-product-btn {
+  background-color: #222d5a;
+  color: #fff;
+  padding: 10px 20px;
   border-radius: 8px;
+  border: none;
   cursor: pointer;
-  font-size: 13px;
-  margin: 0 4px;
-  font-weight: 500;
-  transition: all 0.25s ease;
+  font-size: 14px;
+  transition: all 0.3s;
 }
 
-.edit-btn {
-  background: #007bff;
-  color: #fff;
+.add-product-btn:hover {
+  background-color: #0f173b;
 }
 
-.edit-btn:hover {
-  background: #0056c7;
-  transform: translateY(-2px);
+/* Products Grid */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 cards per row */
+  gap: 25px;
 }
 
-.delete-btn {
-  background: #dc3545;
-  color: #fff;
+@media (max-width: 1200px) {
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
-.delete-btn:hover {
-  background: #b2222f;
-  transform: translateY(-2px);
+@media (max-width: 768px) {
+  .products-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
-/* ✏️ Modal */
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(44, 36, 132, 0.3);
+/* Product Card */
+.product-card {
+  background: #fff;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+/* Discount Badge */
+.discount-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  min-width: 40px; /* ensures oval shape even for longer text */
+  height: 40px;
+  padding: 0 8px;
+  border-radius: 50%; /* perfect circle/oval */
+  background-color: #fff;
+  color: #000;
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 999;
-  backdrop-filter: blur(3px);
+  font-weight: 600;
+  font-size: 12px;
+  box-shadow: 0 1px 5px rgba(0,0,0,0.15);
+  z-index: 10;
 }
 
-.modal {
-  background: #fff;
-  padding: 25px;
-  border-radius: 14px;
-  width: 360px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-  animation: fadeIn 0.3s ease;
-}
-
-.modal h3 {
-  margin-bottom: 15px;
-  text-align: center;
-  color: #2c2484;
-  font-weight: 700;
-}
-
-.modal input {
+.product-image {
   width: 100%;
-  padding: 10px;
-  margin-bottom: 12px;
   border-radius: 8px;
-  border: 1px solid #ccc;
-  transition: 0.25s;
+  margin-bottom: 10px;
+  object-fit: cover;
 }
 
-.modal input:focus {
-  border-color: #2c2484;
-  box-shadow: 0 0 5px rgba(44, 36, 132, 0.2);
+.product-card h3 {
+  font-size: 16px;
+  color: #222;
+  margin-bottom: 6px;
 }
 
-.modal-btns {
+.price {
+  font-size: 15px;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 5px;
+}
+
+.summary {
+  font-size: 13px;
+  color: #777;
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+
+/* Stats and Progress */
+.stats {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
 }
 
-.save-btn,
-.cancel-btn {
-  border: none;
-  padding: 8px 14px;
-  border-radius: 8px;
-  cursor: pointer;
-  color: #fff;
-  font-weight: 600;
-  transition: 0.25s;
+.stats p {
+  color: #555;
+  font-size: 13px;
 }
 
-.save-btn {
-  background: linear-gradient(90deg, #2c2484, #5b4ff3);
+.stats span {
+  font-size: 13px;
+  font-weight: 500;
+  color: #333;
 }
 
-.save-btn:hover {
-  box-shadow: 0 4px 10px rgba(44, 36, 132, 0.3);
-  transform: translateY(-2px);
+.progress-bar {
+  background: #eee;
+  border-radius: 6px;
+  height: 6px;
+  width: 100%;
+  overflow: hidden;
 }
 
-.cancel-btn {
-  background: #888;
+.progress {
+  background: linear-gradient(90deg, #4caf50, #81c784);
+  height: 100%;
 }
 
-.cancel-btn:hover {
-  background: #666;
+.remaining {
+  margin-top: 6px;
+  font-size: 12px;
+  color: #666;
+}
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 cards per row */
+  gap: 25px;
 }
 
-/* 🌀 Animation */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-15px);
+@media (max-width: 1200px) {
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 per row on medium screens */
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
 
-/* 📱 Responsive */
 @media (max-width: 768px) {
-  .products-container {
-    margin-left: 0;
-    padding: 20px;
-  }
-
-  .products-header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .search-input {
-    width: 100%;
-  }
-
-  .add-form {
-    flex-direction: column;
-  }
-
-  .modal {
-    width: 90%;
+  .products-grid {
+    grid-template-columns: 1fr; /* 1 per row on mobile */
   }
 }
+

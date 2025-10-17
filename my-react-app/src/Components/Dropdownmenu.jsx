@@ -1,9 +1,66 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import dropdown1 from "../assets/dropdown1.png";
+import { supabase } from "../ServerApi/Dbconnection.jsx";
 import "./Dropdown.css";
 
 const Dropdownmenu = () => {
-  // 🔹 Reusable Mega Dropdown Function
+  const [categories, setCategories] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  // 🔹 Fetch categories on mount
+  useEffect(() => {
+    fetchCategories();
+  }, []);
+
+  // ✅ Fetch from Supabase with safe parsing
+  async function fetchCategories() {
+    try {
+      const { data, error } = await supabase
+        .from("categories")
+        .select("*")
+        .order("category_id", { ascending: true });
+
+      if (error) throw error;
+
+      // Parse content_json for each category safely 
+      const parsedCategories = data.map((cat) => {
+        let parsedContent;
+        try {
+          parsedContent = cat.content_json
+            ? JSON.parse(cat.content_json)
+            : null;
+        } catch (e) {
+          console.warn("⚠️ Invalid JSON for:", cat.name);
+          parsedContent = null;
+        }
+
+        // Fallback structure if API JSON missing or invalid
+        if (!parsedContent || !parsedContent.col1 || !parsedContent.col3) {
+          parsedContent = {
+            col1: { title: "Product Type", items: [] },
+            col3: { title: "Quantity", items: [] },
+            image: dropdown1,
+          };
+        } else {
+          // Ensure items arrays exist
+          parsedContent.col1.items = parsedContent.col1.items || [];
+          parsedContent.col3.items = parsedContent.col3.items || [];
+          parsedContent.image = parsedContent.image || dropdown1;
+        }
+
+        return { ...cat, parsedContent };
+      });
+
+      setCategories(parsedCategories);
+      setLoading(false);
+      console.log("✅ Categories fetched:", parsedCategories);
+    } catch (err) {
+      console.error("❌ Fetch categories error:", err.message);
+      setLoading(false);
+    }
+  }
+
+  // 🔹 MegaDropdown Component (Design preserved)
   const MegaDropdown = ({ title, content }) => (
     <li className="nav-item dropdown position-static mega-dropdown">
       <a
@@ -17,57 +74,77 @@ const Dropdownmenu = () => {
       <div className="dropdown-menu mt-0 p-4 w-100">
         <div className="container-fluid">
           <div className="row">
-            {/* ✅ Column 1: Product Type */}
+            {/* Column 1: Product Type */}
             <div className="col-md-4">
-              <h6 className="fw-bold bluetext">{content.col1.title}</h6>
+              <h6 className="fw-bold bluetext">
+                {content.col1?.title || "Product Type"}
+              </h6>
               <ul className="list-unstyled">
-                {content.col1.items.map((item, idx) => (
-                  <li key={idx}>
-                    {item.subItems ? (
-                      /* 🔹 Sub-dropdown for items like Dhoop Cone / Stick Dhoop */
-                      <div className="dropdown-submenu">
+                {content.col1?.items.length > 0 ? (
+                  content.col1.items.map((item, idx) => (
+                    <li key={idx}>
+                      {item.subItems ? (
+                        <div className="dropdown-submenu">
+                          <a className="dropdown-item bluetext" href="#">
+                            {item.name}{" "}
+                            <i className="bi bi-chevron-right ms-1"></i>
+                          </a>
+                          <ul className="list-unstyled sub-items">
+                            {item.subItems.map((sub, i) => (
+                              <li key={i}>
+                                <a className="dropdown-item bluetext" href="#">
+                                  {sub}
+                                </a>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      ) : (
                         <a className="dropdown-item bluetext" href="#">
-                          {item.name} <i className="bi bi-chevron-right ms-1"></i>
+                          {item.name || item}
                         </a>
-                        <ul className="list-unstyled sub-items">
-                          {item.subItems.map((sub, i) => (
-                            <li key={i}>
-                              <a className="dropdown-item bluetext" href="#">
-                                {sub}
-                              </a>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    ) : (
-                      <a className="dropdown-item bluetext" href="#">
-                        {item.name || item}
-                      </a>
-                    )}
+                      )}
+                    </li>
+                  ))
+                ) : (
+                  <li>
+                    <span className="dropdown-item text-muted">
+                      No items available
+                    </span>
                   </li>
-                ))}
+                )}
               </ul>
             </div>
 
-            {/* ✅ Column 2: Quantity */}
-            {content.col3 && (
-              <div className="col-md-4">
-                <h6 className="fw-bold bluetext">{content.col3.title}</h6>
-                <ul className="list-unstyled">
-                  {content.col3.items.map((item, idx) => (
+            {/* Column 2: Quantity */}
+            <div className="col-md-4">
+              <h6 className="fw-bold bluetext">
+                {content.col3?.title || "Quantity"}
+              </h6>
+              <ul className="list-unstyled">
+                {content.col3?.items.length > 0 ? (
+                  content.col3.items.map((item, idx) => (
                     <li key={idx}>
                       <a className="dropdown-item bluetext" href="#">
                         {item}
                       </a>
                     </li>
-                  ))}
-                </ul>
-              </div>
-            )}
+                  ))
+                ) : (
+                  <li>
+                    <span className="dropdown-item text-muted">No data found</span>
+                  </li>
+                )}
+              </ul>
+            </div>
 
-            {/* ✅ Column 3: Image */}
+            {/* Column 3: Image */}
             <div className="col-md-4 text-center">
-              <img src={content.image || dropdown1} alt="Dropdown" className="dropdown-img" />
+              <img
+                src={content.image || dropdown1}
+                alt="Dropdown"
+                className="dropdown-img"
+              />
             </div>
           </div>
         </div>
@@ -75,144 +152,29 @@ const Dropdownmenu = () => {
     </li>
   );
 
-  // 🔹 Dropdown Contents
-  const poojaContent = {
-    col1: {
-      title: "Product Type",
-      items: [
-        {
-          name: "Dhoop Cone",
-          subItems: [
-            "Gugal Cone Dhoop",
-            "Loban Cone Dhoop",
-            "Sandalwood Cone Dhoop",
-            "Jasmine Cone Dhoop",
-            "Lavender Cone Dhoop",
-            "Rose Cone Dhoop",
-          ],
-        },
-        {
-          name: "Stick Dhoop",
-          subItems: [
-            "Gugal Stick Dhoop",
-            "Loban Stick Dhoop",
-            "Sandalwood Stick Dhoop",
-            "Jasmine Stick Dhoop",
-            "Lavender Stick Dhoop",
-            "Rose Stick Dhoop",
-          ],
-        },
-        "Sambrani Cups (Guggal & Loban)",
-        "Navgrah Shanti Stick Dhoop",
-        "Sambrani Cups (21 ingredients)",
-        "Havan Tikki",
-        "Havan Samagri",
-        "Gaukripa Chandan Tikka",
-      ],
-    },
-    col3: {
-      title: "Quantity",
-      items: [
-        "100 gm / 200 gm",
-        "100 gm",
-        "1 Box (12 pcs)",
-        "100 gm",
-        "1 Box (12 pcs)",
-        "12 pcs",
-        "250 gm",
-        "1 pcs",
-      ],
-    },
-    image: dropdown1,
-  };
-
-  const panchgavyaContent = {
-    col1: {
-      title: "Product Type",
-      items: [
-        "Panchgavya Neem, Aloe Vera, Tulsi Soap",
-        "Panchgavya Ubtan Soap",
-        "Panchgavya Milk Soap",
-        "Panchgavya Aloe Vera Soap",
-        "Panchgavya Amla Reetha & Shikakai Shampoo Regular",
-        "Panchgavya Advance Hair Oil",
-        "Face Pack",
-        "Face Cream",
-      ],
-    },
-    col3: {
-      title: "Quantity",
-      items: ["100 gm", "100 gm", "100 gm", "100 gm", "250 ml", "100 ml", "100 gm", "100 gm"],
-    },
-    image: dropdown1,
-  };
-
-  const sanitaryContent = {
-    col1: {
-      title: "Product Type",
-      items: [
-        "Herbal Neem-Tulsi Hand Wash",
-        "Herbal Sandal Wood Hand Wash",
-        "Herbal Lavender Hand Wash",
-        "Herbal Rakh & Neem Dishwash Gel",
-        "Herbal Lemon Dishwash Gel",
-        "Gaunile Floor Cleaner",
-        "Herbal Toilet Cleaner",
-        "Glass Cleaner",
-        "Bathroom Cleaner",
-      ],
-    },
-    col3: {
-      title: "Quantity",
-      items: [
-        "250 ml / 500 ml",
-        "250 ml / 500 ml",
-        "250 ml / 500 ml",
-        "250 ml / 500 ml",
-        "250 ml / 500 ml",
-        "1 Ltr / 5 Ltr",
-        "250 ml / 500 ml",
-        "500 ml",
-        "500 ml",
-      ],
-    },
-    image: dropdown1,
-  };
-
-  const murtiContent = {
-    col1: {
-      title: "Product Type",
-      items: ["Lord Ganesha Murti", "Lord Krishna Murti", "Lord Lakshmee Ganesh Murti"],
-    },
-    col3: {
-      title: "Quantity",
-      items: ["6 inch", "8 inch"],
-    },
-    image: dropdown1,
-  };
-
-  const othersContent = {
-    col1: {
-      title: "Product Type",
-      items: ["GauNile Floor Cleaner", "Gaumay Vaidik Asana", "Gaumay Vaidik mela"],
-    },
-    col3: {
-      title: "Quantity",
-      items: ["1 Ltr / 5 Ltr", "1 pcs", "1 pcs"], // example quantities
-    },
-    image: dropdown1,
-  };
-
+  // 🔹 Navbar Render
   return (
     <nav className="navbar navbar-expand-lg border-top border-bottom main-navbar d-none d-lg-block">
       <div className="container">
         <div className="collapse navbar-collapse show">
           <ul className="navbar-nav gap-3">
-            <MegaDropdown title="Pooja Path" content={poojaContent} />
-            <MegaDropdown title="Panchgavya Cosmetic Products" content={panchgavyaContent} />
-            <MegaDropdown title="Herbal Sanitary Products" content={sanitaryContent} />
-            <MegaDropdown title="Murti" content={murtiContent} />
-            <MegaDropdown title="Others" content={othersContent} />
+            {loading ? (
+              <li className="nav-item">
+                <span className="nav-link text-muted">Loading...</span>
+              </li>
+            ) : categories.length > 0 ? (
+              categories.map((cat) => (
+                <MegaDropdown
+                  key={cat.category_id}
+                  title={cat.name}
+                  content={cat.parsedContent}
+                />
+              ))
+            ) : (
+              <li className="nav-item">
+                <span className="nav-link text-muted">No categories found</span>
+              </li>
+            )}
           </ul>
         </div>
       </div>

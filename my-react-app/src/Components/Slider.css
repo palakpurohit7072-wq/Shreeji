@@ -119,3 +119,46 @@
 .product-slider .product-title a{
     color:#2c2484!important;
 }
+/* ✅ White circular discount badge with border */
+.product-slider .discount-badge {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #fff;
+  color: #000;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 5;
+}
+
+/* ✅ Smooth card hover effect (optional polish) */
+.product-slider .product-card {
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.product-slider .product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* ✅ Product title link color */
+.product-slider .product-title a {
+  color: #2c2484 !important;
+}
+.product-slider .product-title a:hover {
+  color: #ffb400 !important;
+  text-decoration: underline;
+}
+
+/* ✅ Star icons alignment and size (for yellow stars) */
+.product-slider .card-body i.bi-star,
+.product-slider .card-body i.bi-star-fill {
+  font-size: 1rem;
+  margin-right: 2px;
+}

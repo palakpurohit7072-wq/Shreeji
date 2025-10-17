@@ -1,3 +1,5 @@
+/* ✅ CHECKOUT PAGE CSS (perfect checkbox alignment version) */
+
 /* GENERAL PAGE LAYOUT */
 .checkout-page {
   display: flex;
@@ -8,19 +10,6 @@
   background: #f7f7f7;
   font-family: "Poppins", sans-serif;
 }
-/* FIX CHECKBOX ALIGNMENT FOR SAVE THIS INFORMATION */
-.checkout-form .checkbox-label input[type="checkbox"] {
-  position: relative;
-  top: 7px; /* adjust this value as needed */
-}
-.contact-email-input {
-  width: 100%;
-  padding: 12px;
-  margin: 5px 0 15px 0;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  font-size: 14px;
-}
 
 /* LEFT SECTION */
 .checkout-left {
@@ -28,7 +17,7 @@
   background: #fff;
   padding: 30px;
   border-radius: 12px;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
 }
 
 /* HEADINGS */
@@ -66,20 +55,30 @@
   color: #111;
 }
 
-/* ALIGN CHECKBOX WITH LABEL */
-.checkbox-label {
+/* ✅ UNIFIED CHECKBOX + RADIO ALIGNMENT FIX */
+.checkbox-label,
+.consent-label,
+.shipping-option {
   display: flex;
-  align-items: center; /* vertical center the checkbox with text */
+  align-items: center; /* ✅ vertically center checkbox with text */
   gap: 10px;
   margin-bottom: 12px;
   font-size: 14px;
+  line-height: 1.4;
+  cursor: pointer;
 }
 
+/* INPUT STYLES FOR CHECKBOX & RADIO */
 .checkbox-label input[type="checkbox"],
-.checkbox-label input[type="radio"] {
-  width: 16px;
-  height: 16px;
+.checkbox-label input[type="radio"],
+.consent-label input[type="checkbox"],
+.shipping-option input[type="radio"] {
+  width: 18px;
+  height: 18px;
   accent-color: #2e2373;
+  margin: 0; /* remove unwanted extra top space */
+  flex-shrink: 0;
+  vertical-align: middle; /* ✅ keep baseline aligned */
 }
 
 /* FORM INPUTS */
@@ -103,11 +102,17 @@
   flex: 1;
 }
 
-/* CONSENT */
+/* CONSENT SECTION */
 .consent-label {
-  display: block;
   font-size: 13px;
+  align-items: flex-start; /* align top for multiline text */
+  gap: 8px;
   margin: 15px 0;
+  line-height: 1.5;
+}
+
+.consent-label input[type="checkbox"] {
+  margin-top: 2px; /* ✅ subtle nudge for perfect alignment */
 }
 
 .consent-label a {
@@ -135,16 +140,24 @@
 }
 
 /* SHIPPING METHOD */
-.checkout-left p {
-  font-size: 14px;
-  margin-bottom: 10px;
-  color: #555;
+.shipping-option {
+  background: #f8f8f8;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px 12px;
+  transition: 0.2s ease;
+}
+
+.shipping-option.active {
+  border-color: #2e2373;
+  background: #f1effa;
 }
 
 /* PAYMENT SECTION */
 .payment-section p {
   font-size: 14px;
   margin-bottom: 5px;
+  color: #333;
 }
 
 .payment-section span {
@@ -163,7 +176,7 @@
   color: #fff;
   padding: 30px;
   border-radius: 12px;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
 }
 
 .summary-title {
@@ -182,7 +195,7 @@
 .item-card {
   display: flex;
   align-items: center;
-  background: rgba(255,255,255,0.1);
+  background: rgba(255, 255, 255, 0.1);
   border-radius: 10px;
   padding: 10px;
   margin-bottom: 15px;
@@ -280,7 +293,7 @@
 
 /* SUMMARY FOOTER */
 .summary-footer {
-  border-top: 1px solid rgba(255,255,255,0.3);
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
   padding-top: 16px;
 }
 
@@ -303,6 +316,7 @@
   color: #fff;
   font-size: 14px;
 }
+
 .back-home-btn {
   display: inline-block;
   margin-top: 20px;

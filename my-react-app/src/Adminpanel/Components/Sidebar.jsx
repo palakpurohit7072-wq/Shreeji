@@ -11,12 +11,8 @@ const Sidebar = () => {
         <li><Link to="/admin"><FaTachometerAlt /> Dashboard</Link></li>
         <li><Link to="/admin/products"><FaBoxOpen /> All Products</Link></li>
         <li><Link to="/admin/orders"><FaList /> Orders List</Link></li>
-        <li><Link to="#"><FaUser /> Admin</Link></li>
-        {/* <li>
-          <Link to="/admin/change-password">
-            <FaUser /> Change Password
-          </Link>
-        </li> */}
+         <li><Link to="/admin/change-password"><FaUser /> Admin</Link></li> 
+       
       </ul>
     </div>
   );

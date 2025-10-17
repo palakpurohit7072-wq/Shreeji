@@ -1,57 +1,121 @@
-.dashboard-container {
-  padding: 20px;
-  margin-left: 220px; /* space for sidebar */
+/* ================= Global Layout ================= */
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #f8f9fc;
+  margin: 0;
+  color: #333;
 }
 
-.stats {
-  display: flex;
-  gap: 15px;
-  flex-wrap: wrap;
+.page-container {
+  margin-left: 260px; /* Adjust according to your sidebar width */
+  padding: 80px 25px 40px; /* space for fixed header */
+  transition: all 0.3s ease;
+  background-color: #f8f9fc;
+  min-height: 100vh;
+  box-sizing: border-box;
 }
 
-.chart-section {
-  background: #fff;
-  margin-top: 25px;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+.sidebar-collapsed .page-container {
+  margin-left: 80px;
 }
 
-.recent-orders {
-  background: #fff;
-  margin-top: 25px;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+/* ================= Admin Header ================= */
+
+ 
+
+/* ================= Stat Cards ================= */
+.stat-card {
+  background: #ffffff;
+  border: 1px solid #eee;
+  transition: all 0.2s ease;
+}
+.stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.recent-orders h3 {
-  margin-bottom: 15px;
+/* ================= Buttons ================= */
+.btn-outline-secondary.active {
+  background-color: #2c2484 !important;
+  color: #fff !important;
+  border-color: #2c2484 !important;
+}
+.btn-outline-secondary {
+  color: #2c2484;
+  border-color: #2c2484;
+}
+.btn-outline-secondary:hover {
+  background-color: #2c2484;
+  color: #fff;
 }
 
-.orders-table {
-  width: 100%;
-  border-collapse: collapse;
-  text-align: left;
+/* ================= Best Sellers ================= */
+.seller-img img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+.card-body h6 {
+  color: #2c2484;
 }
 
-.orders-table th,
-.orders-table td {
-  padding: 10px 12px;
-  border-bottom: 1px solid #eee;
-}
-
-.orders-table th {
-  background-color: #f6f6f6;
+/* ================= Table ================= */
+.table th {
   font-weight: 600;
 }
-
-.delivered {
-  color: green;
-  font-weight: 500;
+.table td {
+  font-size: 0.9rem;
 }
 
-.canceled {
-  color: red;
-  font-weight: 500;
+/* ================= Responsive Design ================= */
+
+/* Tablets */
+@media (max-width: 992px) {
+  .page-container {
+    margin-left: 0;
+    padding: 75px 15px 30px;
+  }
+  /* .admin-header {
+    padding: 0 20px;
+  } */
+  .stat-card {
+    text-align: center;
+  }
+  .card-body {
+    padding: 20px 15px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 576px) {
+  .page-container {
+    margin-left: 0;
+    padding: 70px 10px 25px;
+  }
+  /* .admin-header {
+    height: auto;
+    flex-direction: column;
+    padding: 10px 15px;
+  } */
+  h4 {
+    font-size: 1.2rem;
+  }
+  .stat-card h4 {
+    font-size: 1rem;
+  }
+  .table td,
+  .table th {
+    font-size: 0.8rem;
+  }
+  .btn-group {
+    flex-wrap: wrap;
+  }
+  .btn-group .btn {
+    margin-bottom: 5px;
+  }
+  .seller-img img {
+    width: 40px;
+    height: 40px;
+  }
 }

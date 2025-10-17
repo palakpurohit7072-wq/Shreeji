@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Homeessential.css";
 import { useNavigate } from "react-router-dom";
 import slider1 from "../assets/slider1.jpeg";
@@ -6,31 +6,37 @@ import slider2 from "../assets/slider2.jpeg";
 import slider3 from "../assets/slider3.jpeg";
 import slide from "../assets/slide.jpg";
 
-const products = [
-  {
-    title: "Bathroom Freshener",
-    desc: "Refresh Your Bathroom, Elevate Every Breath!",
-    img: slider1,
-  },
-  {
-    title: "Car freshener",
-    desc: "A Fresh Start for Every Drive!",
-    img: slider2,
-  },
-  {
-    title: "Room Fresheners",
-    desc: "Revive Every Room with Lasting Freshness!",
-    img: slider3,
-  },
-  {
-    title: "Gavi Collection",
-    desc: "Elevating Every Ritual with Purity!",
-    img: slide,
-  },
-];
+import { supabase } from "../ServerApi/Dbconnection.jsx";
+
+const imgMap = [slider1, slider2, slider3, slide]; // Static images map
 
 const HomeEssentials = () => {
-  const navigate = useNavigate(); // ✅ navigation hook
+  const navigate = useNavigate();
+  const [products, setProducts] = useState([]);
+
+  // ✅ Fetch products from API on component mount
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
+  async function fetchProducts() {
+    const { data, error } = await supabase
+      .from("products")
+      .select("*")
+      .order("product_id", { ascending: true });
+
+    if (error) {
+      console.error(" Fetch error:", error);
+    } else {
+      // Map API data to required structure
+      const mappedProducts = (data || []).map((item, index) => ({
+        title: item.name || "No Title",
+        desc: item.description || "No Description",
+        img: imgMap[index % imgMap.length], // Static images
+      }));
+      setProducts(mappedProducts);
+    }
+  }
 
   return (
     <div className="container-fluid main_homeessential py-3">
@@ -39,7 +45,7 @@ const HomeEssentials = () => {
           Home Essentials
         </h2>
         <div className="row g-4">
-          {products.map((product, index) => (
+          {products.slice(0, 4).map((product, index) => (
             <div className="col-12 col-sm-6 col-lg-3" key={index}>
               <div className="card h-100 shadow-sm">
                 <img
@@ -53,7 +59,6 @@ const HomeEssentials = () => {
                   </h3>
                   <p className="card-text bluetext sansfamily">{product.desc}</p>
                   <div className="mt-auto d-flex justify-content-center">
-                    {/* ✅ On click → navigate to Shopnow page */}
                     <button
                       className="px-4 shop_btn fs-6 btn btn-warning text-danger fw-semibold"
                       onClick={() => navigate("/shopnow")}
